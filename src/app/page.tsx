@@ -135,18 +135,18 @@ export default async function HomePage() {
                 No clutter. No distractions. A clean, premium academic directory for students to share and access study material.
               </p>
 
-              <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+              <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
                 <Link
                   href="/search"
-                  className="bg-[#d24b28] hover:bg-[#b83c1d] text-white rounded-full font-semibold text-sm px-8 py-3.5 inline-flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg active:scale-95 duration-200 w-full sm:w-auto"
+                  className="bg-gradient-to-r from-[#d24b28] via-[#e25c28] to-[#ffaa00] hover:from-[#be3e1d] hover:via-[#d24b28] hover:to-[#e69500] hover:scale-[1.02] active:scale-95 text-white rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-md hover:shadow-lg duration-200 w-full sm:w-auto"
                 >
-                  Explore Platform <Icons.ArrowRight className="w-4 h-4 text-white" />
+                  Explore Platform <Icons.ArrowRight className="w-5 h-5 text-white" />
                 </Link>
                 <Link
                   href="/upload"
-                  className="bg-white hover:bg-[#d24b28]/5 text-[#d24b28] border border-[#d24b28] rounded-full font-semibold text-sm px-8 py-3.5 inline-flex items-center justify-center gap-2 transition-all shadow-sm active:scale-95 duration-200 w-full sm:w-auto"
+                  className="bg-white hover:bg-[#d24b28]/5 border-2 border-[#d24b28] hover:scale-[1.02] active:scale-95 text-[#d24b28] rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-sm duration-200 w-full sm:w-auto"
                 >
-                  Upload Notes <Icons.Upload className="w-4 h-4 text-[#d24b28]" />
+                  Upload Notes <Icons.Upload className="w-5 h-5 text-[#d24b28]" />
                 </Link>
               </div>
 
@@ -272,15 +272,15 @@ export default async function HomePage() {
               <div className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
                 <Link
                   href="/search"
-                  className="bg-[#d24b28] hover:bg-[#b83c1d] text-white rounded-full font-semibold text-sm px-8 py-3.5 inline-flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg active:scale-95 duration-200 w-full sm:w-auto"
+                  className="bg-gradient-to-r from-[#d24b28] via-[#e25c28] to-[#ffaa00] hover:from-[#be3e1d] hover:via-[#d24b28] hover:to-[#e69500] hover:scale-[1.02] active:scale-95 text-white rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-md hover:shadow-lg duration-200 w-full sm:w-auto"
                 >
-                  Get Started <Icons.ArrowRight className="w-4 h-4 text-white" />
+                  Get Started <Icons.ArrowRight className="w-5 h-5 text-white" />
                 </Link>
                 <Link
                   href="/categories"
-                  className="bg-white hover:bg-[#d24b28]/5 text-[#d24b28] border border-[#d24b28] rounded-full font-semibold text-sm px-8 py-3.5 inline-flex items-center justify-center gap-2 transition-all shadow-sm active:scale-95 duration-200 w-full sm:w-auto"
+                  className="bg-white hover:bg-[#d24b28]/5 border-2 border-[#d24b28] hover:scale-[1.02] active:scale-95 text-[#d24b28] rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-sm duration-200 w-full sm:w-auto"
                 >
-                  Browse Subjects <Icons.ArrowRight className="w-4 h-4 text-[#d24b28]" />
+                  Browse Subjects <Icons.ArrowRight className="w-5 h-5 text-[#d24b28]" />
                 </Link>
               </div>
             </div>
