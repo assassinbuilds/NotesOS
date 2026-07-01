@@ -26,9 +26,10 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b-2 border-black bg-[#f4f1ea] text-black">
+      {/* Full-width bg, centred content */}
       <div className="site-container">
         <div className="flex items-center justify-between py-5 relative">
-          
+
           {/* Logo */}
           <Link href="/" className="flex items-center gap-0 group flex-shrink-0" id="logo-link">
             <div className="border-2 border-black px-3 py-2 bg-black text-white font-black text-[16px] uppercase tracking-widest leading-none shadow-[3px_3px_0px_rgba(210,75,40,1)] group-hover:shadow-none group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-all">
@@ -98,35 +99,34 @@ export function Header() {
             )}
           </nav>
 
-          {/* Mobile Menu Actions */}
+          {/* Mobile actions */}
           <div className="flex md:hidden items-center gap-2">
             <Link
               href="/search"
-              className="flex items-center justify-center w-8 h-8 border-2 border-black bg-white hover:bg-zinc-50"
+              className="flex items-center justify-center w-10 h-10 border-2 border-black bg-white hover:bg-[#eae5db] transition-colors"
               id="mobile-search"
             >
-              <Search className="w-3.5 h-3.5 text-black" />
+              <Search className="w-4 h-4 text-black" />
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex items-center justify-center w-8 h-8 border-2 border-black bg-white hover:bg-zinc-50"
+              className="flex items-center justify-center w-10 h-10 border-2 border-black bg-white hover:bg-[#eae5db] transition-colors"
               aria-label="Toggle menu"
               id="mobile-menu-toggle"
             >
               {mobileMenuOpen ? (
-                <X className="w-3.5 h-3.5 text-black" />
+                <X className="w-4 h-4 text-black" />
               ) : (
-                <Menu className="w-3.5 h-3.5 text-black" />
+                <Menu className="w-4 h-4 text-black" />
               )}
             </button>
           </div>
-
         </div>
 
-        {/* Mobile Dropdown Menu (Brutalist style) */}
+        {/* Mobile Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t-2 border-black py-4 bg-[#f4f1ea] animate-slide-down">
-            <nav className="flex flex-col gap-3.5 px-2">
+          <div className="md:hidden border-t-2 border-black py-5 bg-[#f4f1ea] animate-slide-down">
+            <nav className="flex flex-col gap-4">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
@@ -134,22 +134,22 @@ export function Header() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`text-[10px] font-black uppercase tracking-wider ${
-                      isActive ? "text-[#d24b28] underline" : "text-black"
+                    className={`text-[13px] font-black uppercase tracking-widest pb-0.5 border-b-2 w-fit ${
+                      isActive ? "text-[#d24b28] border-[#d24b28]" : "text-black border-transparent"
                     }`}
                   >
                     {link.label}
                   </Link>
                 );
               })}
-              <div className="h-[2px] bg-black/10 my-1" />
+              <div className="h-px bg-black/10 my-1" />
               {session?.user ? (
                 <Link
                   href={`/profile/${session.user.id}`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-wider text-black"
+                  className="inline-flex items-center gap-2.5 text-[13px] font-black uppercase tracking-wider text-black"
                 >
-                  <span className="w-6 h-6 rounded-none border-2 border-black bg-black text-[#f4f1ea] flex items-center justify-center text-[10px] font-black">
+                  <span className="w-9 h-9 border-2 border-black bg-black text-[#f4f1ea] flex items-center justify-center text-sm font-black shadow-[2px_2px_0px_rgba(210,75,40,1)]">
                     {session.user.name?.[0]?.toUpperCase() || "U"}
                   </span>
                   My Profile
@@ -158,7 +158,7 @@ export function Header() {
                 <Link
                   href="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-4 py-2 bg-black text-white border-2 border-black font-black text-[10px] uppercase tracking-wider shadow-[2px_2px_0px_rgba(210,75,40,1)] text-center"
+                  className="px-6 py-3 bg-black text-[#f4f1ea] border-2 border-black font-black text-[13px] uppercase tracking-widest shadow-[3px_3px_0px_rgba(210,75,40,1)] text-center w-fit"
                 >
                   Sign In
                 </Link>
