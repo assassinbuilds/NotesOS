@@ -138,15 +138,15 @@ export default async function HomePage() {
               <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
                 <Link
                   href="/search"
-                  className="modern-btn-primary inline-flex items-center justify-center px-8 py-3.5 text-xs uppercase tracking-wider text-center w-full sm:w-auto"
+                  className="bg-[#d24b28] hover:bg-[#b83c1d] text-white rounded-full font-semibold text-sm px-8 py-3.5 inline-flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg active:scale-95 duration-200 w-full sm:w-auto"
                 >
-                  Explore Platform
+                  Explore Platform <Icons.ArrowRight className="w-4 h-4 text-white" />
                 </Link>
                 <Link
                   href="/upload"
-                  className="modern-btn-secondary inline-flex items-center justify-center px-8 py-3.5 text-xs uppercase tracking-wider text-center w-full sm:w-auto"
+                  className="bg-white hover:bg-[#d24b28]/5 text-[#d24b28] border border-[#d24b28] rounded-full font-semibold text-sm px-8 py-3.5 inline-flex items-center justify-center gap-2 transition-all shadow-sm active:scale-95 duration-200 w-full sm:w-auto"
                 >
-                  Upload Notes
+                  Upload Notes <Icons.Upload className="w-4 h-4 text-[#d24b28]" />
                 </Link>
               </div>
 
@@ -272,15 +272,15 @@ export default async function HomePage() {
               <div className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
                 <Link
                   href="/search"
-                  className="modern-btn-primary inline-flex items-center justify-center px-8 py-3.5 text-xs uppercase tracking-wider text-center w-full sm:w-auto"
+                  className="bg-[#d24b28] hover:bg-[#b83c1d] text-white rounded-full font-semibold text-sm px-8 py-3.5 inline-flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg active:scale-95 duration-200 w-full sm:w-auto"
                 >
-                  Get Started
+                  Get Started <Icons.ArrowRight className="w-4 h-4 text-white" />
                 </Link>
                 <Link
                   href="/categories"
-                  className="inline-flex items-center justify-center px-8 py-3.5 bg-white border border-[#d24b28] text-[#d24b28] rounded-full font-black text-xs uppercase tracking-wider text-center hover:bg-[#d24b28]/5 transition-all w-full sm:w-auto shadow-sm"
+                  className="bg-white hover:bg-[#d24b28]/5 text-[#d24b28] border border-[#d24b28] rounded-full font-semibold text-sm px-8 py-3.5 inline-flex items-center justify-center gap-2 transition-all shadow-sm active:scale-95 duration-200 w-full sm:w-auto"
                 >
-                  Browse Subjects
+                  Browse Subjects <Icons.ArrowRight className="w-4 h-4 text-[#d24b28]" />
                 </Link>
               </div>
             </div>
