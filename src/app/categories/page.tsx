@@ -93,8 +93,8 @@ export default async function CategoriesPage() {
                 />
               </div>
 
-              {/* Card Text Content - Positioned at the bottom (exactly 1.5cm / 56px below the h-48 image) */}
-              <div className="relative z-10 flex flex-col items-center justify-end h-full pb-7 px-4 pt-[232px] pointer-events-none">
+              {/* Card Text Content - Positioned at the bottom (shifted upwards for visual balance) */}
+              <div className="relative z-10 flex flex-col items-center justify-end h-full pb-16 px-4 pt-[210px] pointer-events-none">
                 <h3 className="font-oswald font-black text-2xl sm:text-3xl uppercase tracking-tighter text-white text-center leading-none mb-1 group-hover:scale-105 transition-transform duration-300">
                   {cat.name}
                 </h3>
