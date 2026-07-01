@@ -3,23 +3,21 @@ import { Heart } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t-2 border-black bg-[#f4f1ea] text-black mt-auto">
-      <div className="site-container py-10">
+    <footer className="border-t border-black/5 bg-white text-black mt-auto shadow-sm">
+      <div className="site-container py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link href="/" className="flex items-center gap-1 mb-3 group" id="logo-link">
-              <div className="border-2 border-black px-1.5 py-0.5 bg-black text-white font-black text-[10px] uppercase tracking-wider leading-none shadow-[1.5px_1.5px_0px_rgba(0,0,0,1)] transition-transform group-hover:-translate-y-0.5">
-                NO
-                <br />
-                TE
+            <Link href="/" className="flex items-center gap-2 mb-3 group" id="logo-link">
+              <div className="w-8 h-8 rounded-lg bg-[#d24b28] text-white flex items-center justify-center font-black text-sm shadow-sm group-hover:scale-105 transition-transform">
+                N
               </div>
-              <div className="border-2 border-black px-1.5 py-0.5 bg-[#f4f1ea] text-black font-black text-[10px] uppercase tracking-wider leading-none shadow-[1.5px_1.5px_0px_rgba(0,0,0,1)] transition-transform group-hover:-translate-y-0.5">
-                OS
-              </div>
+              <span className="font-black text-sm tracking-tight uppercase text-black">
+                Notes<span className="text-[#d24b28]">OS</span>
+              </span>
             </Link>
-            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-600 leading-relaxed">
+            <p className="text-xs font-semibold text-zinc-500 leading-relaxed max-w-[200px]">
               The fastest academic directory. Study smarter.
             </p>
           </div>
@@ -36,7 +34,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-xs font-semibold text-zinc-650 hover:text-black hover:underline"
+                    className="text-xs font-medium text-zinc-650 hover:text-[#d24b28] hover:underline"
                   >
                     {link.label}
                   </Link>
@@ -53,7 +51,7 @@ export function Footer() {
                 <li key={cat}>
                   <Link
                     href={`/categories?q=${encodeURIComponent(cat)}`}
-                    className="text-xs font-semibold text-zinc-650 hover:text-black hover:underline"
+                    className="text-xs font-medium text-zinc-650 hover:text-[#d24b28] hover:underline"
                   >
                     {cat}
                   </Link>
@@ -74,7 +72,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-xs font-semibold text-zinc-650 hover:text-black hover:underline"
+                    className="text-xs font-medium text-zinc-650 hover:text-[#d24b28] hover:underline"
                   >
                     {link.label}
                   </Link>
@@ -84,11 +82,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">
+        <div className="mt-10 pt-6 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-450">
             © {new Date().getFullYear()} NotesOS. Built for students.
           </p>
-          <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 flex items-center gap-1">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-450 flex items-center gap-1">
             Made with <Heart className="w-3 h-3 text-[#d24b28] fill-[#d24b28]" /> for education
           </p>
         </div>
