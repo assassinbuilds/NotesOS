@@ -138,13 +138,13 @@ export default async function HomePage() {
               <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
                 <Link
                   href="/search"
-                  className="modern-btn-primary px-8 py-3.5 text-xs uppercase tracking-wider text-center w-full sm:w-auto"
+                  className="modern-btn-primary inline-flex items-center justify-center px-8 py-3.5 text-xs uppercase tracking-wider text-center w-full sm:w-auto"
                 >
                   Explore Platform
                 </Link>
                 <Link
                   href="/upload"
-                  className="modern-btn-secondary px-8 py-3.5 text-xs uppercase tracking-wider text-center w-full sm:w-auto"
+                  className="modern-btn-secondary inline-flex items-center justify-center px-8 py-3.5 text-xs uppercase tracking-wider text-center w-full sm:w-auto"
                 >
                   Upload Notes
                 </Link>
@@ -272,13 +272,13 @@ export default async function HomePage() {
               <div className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
                 <Link
                   href="/search"
-                  className="modern-btn-primary px-8 py-3.5 text-xs uppercase tracking-wider text-center w-full sm:w-auto"
+                  className="modern-btn-primary inline-flex items-center justify-center px-8 py-3.5 text-xs uppercase tracking-wider text-center w-full sm:w-auto"
                 >
                   Get Started
                 </Link>
                 <Link
                   href="/categories"
-                  className="px-8 py-3.5 bg-white border border-[#d24b28] text-[#d24b28] rounded-full font-black text-xs uppercase tracking-wider text-center hover:bg-[#d24b28]/5 transition-all w-full sm:w-auto shadow-sm"
+                  className="inline-flex items-center justify-center px-8 py-3.5 bg-white border border-[#d24b28] text-[#d24b28] rounded-full font-black text-xs uppercase tracking-wider text-center hover:bg-[#d24b28]/5 transition-all w-full sm:w-auto shadow-sm"
                 >
                   Browse Subjects
                 </Link>
