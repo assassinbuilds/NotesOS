@@ -26,22 +26,19 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { data: session } = useSession();
 
-  // If we are on the Home Page, we already render a beautiful custom hero nav.
-  // We can render a simplified global navigation for other pages or use it everywhere.
-  // To keep navigation consistent and clean, we'll style the global Header with premium neo-brutalist.
   return (
     <header className="sticky top-0 z-50 border-b-2 border-black bg-[#f4f1ea] text-black">
-      <div className="max-w-6xl mx-auto px-6 sm:px-12 relative">
-        <div className="flex items-center justify-between py-4">
+      <div className="site-container">
+        <div className="flex items-center justify-between py-5 relative">
           
-          {/* Logo - NO TE OS Box */}
-          <Link href="/" className="flex items-center gap-1 group" id="logo-link">
-            <div className="border-2 border-black px-2 py-1.5 bg-black text-white font-black text-xs uppercase tracking-widest leading-none shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-transform group-hover:-translate-y-0.5">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-0 group flex-shrink-0" id="logo-link">
+            <div className="border-2 border-black px-3 py-2 bg-black text-white font-black text-[16px] uppercase tracking-widest leading-none shadow-[3px_3px_0px_rgba(210,75,40,1)] group-hover:shadow-none group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-all">
               NO
               <br />
               TE
             </div>
-            <div className="border-2 border-black px-2 py-1.5 bg-[#f4f1ea] text-black font-black text-xs uppercase tracking-widest leading-none shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-transform group-hover:-translate-y-0.5">
+            <div className="border-t-2 border-r-2 border-b-2 border-black px-3 py-2 bg-[#f4f1ea] text-black font-black text-[16px] uppercase tracking-widest leading-none shadow-[3px_3px_0px_rgba(0,0,0,1)] group-hover:shadow-none group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-all">
               OS
             </div>
           </Link>
