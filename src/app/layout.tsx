@@ -51,8 +51,8 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="font-sans antialiased min-h-screen bg-zinc-50 dark:bg-[#050505] overflow-x-hidden">
-        <div className="w-full bg-white dark:bg-[#0a0a0a] relative">
+      <body className="font-sans antialiased min-h-screen overflow-x-hidden">
+        <div className="w-full relative">
           <div className="flex flex-col min-h-screen">
             <Providers>
               <Header />
