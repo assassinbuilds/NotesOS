@@ -52,7 +52,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased min-h-screen bg-zinc-50 dark:bg-[#050505] overflow-x-hidden">
-        <div className="max-w-[1536px] mx-auto bg-white dark:bg-[#0a0a0a] shadow-2xl relative">
+        <div className="w-full bg-white dark:bg-[#0a0a0a] relative">
           <div className="flex flex-col min-h-screen">
             <Providers>
               <Header />
