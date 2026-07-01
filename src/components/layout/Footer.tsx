@@ -4,7 +4,7 @@ import { Heart } from "lucide-react";
 export function Footer() {
   return (
     <footer className="border-t-2 border-black bg-[#f4f1ea] text-black mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+      <div className="site-container py-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
           {/* Brand */}
