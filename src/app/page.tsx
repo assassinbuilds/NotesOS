@@ -71,20 +71,33 @@ export default async function HomePage() {
         className="relative font-sans select-none overflow-hidden"
         style={{ backgroundImage: "radial-gradient(circle, rgba(210,75,40,0.035) 1px, transparent 1px)", backgroundSize: "28px 28px" }}
       >
-        {/* Hero content — centered/left-aligned in responsive columns */}
-        <div className="site-container relative z-10 py-16 sm:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* Star sticker */}
+        <div className="absolute top-8 left-[4%] lg:left-[8%] hidden sm:block animate-pulse pointer-events-none z-0">
+          <svg viewBox="0 0 100 100" className="w-8 h-8 text-[#d24b28]/30" style={{ transform: "rotate(15deg)" }}>
+            <path fill="currentColor" d="M50 0 L55 35 L90 10 L65 45 L100 50 L65 55 L90 90 L55 65 L50 100 L45 65 L10 90 L35 55 L0 50 L35 45 L10 10 L45 35 Z" />
+          </svg>
+        </div>
+
+        {/* Upgraded premium graphics sticker */}
+        <div className="absolute bottom-[24%] left-[4%] lg:left-[8%] hidden lg:block z-20 hover:scale-110 transition-transform cursor-pointer">
+          <div className="w-12 h-12 rounded-2xl bg-white border border-black/5 flex items-center justify-center shadow-sm">
+            <Icons.Sparkles className="w-5 h-5 text-[#d24b28]" />
+          </div>
+        </div>
+
+        {/* Stones stack */}
+        <div className="absolute bottom-[24%] right-[4%] lg:right-[8%] hidden lg:flex flex-col items-center gap-0.5 z-0">
+          <div className="w-7 h-7 bg-[#b8cfc2]/50 rounded-t-full border border-black/5 shadow-sm" />
+          <div className="w-10 h-3 bg-[#e8c6b4]/50 rounded-full border border-black/5 shadow-sm" />
+          <div className="w-14 h-3.5 bg-[#ccd5b2]/50 rounded-full border border-black/5 shadow-sm" />
+        </div>
+
+        {/* Hero content — centered on mobile, 2-column grid on desktop */}
+        <div className="site-container relative z-10 py-16 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
             {/* Left Column: Text & Actions */}
-            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left relative z-10">
-              
-              {/* Star sticker */}
-              <div className="absolute -top-12 left-0 hidden lg:block animate-pulse pointer-events-none z-0">
-                <svg viewBox="0 0 100 100" className="w-10 h-10 text-[#d24b28]/35" style={{ transform: "rotate(15deg)" }}>
-                  <path fill="currentColor" d="M50 0 L55 35 L90 10 L65 45 L100 50 L65 55 L90 90 L55 65 L50 100 L45 65 L10 90 L35 55 L0 50 L35 45 L10 10 L45 35 Z" />
-                </svg>
-              </div>
-
+            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
               <div>
                 <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-[#d24b28] bg-[#d24b28]/10 px-3.5 py-1.5 rounded-full">
                   Your Academic Hub
@@ -92,11 +105,11 @@ export default async function HomePage() {
               </div>
 
               <h1 className="font-black tracking-tight uppercase text-black leading-none mt-6">
-                <span className="block text-[2.5rem] sm:text-[4rem] xl:text-[5rem]">Find &amp; Share</span>
-                <span className="block text-[2.5rem] sm:text-[4rem] xl:text-[5rem] text-[#d24b28]">
+                <span className="block text-[2.5rem] sm:text-[4rem] xl:text-[4.75rem]">Find &amp; Share</span>
+                <span className="block text-[2.5rem] sm:text-[4rem] xl:text-[4.75rem] text-[#d24b28]">
                   Notes OS
                 </span>
-                <span className="block text-[2.5rem] sm:text-[4rem] xl:text-[5rem] text-zinc-800">
+                <span className="block text-[2.5rem] sm:text-[4rem] xl:text-[4.75rem] text-zinc-800">
                   Study Faster
                 </span>
               </h1>
@@ -113,7 +126,7 @@ export default async function HomePage() {
                     </span>
                   ))}
                 </span>
-                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-zinc-500">
+                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-zinc-550">
                   Trusted by students worldwide
                 </span>
               </div>
@@ -125,54 +138,39 @@ export default async function HomePage() {
               <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
                 <Link
                   href="/search"
-                  className="modern-btn-primary px-8 py-3.5 text-xs uppercase tracking-wider w-full sm:w-auto text-center"
+                  className="modern-btn-primary px-8 py-3.5 text-xs uppercase tracking-wider text-center w-full sm:w-auto"
                 >
                   Explore Platform
                 </Link>
                 <Link
                   href="/upload"
-                  className="modern-btn-secondary px-8 py-3.5 text-xs uppercase tracking-wider w-full sm:w-auto text-center"
+                  className="modern-btn-secondary px-8 py-3.5 text-xs uppercase tracking-wider text-center w-full sm:w-auto"
                 >
                   Upload Notes
                 </Link>
               </div>
 
-              <div className="mt-8 text-[#d24b28] animate-bounce">
+              <div className="mt-10 text-[#d24b28] font-bold animate-bounce hidden lg:block">
                 <Icons.ChevronDown className="w-5 h-5" />
               </div>
             </div>
 
-            {/* Right Column: 3D Illustration */}
-            <div className="lg:col-span-5 flex justify-center items-center relative">
-              
-              {/* Floating Sparkle Badge (Sticker replacement) */}
-              <div className="absolute top-2 left-6 z-10 animate-bubble-float pointer-events-none">
-                <div className="w-12 h-12 rounded-2xl bg-white/80 border border-black/5 flex items-center justify-center shadow-md backdrop-blur-sm">
-                  <Icons.Sparkles className="w-5 h-5 text-[#d24b28]" />
-                </div>
-              </div>
-              
-              {/* Second Floating Badge */}
-              <div className="absolute bottom-6 right-6 z-10 animate-bubble-float pointer-events-none" style={{ animationDelay: '2.5s' }}>
-                <div className="w-12 h-12 rounded-2xl bg-white/80 border border-black/5 flex items-center justify-center shadow-md backdrop-blur-sm">
-                  <Icons.BookOpen className="w-5 h-5 text-[#d24b28]" />
-                </div>
-              </div>
-
-              <div className="relative w-full max-w-[420px] aspect-[4/3] flex items-center justify-center">
-                <img 
-                  src="/students.png" 
-                  alt="3D Cartoon Students Studying" 
-                  className="w-full h-auto object-contain mix-blend-multiply select-none pointer-events-none animate-float"
-                />
-              </div>
+            {/* Right Column: 3D Cartoon Illustration */}
+            <div className="lg:col-span-5 flex justify-center items-center relative animate-fade-in-up">
+              {/* Soft background radial glow */}
+              <div className="absolute w-72 h-72 rounded-full bg-[#d24b28]/5 filter blur-3xl pointer-events-none" />
+              <img 
+                src="/students.png" 
+                alt="Students studying 3D illustration" 
+                className="w-full max-w-[380px] sm:max-w-[420px] lg:max-w-full object-contain mix-blend-multiply select-none pointer-events-none animate-bubble-float z-10"
+              />
             </div>
 
           </div>
         </div>
 
         {/* Floating Mission Banner Card */}
-        <div className="site-container mt-6 pb-16 relative z-10">
+        <div className="site-container mt-4 pb-16 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 md:p-12 bg-white rounded-3xl border border-black/5 shadow-sm">
             <div className="flex flex-col justify-center">
               <p className="text-[10px] font-black uppercase tracking-widest text-[#d24b28] mb-3">— Our Mission</p>
