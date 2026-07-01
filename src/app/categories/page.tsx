@@ -64,7 +64,7 @@ export default async function CategoriesPage() {
       </div>
 
       {/* Grid of Categories */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 stagger-children pt-8">
         {categoriesFromDb.map((cat) => {
           const subtitle = categorySubtitles[cat.slug] || "Study guides";
           const gradient = categoryGradients[cat.slug] || "from-[#ff5a36] via-[#ff7c5d] to-[#ffb800]";
@@ -74,23 +74,18 @@ export default async function CategoriesPage() {
             <Link
               key={cat.id}
               href={`/search?q=&subject=${encodeURIComponent(cat.name)}`}
-              className={`group relative flex flex-col justify-between p-6 rounded-[2.5rem] bg-gradient-to-br ${gradient} text-white shadow-md hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:shadow-[#ff5a36]/5 hover:-translate-y-2 border border-white/10 hover:border-white/20 transition-all duration-300 h-[290px] overflow-hidden`}
+              className="group relative flex flex-col justify-end h-[240px] w-full overflow-visible transition-all duration-300 hover:-translate-y-2"
               id={`category-${cat.slug}`}
             >
-              {/* Concentric decorative background circles */}
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full border border-white/5 pointer-events-none" />
-              <div className="absolute -bottom-16 -right-16 w-48 h-48 rounded-full border border-white/5 pointer-events-none" />
-              <div className="absolute -bottom-28 -right-28 w-64 h-64 rounded-full border border-white/5 pointer-events-none" />
-
-              {/* Top Text Area - ABOVE the image */}
-              <div className="flex flex-col items-center text-center z-10 pt-1">
-                <h3 className="font-oswald font-black text-xl sm:text-2xl uppercase tracking-tighter text-white leading-none">
-                  {cat.name}
-                </h3>
+              {/* Card Body Background (Absolute, h-[190px], clipped concentric circles) */}
+              <div className={`absolute inset-x-0 bottom-0 h-[190px] rounded-[2.5rem] bg-gradient-to-br ${gradient} shadow-md group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] border border-white/10 group-hover:border-white/20 transition-all duration-300 overflow-hidden pointer-events-none`}>
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full border border-white/5 pointer-events-none" />
+                <div className="absolute -bottom-16 -right-16 w-48 h-48 rounded-full border border-white/5 pointer-events-none" />
+                <div className="absolute -bottom-28 -right-28 w-64 h-64 rounded-full border border-white/5 pointer-events-none" />
               </div>
 
-              {/* Middle Area: Pop-out illustration */}
-              <div className="my-auto py-2 z-10 flex justify-center items-center">
+              {/* Floating Illustration - Positioned exactly half above and half inside the card background */}
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
                 <CategoryImage 
                   src={`/categories/${cat.slug}.png`} 
                   alt={cat.name} 
@@ -98,12 +93,15 @@ export default async function CategoriesPage() {
                 />
               </div>
 
-              {/* Bottom Text Area - BELOW the image */}
-              <div className="flex flex-col items-center text-center gap-1 z-10">
-                <span className="font-oswald text-xs font-semibold text-white/80 mt-0.5 uppercase tracking-wider leading-none">
+              {/* Card Text Content - Positioned at the bottom (below the image) */}
+              <div className="relative z-10 flex flex-col items-center justify-end h-full pb-6 px-5 pt-[95px] pointer-events-none">
+                <h3 className="font-oswald font-black text-xl sm:text-2xl uppercase tracking-tighter text-white text-center leading-none mb-1 group-hover:scale-105 transition-transform duration-300">
+                  {cat.name}
+                </h3>
+                <span className="font-oswald text-[11px] font-semibold text-white/80 uppercase tracking-wider text-center leading-none mt-1">
                   {subtitle}
                 </span>
-                <span className="inline-flex items-center px-3 py-0.5 rounded-full bg-white/15 text-[9px] font-bold uppercase tracking-wider text-white/95 backdrop-blur-sm mt-1.5">
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-white/15 text-[9px] font-bold uppercase tracking-wider text-white/95 backdrop-blur-sm mt-3">
                   {cat._count.notes.toLocaleString()} note{cat._count.notes !== 1 ? "s" : ""}
                 </span>
               </div>
