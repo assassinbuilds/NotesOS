@@ -76,7 +76,7 @@ export default function ProfilePage({ params }: { params: Promise<{ id: string }
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-16 font-sans select-none">
+    <div className="site-container py-10 sm:py-16 font-sans select-none">
       
       {/* Profile Header Card */}
       <div className="border-2 border-black p-6 sm:p-8 mb-10 bg-[#e8e3d5] shadow-[4px_4px_0px_rgba(0,0,0,1)] animate-fade-in-up">
@@ -110,7 +110,7 @@ export default function ProfilePage({ params }: { params: Promise<{ id: string }
           {isOwnProfile && (
             <button 
               onClick={() => signOut({ callbackUrl: "/" })} 
-              className="flex items-center gap-2 px-4.5 py-2.5 bg-black text-white border-2 border-black font-black text-[10px] uppercase tracking-wider shadow-[2px_2px_0px_rgba(210,75,40,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all self-stretch sm:self-auto text-center justify-center"
+              className="flex items-center gap-2 px-4.5 py-2.5 bg-black text-white border-2 border-black font-black text-[10px] uppercase tracking-wider shadow-[3px_3px_0px_rgba(210,75,40,1)] hover:shadow-none hover:translate-x-0.75 hover:translate-y-0.75 transition-all self-stretch sm:self-auto text-center justify-center"
             >
               <LogOut className="w-4 h-4" />
               <span>Sign Out</span>
@@ -134,7 +134,7 @@ export default function ProfilePage({ params }: { params: Promise<{ id: string }
             {isOwnProfile && (
               <Link 
                 href="/upload" 
-                className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#d24b28] text-white border-2 border-black font-black text-xs uppercase tracking-wider shadow-[2.5px_2.5px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all mt-4"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#d24b28] text-white border-2 border-black font-black text-xs uppercase tracking-wider shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all mt-4"
               >
                 Upload Your First Note
               </Link>
@@ -146,7 +146,7 @@ export default function ProfilePage({ params }: { params: Promise<{ id: string }
               <Link 
                 key={note.id} 
                 href={`/notes/${note.id}`} 
-                className="block border-2 border-black p-5 bg-[#f4f1ea] shadow-[3.5px_3.5px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all group"
+                className="block border-2 border-black p-5 bg-[#f4f1ea] shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all group"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-9 h-9 border-2 border-black bg-black text-[#f4f1ea] flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105">

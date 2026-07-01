@@ -58,10 +58,10 @@ function SearchContent() {
   const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); doSearch(query); };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-16 font-sans select-none">
+    <div className="site-container py-10 sm:py-16 font-sans select-none">
       
       {/* Brutalist Header Block */}
-      <div className="mb-10 p-6 border-2 border-black bg-[#e8e3d5] shadow-[3px_3px_0px_rgba(0,0,0,1)] animate-fade-in">
+      <div className="mb-10 p-6 border-2 border-black bg-[#e8e3d5] shadow-[4px_4px_0px_rgba(0,0,0,1)] animate-fade-in">
         <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-black">
           Search Directory
         </h1>
@@ -80,7 +80,7 @@ function SearchContent() {
               value={query} 
               onChange={(e) => setQuery(e.target.value)} 
               placeholder="Search notes by subject, university, tags..." 
-              className="w-full pl-11 pr-4 py-3.5 border-2 border-black rounded-none bg-white text-xs text-black font-semibold outline-none focus:bg-[#fcfbf9]" 
+              className="w-full pl-11 pr-4 py-3.5 border-2 border-black rounded-none bg-white text-xs text-black font-semibold outline-none focus:bg-[#fcfbf9] focus:shadow-[3px_3px_0px_rgba(0,0,0,1)] focus:-translate-x-0.5 focus:-translate-y-0.5 transition-all" 
               id="search-input" 
               autoFocus 
             />
@@ -92,8 +92,8 @@ function SearchContent() {
               onClick={() => setShowFilters(!showFilters)} 
               className={`flex items-center justify-center gap-2 px-5 py-3.5 border-2 border-black rounded-none text-xs font-black uppercase tracking-wider transition-all
                 ${showFilters 
-                  ? "bg-black text-[#f4f1ea] shadow-none" 
-                  : "bg-white text-black shadow-[2.5px_2.5px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5"}`}
+                  ? "bg-black text-[#f4f1ea] shadow-none translate-x-1 translate-y-1" 
+                  : "bg-white text-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"}`}
             >
               <SlidersHorizontal className="w-3.5 h-3.5" />
               <span>Filters</span>
@@ -101,7 +101,7 @@ function SearchContent() {
             
             <button 
               type="submit" 
-              className="flex-1 sm:flex-none px-8 py-3.5 bg-[#d24b28] text-white border-2 border-black rounded-none font-black text-xs uppercase tracking-wider shadow-[3.5px_3.5px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all" 
+              className="flex-1 sm:flex-none px-8 py-3.5 bg-[#d24b28] text-white border-2 border-black rounded-none font-black text-xs uppercase tracking-wider shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all" 
               id="search-submit"
             >
               Search
@@ -112,7 +112,7 @@ function SearchContent() {
 
       {/* Filters (Brutalist style) */}
       {showFilters && (
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 p-5 border-2 border-black bg-[#eae5db] shadow-[3.5px_3.5px_0px_rgba(0,0,0,1)] animate-slide-down">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 p-5 border-2 border-black bg-[#eae5db] shadow-[4px_4px_0px_rgba(0,0,0,1)] animate-slide-down">
           <select 
             value={subjectFilter} 
             onChange={(e) => setSubjectFilter(e.target.value)} 
@@ -146,7 +146,7 @@ function SearchContent() {
       {loading ? (
         <div className="space-y-4">
           {[1,2,3].map(i => (
-            <div key={i} className="border-2 border-black p-6 bg-white animate-pulse shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+            <div key={i} className="border-2 border-black p-6 bg-white animate-pulse shadow-[4px_4px_0px_rgba(0,0,0,1)]">
               <div className="h-5 w-2/3 bg-zinc-200 rounded-none mb-3.5" />
               <div className="h-4 w-1/2 bg-zinc-100 rounded-none" />
             </div>
@@ -169,7 +169,7 @@ function SearchContent() {
             <Link 
               key={note.id} 
               href={`/notes/${note.id}`} 
-              className="block border-2 border-black p-5 bg-[#f4f1ea] shadow-[3.5px_3.5px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all group"
+              className="block border-2 border-black p-5 bg-[#f4f1ea] shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all group"
             >
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 border-2 border-black bg-black text-[#f4f1ea] flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105">
@@ -210,7 +210,7 @@ function SearchContent() {
 export default function SearchPage() {
   return (
     <Suspense fallback={
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 flex justify-center items-center min-h-[40vh]">
+      <div className="site-container py-8 sm:py-12 flex justify-center items-center min-h-[40vh]">
         <div className="w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin" />
       </div>
     }>

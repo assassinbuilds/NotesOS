@@ -119,7 +119,7 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
       
       {/* Brutalist Sticky Header Toolbar */}
       <div className="sticky top-16 z-40 border-b-2 border-black px-4 sm:px-6 bg-[#f4f1ea]">
-        <div className="max-w-7xl mx-auto flex items-center justify-between h-14 gap-4">
+        <div className="site-container flex items-center justify-between h-14 gap-4">
           
           <div className="flex items-center gap-3 min-w-0">
             <Link href="/" className="flex-shrink-0 text-black border-2 border-black p-1 bg-white hover:bg-zinc-50 transition-colors">
@@ -149,7 +149,7 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
               target={isExternal ? "_blank" : undefined} 
               rel={isExternal ? "noopener noreferrer" : undefined} 
               download={!isExternal} 
-              className="flex items-center gap-1.5 px-4.5 py-1.5 bg-[#d24b28] text-white border-2 border-black font-black text-[10px] uppercase tracking-wider shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
+              className="flex items-center gap-1.5 px-4.5 py-1.5 bg-[#d24b28] text-white border-2 border-black font-black text-[10px] uppercase tracking-wider shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-0.75 hover:translate-y-0.75 transition-all"
             >
               <span>{isExternal ? "Open Document" : "Download"}</span>
             </a>
@@ -226,7 +226,7 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
             </div>
 
             {/* Author */}
-            <div className="flex items-center gap-3 p-4 border-2 border-black bg-white shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+            <div className="flex items-center gap-3 p-4 border-2 border-black bg-white shadow-[3px_3px_0px_rgba(0,0,0,1)]">
               <div className="w-8 h-8 rounded-none border-2 border-black bg-black text-white flex items-center justify-center text-[10px] font-black">
                 {note.author.name[0]?.toUpperCase()}
               </div>
@@ -241,7 +241,7 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-3">
               {stats.map((stat) => (
-                <div key={stat.label} className="flex items-center gap-3 p-3 border-2 border-black bg-white shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                <div key={stat.label} className="flex items-center gap-3 p-3 border-2 border-black bg-white shadow-[3px_3px_0px_rgba(0,0,0,1)]">
                   <stat.icon className="w-4 h-4 text-black flex-shrink-0" />
                   <div className="min-w-0">
                     <p className="text-xs font-black text-black leading-none">{stat.value}</p>
@@ -302,7 +302,7 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noopener noreferrer" : undefined}
                 download={!isExternal}
-                className="flex items-center justify-center gap-2 w-full py-3.5 bg-black text-[#f4f1ea] border-2 border-black font-black text-xs uppercase tracking-wider shadow-[3px_3px_0px_rgba(210,75,40,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
+                className="flex items-center justify-center gap-2 w-full py-3.5 bg-black text-[#f4f1ea] border-2 border-black font-black text-xs uppercase tracking-wider shadow-[4px_4px_0px_rgba(210,75,40,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
               >
                 {isExternal ? <ExternalLink className="w-4.5 h-4.5" /> : <Download className="w-4.5 h-4.5" />}
                 <span>{isExternal ? "Open in Google Drive" : "Download PDF Document"}</span>
