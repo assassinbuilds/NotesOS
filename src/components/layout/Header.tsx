@@ -9,8 +9,6 @@ import {
   BookOpen,
   Menu,
   X,
-  User,
-  LogIn,
   LayoutGrid,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -43,32 +41,34 @@ export function Header() {
             </div>
           </Link>
 
-          {/* Desktop Search Bar (Brutalist style) */}
-          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-full max-w-[400px]">
-            <form action="/search" method="GET" className="w-full relative">
+          {/* Desktop Centred Search */}
+          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-full max-w-[500px]">
+            <form action="/search" method="GET" className="w-full relative group">
               <input
                 type="text"
                 name="q"
                 placeholder="Search notes, topics, semesters..."
-                className="w-full pl-10 pr-3 py-1.5 rounded-none border-2 border-black bg-white text-xs text-black placeholder-zinc-550 outline-none focus:bg-[#fcfbf9] transition-all"
+                className="w-full border-2 border-black bg-white text-sm text-black placeholder-zinc-400 outline-none focus:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all py-3"
+                style={{ paddingLeft: "44px", paddingRight: "16px" }}
                 id="header-search-input"
                 autoComplete="off"
-                style={{ paddingLeft: '32px' }}
               />
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-650" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 group-focus-within:text-black transition-colors" />
             </form>
           </div>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-4">
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-6 flex-shrink-0">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-[10px] font-black uppercase tracking-wider transition-all hover:underline ${
-                    isActive ? "text-[#d24b28] underline" : "text-black"
+                  className={`text-[13px] font-black uppercase tracking-widest transition-all pb-0.5 border-b-2 ${
+                    isActive
+                      ? "text-[#d24b28] border-[#d24b28]"
+                      : "text-black border-transparent hover:border-black"
                   }`}
                   id={`nav-${link.label.toLowerCase()}`}
                 >
@@ -77,12 +77,12 @@ export function Header() {
               );
             })}
 
-            <div className="w-0.5 h-4 bg-black/30 mx-1" />
+            <div className="w-px h-5 bg-black/20" />
 
             {session?.user ? (
               <Link
                 href={`/profile/${session.user.id}`}
-                className="flex items-center justify-center w-7 h-7 rounded-none border-2 border-black bg-black text-[#f4f1ea] text-xs font-black shadow-[1.5px_1.5px_0px_rgba(210,75,40,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
+                className="flex items-center justify-center w-10 h-10 border-2 border-black bg-black text-[#f4f1ea] text-sm font-black shadow-[2px_2px_0px_rgba(210,75,40,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
                 id="nav-profile"
               >
                 {session.user.name?.[0]?.toUpperCase() || "U"}
@@ -90,7 +90,7 @@ export function Header() {
             ) : (
               <Link
                 href="/login"
-                className="px-4 py-1.5 bg-black text-white border-2 border-black font-black text-[10px] uppercase tracking-wider shadow-[2px_2px_0px_0px_rgba(210,75,40,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all text-center"
+                className="px-5 py-2.5 bg-black text-[#f4f1ea] border-2 border-black font-black text-[12px] uppercase tracking-widest shadow-[3px_3px_0px_rgba(210,75,40,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
                 id="nav-login"
               >
                 Sign In
