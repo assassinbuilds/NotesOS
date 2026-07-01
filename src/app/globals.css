@@ -322,29 +322,22 @@ body {
   margin-right: auto !important;
 }
 
-/* ============================================
-   Site Container — centered with side margins
-   ============================================ */
-.site-container {
-  width: 100%;
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-}
+@utility site-container {
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
 
-@media (min-width: 640px) {
-  .site-container {
-    padding-left: 5rem;
-    padding-right: 5rem;
+  @media (min-width: 640px) {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
   }
-}
 
-@media (min-width: 1024px) {
-  .site-container {
-    padding-left: 8rem;
-    padding-right: 8rem;
+  @media (min-width: 1024px) {
+    padding-left: 4.5rem !important;
+    padding-right: 4.5rem !important;
   }
 }
 
