@@ -71,92 +71,104 @@ export default async function HomePage() {
         className="relative font-sans select-none overflow-hidden"
         style={{ backgroundImage: "radial-gradient(circle, rgba(210,75,40,0.035) 1px, transparent 1px)", backgroundSize: "28px 28px" }}
       >
-        {/* Hero content — centred inside site-container */}
-        <div 
-          className="site-container relative z-10 flex flex-col items-center text-center"
-          style={{ paddingTop: "3cm", paddingBottom: "2cm" }}
-        >
-          
-          {/* Star sticker */}
-          <div className="absolute top-2 left-[4%] lg:left-[12%] hidden sm:block animate-pulse pointer-events-none z-0">
-            <svg viewBox="0 0 100 100" className="w-10 h-10 text-[#d24b28]/40" style={{ transform: "rotate(15deg)" }}>
-              <path fill="currentColor" d="M50 0 L55 35 L90 10 L65 45 L100 50 L65 55 L90 90 L55 65 L50 100 L45 65 L10 90 L35 55 L0 50 L35 45 L10 10 L45 35 Z" />
-            </svg>
-          </div>
-          
-          {/* Explore Directory pill */}
-          <div className="absolute top-4 right-[4%] lg:right-[12%] hidden md:block z-10">
-            <Link href="/search" className="inline-flex items-center gap-2 bg-[#eae5db] border border-black/5 px-4 py-1.5 rounded-full text-[10px] font-black tracking-wider text-black shadow-sm hover:scale-105 transition-all">
-              <span className="w-4 h-4 rounded-full bg-[#d24b28] flex items-center justify-center text-white text-[7px]">▶</span>
-              <span>EXPLORE DIRECTORY</span>
-            </Link>
-          </div>
-          
-          {/* Leaf sticker */}
-          <div className="absolute bottom-[24%] left-[6%] lg:left-[14%] hidden lg:block z-10 hover:scale-110 transition-transform cursor-pointer">
-            <div className="w-10 h-10 rounded-full border border-black/5 bg-white flex items-center justify-center shadow-sm text-lg">🍃</div>
-          </div>
-          
-          {/* Stones stack */}
-          <div className="absolute bottom-[24%] right-[6%] lg:right-[14%] hidden lg:flex flex-col items-center gap-0.5 z-0">
-            <div className="w-7 h-7 bg-[#b8cfc2]/70 rounded-t-full border border-black/5 shadow-sm" />
-            <div className="w-10 h-3 bg-[#e8c6b4]/70 rounded-full border border-black/5 shadow-sm" />
-            <div className="w-14 h-3.5 bg-[#ccd5b2]/70 rounded-full border border-black/5 shadow-sm" />
-          </div>
+        {/* Hero content — centered/left-aligned in responsive columns */}
+        <div className="site-container relative z-10 py-16 sm:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Column: Text & Actions */}
+            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left relative z-10">
+              
+              {/* Star sticker */}
+              <div className="absolute -top-12 left-0 hidden lg:block animate-pulse pointer-events-none z-0">
+                <svg viewBox="0 0 100 100" className="w-10 h-10 text-[#d24b28]/35" style={{ transform: "rotate(15deg)" }}>
+                  <path fill="currentColor" d="M50 0 L55 35 L90 10 L65 45 L100 50 L65 55 L90 90 L55 65 L50 100 L45 65 L10 90 L35 55 L0 50 L35 45 L10 10 L45 35 Z" />
+                </svg>
+              </div>
 
-          <div className="mt-2">
-            <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-[#d24b28] bg-[#d24b28]/10 px-3.5 py-1.5 rounded-full">
-              Your Academic Hub
-            </span>
-          </div>
-
-          <h1 className="font-black tracking-tight uppercase text-black leading-none mt-6">
-            <span className="block text-[2.5rem] sm:text-[4.5rem] lg:text-[5.5rem] xl:text-[6rem]">Find &amp; Share</span>
-            <span className="block text-[2.5rem] sm:text-[4.5rem] lg:text-[5.5rem] xl:text-[6rem] text-[#d24b28]">
-              Notes OS
-            </span>
-            <span className="block text-[2.5rem] sm:text-[4.5rem] lg:text-[5.5rem] xl:text-[6rem] text-zinc-800">
-              Study Faster
-            </span>
-          </h1>
-
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            <span className="inline-flex items-center -space-x-2">
-              {[
-                "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80",
-                "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80",
-                "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80",
-              ].map((src, i) => (
-                <span key={i} className="w-8 h-8 rounded-full border border-white overflow-hidden block shadow-sm" style={{ zIndex: i }}>
-                  <img src={src} alt="student" className="w-full h-full object-cover" />
+              <div>
+                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-[#d24b28] bg-[#d24b28]/10 px-3.5 py-1.5 rounded-full">
+                  Your Academic Hub
                 </span>
-              ))}
-            </span>
-            <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-zinc-500">
-              Trusted by students worldwide
-            </span>
+              </div>
+
+              <h1 className="font-black tracking-tight uppercase text-black leading-none mt-6">
+                <span className="block text-[2.5rem] sm:text-[4rem] xl:text-[5rem]">Find &amp; Share</span>
+                <span className="block text-[2.5rem] sm:text-[4rem] xl:text-[5rem] text-[#d24b28]">
+                  Notes OS
+                </span>
+                <span className="block text-[2.5rem] sm:text-[4rem] xl:text-[5rem] text-zinc-800">
+                  Study Faster
+                </span>
+              </h1>
+
+              <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                <span className="inline-flex items-center -space-x-2">
+                  {[
+                    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80",
+                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80",
+                    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80",
+                  ].map((src, i) => (
+                    <span key={i} className="w-8 h-8 rounded-full border border-white overflow-hidden block shadow-sm" style={{ zIndex: i }}>
+                      <img src={src} alt="student" className="w-full h-full object-cover" />
+                    </span>
+                  ))}
+                </span>
+                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-zinc-500">
+                  Trusted by students worldwide
+                </span>
+              </div>
+
+              <p className="mt-6 text-xs sm:text-sm font-medium text-zinc-500 max-w-md leading-relaxed">
+                No clutter. No distractions. A clean, premium academic directory for students to share and access study material.
+              </p>
+
+              <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                <Link
+                  href="/search"
+                  className="modern-btn-primary px-8 py-3.5 text-xs uppercase tracking-wider w-full sm:w-auto text-center"
+                >
+                  Explore Platform
+                </Link>
+                <Link
+                  href="/upload"
+                  className="modern-btn-secondary px-8 py-3.5 text-xs uppercase tracking-wider w-full sm:w-auto text-center"
+                >
+                  Upload Notes
+                </Link>
+              </div>
+
+              <div className="mt-8 text-[#d24b28] animate-bounce">
+                <Icons.ChevronDown className="w-5 h-5" />
+              </div>
+            </div>
+
+            {/* Right Column: 3D Illustration */}
+            <div className="lg:col-span-5 flex justify-center items-center relative">
+              
+              {/* Floating Sparkle Badge (Sticker replacement) */}
+              <div className="absolute top-2 left-6 z-10 animate-bubble-float pointer-events-none">
+                <div className="w-12 h-12 rounded-2xl bg-white/80 border border-black/5 flex items-center justify-center shadow-md backdrop-blur-sm">
+                  <Icons.Sparkles className="w-5 h-5 text-[#d24b28]" />
+                </div>
+              </div>
+              
+              {/* Second Floating Badge */}
+              <div className="absolute bottom-6 right-6 z-10 animate-bubble-float pointer-events-none" style={{ animationDelay: '2.5s' }}>
+                <div className="w-12 h-12 rounded-2xl bg-white/80 border border-black/5 flex items-center justify-center shadow-md backdrop-blur-sm">
+                  <Icons.BookOpen className="w-5 h-5 text-[#d24b28]" />
+                </div>
+              </div>
+
+              <div className="relative w-full max-w-[420px] aspect-[4/3] flex items-center justify-center">
+                <img 
+                  src="/students.png" 
+                  alt="3D Cartoon Students Studying" 
+                  className="w-full h-auto object-contain mix-blend-multiply select-none pointer-events-none animate-float"
+                />
+              </div>
+            </div>
+
           </div>
-
-          <p className="mt-6 text-xs sm:text-sm font-medium text-zinc-500 max-w-md leading-relaxed">
-            No clutter. No distractions. A clean, premium academic directory for students to share and access study material.
-          </p>
-
-          <div className="mt-8 flex flex-col sm:flex-row items-center gap-3">
-            <Link
-              href="/search"
-              className="modern-btn-primary px-8 py-3.5 text-xs uppercase tracking-wider"
-            >
-              Explore Platform
-            </Link>
-            <Link
-              href="/upload"
-              className="modern-btn-secondary px-8 py-3.5 text-xs uppercase tracking-wider"
-            >
-              Upload Notes
-            </Link>
-          </div>
-
-          <div className="mt-8 text-[#d24b28] font-bold text-lg animate-bounce">↓</div>
         </div>
 
         {/* Floating Mission Banner Card */}
