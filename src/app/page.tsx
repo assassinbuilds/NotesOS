@@ -80,38 +80,38 @@ export default async function HomePage() {
   ];
 
   return (
-    <div className="relative bg-[#f4f1ea] overflow-hidden">
+    <div className="relative bg-[#0b0b0c] text-white overflow-hidden">
       
       {/* Decorative background bubbles/blobs */}
-      <div className="absolute top-24 left-[8%] w-6 h-6 rounded-full bg-[#d24b28]/10 animate-bubble-float z-0" />
-      <div className="absolute top-48 right-[12%] w-4 h-4 rounded-full bg-[#d24b28]/15 animate-bubble-float z-0" style={{ animationDelay: '1.5s' }} />
-      <div className="absolute top-1/2 left-[5%] w-8 h-8 rounded-full bg-[#d24b28]/8 animate-bubble-float z-0" style={{ animationDelay: '3s' }} />
-      <div className="absolute bottom-[20%] right-[10%] w-6 h-6 rounded-full bg-[#d24b28]/10 animate-bubble-float z-0" style={{ animationDelay: '4.5s' }} />
+      <div className="absolute top-24 left-[8%] w-6 h-6 rounded-full bg-[#ff5a36]/10 animate-bubble-float z-0" />
+      <div className="absolute top-48 right-[12%] w-4 h-4 rounded-full bg-[#ff5a36]/15 animate-bubble-float z-0" style={{ animationDelay: '1.5s' }} />
+      <div className="absolute top-1/2 left-[5%] w-8 h-8 rounded-full bg-[#ff5a36]/8 animate-bubble-float z-0" style={{ animationDelay: '3s' }} />
+      <div className="absolute bottom-[20%] right-[10%] w-6 h-6 rounded-full bg-[#ff5a36]/10 animate-bubble-float z-0" style={{ animationDelay: '4.5s' }} />
 
       {/* ===== HERO — bg full-width, content centred ===== */}
       <section
         className="relative font-sans select-none overflow-hidden"
-        style={{ backgroundImage: "radial-gradient(circle, rgba(210,75,40,0.035) 1px, transparent 1px)", backgroundSize: "28px 28px" }}
+        style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.015) 1px, transparent 1px)", backgroundSize: "28px 28px" }}
       >
         {/* Star sticker */}
         <div className="absolute top-8 left-[4%] lg:left-[8%] hidden sm:block animate-pulse pointer-events-none z-0">
-          <svg viewBox="0 0 100 100" className="w-8 h-8 text-[#d24b28]/30" style={{ transform: "rotate(15deg)" }}>
+          <svg viewBox="0 0 100 100" className="w-8 h-8 text-[#ff5a36]/20" style={{ transform: "rotate(15deg)" }}>
             <path fill="currentColor" d="M50 0 L55 35 L90 10 L65 45 L100 50 L65 55 L90 90 L55 65 L50 100 L45 65 L10 90 L35 55 L0 50 L35 45 L10 10 L45 35 Z" />
           </svg>
         </div>
 
         {/* Upgraded premium graphics sticker */}
         <div className="absolute bottom-[24%] left-[4%] lg:left-[8%] hidden lg:block z-20 hover:scale-110 transition-transform cursor-pointer">
-          <div className="w-12 h-12 rounded-2xl bg-white border border-black/5 flex items-center justify-center shadow-sm">
-            <Icons.Sparkles className="w-5 h-5 text-[#d24b28]" />
+          <div className="w-12 h-12 rounded-2xl bg-[#151516] border border-white/5 flex items-center justify-center shadow-sm">
+            <Icons.Sparkles className="w-5 h-5 text-[#ff5a36]" />
           </div>
         </div>
 
         {/* Stones stack */}
         <div className="absolute bottom-[24%] right-[4%] lg:right-[8%] hidden lg:flex flex-col items-center gap-0.5 z-0">
-          <div className="w-7 h-7 bg-[#b8cfc2]/50 rounded-t-full border border-black/5 shadow-sm" />
-          <div className="w-10 h-3 bg-[#e8c6b4]/50 rounded-full border border-black/5 shadow-sm" />
-          <div className="w-14 h-3.5 bg-[#ccd5b2]/50 rounded-full border border-black/5 shadow-sm" />
+          <div className="w-7 h-7 bg-white/10 rounded-t-full border border-white/5 shadow-sm" />
+          <div className="w-10 h-3 bg-white/5 rounded-full border border-white/5 shadow-sm" />
+          <div className="w-14 h-3.5 bg-white/5 rounded-full border border-white/5 shadow-sm" />
         </div>
 
         {/* Hero content — centered on mobile, 2-column grid on desktop */}
@@ -121,58 +121,58 @@ export default async function HomePage() {
             {/* Left Column: Text & Actions */}
             <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
               <div>
-                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-[#d24b28] bg-[#d24b28]/10 px-3.5 py-1.5 rounded-full">
+                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-[#ff5a36] bg-[#ff5a36]/10 px-3.5 py-1.5 rounded-full">
                   Your Academic Hub
                 </span>
               </div>
 
-              <h1 className="font-black tracking-tight uppercase text-black leading-none mt-6">
-                <span className="block text-[2.5rem] sm:text-[4rem] xl:text-[4.75rem]">Find &amp; Share</span>
-                <span className="block text-[2.5rem] sm:text-[4rem] xl:text-[4.75rem] text-[#d24b28]">
+              <h1 className="font-oswald font-black tracking-tighter uppercase leading-[0.9] mt-6 text-left w-full">
+                <span className="block text-[2.8rem] sm:text-[4.5rem] xl:text-[5.5rem] text-white">Find &amp; Share</span>
+                <span className="block text-[2.8rem] sm:text-[4.5rem] xl:text-[5.5rem] text-[#ff5a36] italic font-medium">
                   Notes OS
                 </span>
-                <span className="block text-[2.5rem] sm:text-[4rem] xl:text-[4.75rem] text-zinc-800">
-                  Study Faster
+                <span className="block text-[2.8rem] sm:text-[4.5rem] xl:text-[5.5rem] text-zinc-400">
+                  Study Faster.
                 </span>
               </h1>
 
-              <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+              <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3 w-full">
                 <span className="inline-flex items-center -space-x-2">
                   {[
                     "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80",
                     "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80",
                     "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80",
                   ].map((src, i) => (
-                    <span key={i} className="w-8 h-8 rounded-full border border-white overflow-hidden block shadow-sm" style={{ zIndex: i }}>
+                    <span key={i} className="w-8 h-8 rounded-full border border-[#0b0b0c] overflow-hidden block shadow-sm" style={{ zIndex: i }}>
                       <img src={src} alt="student" className="w-full h-full object-cover" />
                     </span>
                   ))}
                 </span>
-                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-zinc-550">
+                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-zinc-400">
                   Trusted by students worldwide
                 </span>
               </div>
 
-              <p className="mt-6 text-xs sm:text-sm font-medium text-zinc-500 max-w-md leading-relaxed">
+              <p className="mt-6 text-xs sm:text-sm font-medium text-zinc-400 max-w-md leading-relaxed">
                 No clutter. No distractions. A clean, premium academic directory for students to share and access study material.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
                 <Link
                   href="/search"
-                  className="bg-gradient-to-r from-[#d24b28] via-[#e25c28] to-[#ffaa00] hover:from-[#be3e1d] hover:via-[#d24b28] hover:to-[#e69500] hover:scale-[1.02] active:scale-95 text-white rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-md hover:shadow-lg duration-200 w-full sm:w-auto"
+                  className="bg-gradient-to-r from-[#ff5a36] via-[#db2777] to-[#ec4899] hover:from-[#ff7b5d] hover:via-[#e03387] hover:to-[#f45ca2] hover:scale-[1.03] active:scale-[0.97] text-white rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-[0_8px_20px_-4px_rgba(255,90,54,0.35)] hover:shadow-[0_12px_24px_-4px_rgba(219,39,119,0.45)] duration-200 w-full sm:w-auto"
                 >
                   Explore Platform <Icons.ArrowRight className="w-5 h-5 text-white" />
                 </Link>
                 <Link
                   href="/upload"
-                  className="bg-white hover:bg-[#d24b28]/5 border-2 border-[#d24b28] hover:scale-[1.02] active:scale-95 text-[#d24b28] rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-sm duration-200 w-full sm:w-auto"
+                  className="bg-transparent hover:bg-white/5 border-2 border-[#ff5a36] hover:scale-[1.02] active:scale-95 text-[#ff5a36] rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-sm duration-200 w-full sm:w-auto"
                 >
-                  Upload Notes <Icons.Upload className="w-5 h-5 text-[#d24b28]" />
+                  Upload Notes <Icons.Upload className="w-5 h-5 text-[#ff5a36]" />
                 </Link>
               </div>
 
-              <div className="mt-10 text-[#d24b28] font-bold animate-bounce hidden lg:block">
+              <div className="mt-10 text-[#ff5a36] font-bold animate-bounce hidden lg:block">
                 <Icons.ChevronDown className="w-5 h-5" />
               </div>
             </div>
@@ -180,11 +180,11 @@ export default async function HomePage() {
             {/* Right Column: 3D Cartoon Illustration */}
             <div className="lg:col-span-5 flex justify-center items-center relative animate-fade-in-up">
               {/* Soft background radial glow */}
-              <div className="absolute w-72 h-72 rounded-full bg-[#d24b28]/5 filter blur-3xl pointer-events-none" />
+              <div className="absolute w-72 h-72 rounded-full bg-[#ff5a36]/10 filter blur-3xl pointer-events-none" />
               <img 
                 src="/students.png" 
                 alt="Students studying 3D illustration" 
-                className="w-full max-w-[380px] sm:max-w-[420px] lg:max-w-full object-contain mix-blend-multiply select-none pointer-events-none animate-bubble-float z-10"
+                className="w-full max-w-[380px] sm:max-w-[420px] lg:max-w-full object-contain select-none pointer-events-none animate-bubble-float z-10"
               />
             </div>
 
@@ -193,33 +193,33 @@ export default async function HomePage() {
 
         {/* Floating Mission & Stats Card */}
         <div className="site-container mt-4 pb-16 relative z-10">
-          <div className="bg-white rounded-[2rem] border border-black/5 shadow-sm overflow-hidden">
+          <div className="bg-[#151516] rounded-[2rem] border border-white/5 shadow-sm overflow-hidden">
             {/* Top Half: Mission */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 md:p-12">
               <div className="flex flex-col justify-center">
-                <p className="text-[10px] font-black uppercase tracking-widest text-[#d24b28] mb-3">— Our Mission</p>
-                <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-black leading-tight">
+                <p className="text-[10px] font-black uppercase tracking-widest text-[#ff5a36] mb-3">— Our Mission</p>
+                <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white leading-tight">
                   NotesOS is the world's cleanest &amp; simplest notes platform.
                 </h2>
               </div>
-              <div className="flex flex-col justify-center border-t md:border-t-0 md:border-l border-zinc-100 md:pl-10 pt-6 md:pt-0">
-                <p className="text-sm font-medium leading-relaxed text-zinc-550 max-w-md">
+              <div className="flex flex-col justify-center border-t md:border-t-0 md:border-l border-white/5 md:pl-10 pt-6 md:pt-0">
+                <p className="text-sm font-medium leading-relaxed text-zinc-400 max-w-md">
                   A community-driven directory to browse digital notes, lecture slides, study guides, and past exams. Built for students, by students.
                 </p>
-                <Link href="/categories" className="mt-5 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-black hover:text-[#d24b28] transition-colors w-fit">
-                  Browse All Subjects <Icons.ArrowRight className="w-3.5 h-3.5 text-[#d24b28]" />
+                <Link href="/categories" className="mt-5 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-white hover:text-[#ff5a36] transition-colors w-fit">
+                  Browse All Subjects <Icons.ArrowRight className="w-3.5 h-3.5 text-[#ff5a36]" />
                 </Link>
               </div>
             </div>
 
             {/* Bottom Half: Stats Strip */}
-            <div className="bg-black text-[#f4f1ea] p-8 sm:p-10 border-t border-zinc-900">
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 lg:gap-y-0 lg:divide-x lg:divide-zinc-800">
+            <div className="bg-[#0b0b0c] text-white p-8 sm:p-10 border-t border-white/5">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 lg:gap-y-0 lg:divide-x lg:divide-white/10">
                 {stats.map((stat) => (
                   <div key={stat.label} className="flex flex-col items-center justify-center text-center px-4">
-                    <stat.icon className="w-5 h-5 text-[#d24b28] mb-2" />
+                    <stat.icon className="w-5 h-5 text-[#ff5a36] mb-2" />
                     <span className="text-3xl sm:text-4xl font-black tracking-tighter text-white">{stat.value}</span>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-[#f4f1ea]/40 mt-1">{stat.label}</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mt-1">{stat.label}</span>
                   </div>
                 ))}
               </div>
@@ -229,28 +229,28 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SIMPLE WORKFLOW SECTION ===== */}
-      <section className="section-padding bg-[#f4f1ea] border-t border-black/5">
+      <section className="section-padding bg-[#0b0b0c] border-t border-white/5">
         <div className="site-container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Left Column: Workflow Steps */}
             <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
-              <p className="text-[10px] font-black uppercase tracking-widest text-[#d24b28] mb-3">— How it works</p>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-black mb-3">Simple Process!</h2>
-              <p className="text-xs sm:text-sm text-zinc-500 font-medium max-w-xl mb-8 leading-relaxed">
+              <p className="text-[10px] font-black uppercase tracking-widest text-[#ff5a36] mb-3">— How it works</p>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-white mb-3">Simple Process!</h2>
+              <p className="text-xs sm:text-sm text-zinc-400 font-medium max-w-xl mb-8 leading-relaxed">
                 We make it incredibly easy to find, share, and study notes. No clutter, no distractions. Here is how you can get started:
               </p>
 
               <div className="relative pl-16 space-y-8 text-left max-w-xl">
                 {/* Dotted connecting line aligned perfectly at 28px center */}
-                <div className="absolute left-[28px] top-5 bottom-5 w-px border-l-2 border-dashed border-[#d24b28]/30 z-0" />
+                <div className="absolute left-[28px] top-5 bottom-5 w-px border-l-2 border-dashed border-[#ff5a36]/40 z-0" />
                 
                 {/* Step 1 */}
                 <div className="relative flex items-start gap-4 z-10">
-                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#d24b28] text-white flex items-center justify-center text-xs font-black shadow-sm">1</span>
+                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#ff5a36] text-white flex items-center justify-center text-xs font-black shadow-sm">1</span>
                   <div className="pl-2 pt-1.5">
-                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-black">Find Notes</h3>
-                    <p className="text-[11px] font-semibold text-zinc-550 mt-1 leading-relaxed">
+                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-white">Find Notes</h3>
+                    <p className="text-[11px] font-semibold text-zinc-400 mt-1 leading-relaxed">
                       Search notes by subject, semester, or university to access study material instantly.
                     </p>
                   </div>
@@ -258,10 +258,10 @@ export default async function HomePage() {
 
                 {/* Step 2 */}
                 <div className="relative flex items-start gap-4 z-10">
-                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#d24b28] text-white flex items-center justify-center text-xs font-black shadow-sm">2</span>
+                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#ff5a36] text-white flex items-center justify-center text-xs font-black shadow-sm">2</span>
                   <div className="pl-2 pt-1.5">
-                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-black">Read Instantly</h3>
-                    <p className="text-[11px] font-semibold text-zinc-550 mt-1 leading-relaxed">
+                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-white">Read Instantly</h3>
+                    <p className="text-[11px] font-semibold text-zinc-400 mt-1 leading-relaxed">
                       Open documents in our high-performance, clutter-free online PDF viewer.
                     </p>
                   </div>
@@ -269,10 +269,10 @@ export default async function HomePage() {
 
                 {/* Step 3 */}
                 <div className="relative flex items-start gap-4 z-10">
-                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#d24b28] text-white flex items-center justify-center text-xs font-black shadow-sm">3</span>
+                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#ff5a36] text-white flex items-center justify-center text-xs font-black shadow-sm">3</span>
                   <div className="pl-2 pt-1.5">
-                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-black">Share Material</h3>
-                    <p className="text-[11px] font-semibold text-zinc-550 mt-1 leading-relaxed">
+                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-white">Share Material</h3>
+                    <p className="text-[11px] font-semibold text-zinc-400 mt-1 leading-relaxed">
                       Upload your own lecture notes or study guides in seconds to help the community.
                     </p>
                   </div>
@@ -280,10 +280,10 @@ export default async function HomePage() {
 
                 {/* Step 4 */}
                 <div className="relative flex items-start gap-4 z-10">
-                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#d24b28] text-white flex items-center justify-center text-xs font-black shadow-sm">4</span>
+                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#ff5a36] text-white flex items-center justify-center text-xs font-black shadow-sm">4</span>
                   <div className="pl-2 pt-1.5">
-                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-black">Grow Profile</h3>
-                    <p className="text-[11px] font-semibold text-zinc-550 mt-1 leading-relaxed">
+                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-white">Grow Profile</h3>
+                    <p className="text-[11px] font-semibold text-zinc-400 mt-1 leading-relaxed">
                       Build your academic presence, track your downloads, and earn recognition.
                     </p>
                   </div>
@@ -294,15 +294,15 @@ export default async function HomePage() {
               <div className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
                 <Link
                   href="/search"
-                  className="bg-gradient-to-r from-[#d24b28] via-[#e25c28] to-[#ffaa00] hover:from-[#be3e1d] hover:via-[#d24b28] hover:to-[#e69500] hover:scale-[1.02] active:scale-95 text-white rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-md hover:shadow-lg duration-200 w-full sm:w-auto"
+                  className="bg-gradient-to-r from-[#ff5a36] via-[#db2777] to-[#ec4899] hover:from-[#ff7b5d] hover:via-[#e03387] hover:to-[#f45ca2] hover:scale-[1.03] active:scale-[0.97] text-white rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-[0_8px_20px_-4px_rgba(255,90,54,0.35)] hover:shadow-[0_12px_24px_-4px_rgba(219,39,119,0.45)] duration-200 w-full sm:w-auto"
                 >
                   Get Started <Icons.ArrowRight className="w-5 h-5 text-white" />
                 </Link>
                 <Link
                   href="/categories"
-                  className="bg-white hover:bg-[#d24b28]/5 border-2 border-[#d24b28] hover:scale-[1.02] active:scale-95 text-[#d24b28] rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-sm duration-200 w-full sm:w-auto"
+                  className="bg-white/5 hover:bg-white/10 border-2 border-white/10 hover:scale-[1.02] active:scale-95 text-white rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-sm duration-200 w-full sm:w-auto"
                 >
-                  Browse Subjects <Icons.ArrowRight className="w-5 h-5 text-[#d24b28]" />
+                  Browse Subjects <Icons.ArrowRight className="w-5 h-5 text-white" />
                 </Link>
               </div>
             </div>
@@ -312,7 +312,7 @@ export default async function HomePage() {
               <img 
                 src="/workflow.png" 
                 alt="Student studying in armchair 3D illustration" 
-                className="w-full max-w-[360px] sm:max-w-[400px] lg:max-w-full object-contain mix-blend-multiply select-none pointer-events-none z-10"
+                className="w-full max-w-[360px] sm:max-w-[400px] lg:max-w-full object-contain select-none pointer-events-none z-10"
               />
             </div>
 
@@ -322,16 +322,16 @@ export default async function HomePage() {
 
       {/* ===== RECENT UPLOADS ===== */}
       {recentNotes.length > 0 && (
-        <section className="section-padding bg-[#f4f1ea]">
+        <section className="section-padding bg-[#0b0b0c]">
           <div className="site-container">
             <div className="flex items-end justify-between mb-10">
               <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-[#d24b28] mb-1">— Live</p>
-                <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-black">Recent Uploads</h2>
-                <p className="mt-1 text-sm text-zinc-500 font-medium">Fresh notes shared by the community</p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-[#ff5a36] mb-1">— Live</p>
+                <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">Recent Uploads</h2>
+                <p className="mt-1 text-sm text-zinc-400 font-medium">Fresh notes shared by the community</p>
               </div>
-              <Link href="/search" className="hidden sm:flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-black border-b border-transparent hover:text-[#d24b28] transition-colors">
-                Explore All <Icons.ArrowRight className="w-3.5 h-3.5 text-[#d24b28]" />
+              <Link href="/search" className="hidden sm:flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-white border-b border-transparent hover:text-[#ff5a36] transition-colors">
+                Explore All <Icons.ArrowRight className="w-3.5 h-3.5 text-[#ff5a36]" />
               </Link>
             </div>
 
@@ -340,25 +340,25 @@ export default async function HomePage() {
                 const isDrive = note.fileKey === "external";
                 return (
                   <div key={note.id} className="group flex flex-col modern-card overflow-hidden">
-                    <div className="flex items-center justify-between px-5 py-3.5 border-b border-zinc-100 bg-[#eae5db]/30">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-black truncate mr-2">{note.subject || note.category?.name || "General"}</span>
-                      <span className={`px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full ${isDrive ? "bg-amber-100 text-amber-800" : "bg-[#d24b28]/10 text-[#d24b28]"}`}>
+                    <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/5 bg-white/5">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-white truncate mr-2">{note.subject || note.category?.name || "General"}</span>
+                      <span className={`px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full ${isDrive ? "bg-amber-500/10 text-amber-400" : "bg-[#ff5a36]/10 text-[#ff5a36]"}`}>
                         {isDrive ? "Drive" : "PDF"}
                       </span>
                     </div>
                     <div className="flex flex-col flex-1 p-5">
-                      <h3 className="font-black text-sm text-black line-clamp-2 leading-tight mb-2 group-hover:text-[#d24b28] transition-colors">
+                      <h3 className="font-black text-sm text-white line-clamp-2 leading-tight mb-2 group-hover:text-[#ff5a36] transition-colors">
                         {note.title}
                       </h3>
                       <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed flex-1">
                         {note.description || "No description provided."}
                       </p>
-                      <div className="mt-4 flex items-center justify-between pt-3.5 border-t border-zinc-100">
+                      <div className="mt-4 flex items-center justify-between pt-3.5 border-t border-white/5">
                         <div className="flex items-center gap-1.5">
                           <Icons.User className="w-3.5 h-3.5 text-zinc-400" />
-                          <span className="text-[10px] text-zinc-500 font-semibold truncate max-w-[80px]">{note.author.name}</span>
+                          <span className="text-[10px] text-zinc-400 font-semibold truncate max-w-[80px]">{note.author.name}</span>
                         </div>
-                        <Link href={`/notes/${note.id}`} className="text-[10px] font-bold uppercase tracking-wider text-[#d24b28] hover:text-[#be3e1d] transition-colors flex items-center gap-0.5">
+                        <Link href={`/notes/${note.id}`} className="text-[10px] font-bold uppercase tracking-wider text-[#ff5a36] hover:text-[#ff7b5d] transition-colors flex items-center gap-0.5">
                           Read <Icons.ChevronRight className="w-3.5 h-3.5" />
                         </Link>
                       </div>
@@ -372,31 +372,31 @@ export default async function HomePage() {
       )}
 
       {/* ===== CATEGORIES ===== */}
-      <section className="section-padding bg-white rounded-t-[3rem] relative z-10">
+      <section className="section-padding bg-[#0b0b0c] border-t border-white/5 relative z-10">
         <div className="site-container">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
             <div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-[#d24b28] bg-[#d24b28]/10 px-3.5 py-1.5 rounded-full mb-4 inline-block">
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#ff5a36] bg-[#ff5a36]/10 px-3.5 py-1.5 rounded-full mb-4 inline-block">
                 Subjects
               </span>
-              <h2 className="font-oswald font-black text-4xl sm:text-6xl tracking-tighter uppercase leading-[0.95] text-black">
+              <h2 className="font-oswald font-black text-4xl sm:text-6xl tracking-tighter uppercase leading-[0.95] text-white">
                 Browse by Category. <br />
-                <span className="text-[#d24b28] italic font-medium">Infinite knowledge.</span>
+                <span className="text-[#ff5a36] italic font-medium">Infinite knowledge.</span>
               </h2>
             </div>
             <Link
               href="/categories"
-              className="hidden sm:flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-black border-b border-transparent hover:text-[#d24b28] transition-colors font-oswald"
+              className="hidden sm:flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-white border-b border-transparent hover:text-[#ff5a36] transition-colors font-oswald"
               id="view-all-categories"
             >
-              View all <Icons.ArrowRight className="w-3.5 h-3.5 text-[#d24b28]" />
+              View all <Icons.ArrowRight className="w-3.5 h-3.5 text-[#ff5a36]" />
             </Link>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
             {categoriesFromDb.map((category) => {
               const subtitle = categorySubtitles[category.slug] || "Study guides";
-              const gradient = categoryGradients[category.slug] || "from-[#d24b28] via-[#e25c28] to-[#ffaa00]";
+              const gradient = categoryGradients[category.slug] || "from-[#ff5a36] via-[#ff7c5d] to-[#ffb800]";
               const emoji = categoryEmojis[category.slug] || "📚";
               return (
                 <Link
@@ -438,21 +438,21 @@ export default async function HomePage() {
           </div>
 
           <div className="sm:hidden mt-8 text-center">
-            <Link href="/categories" className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-black border-b border-transparent font-oswald">
-              View all categories <Icons.ArrowRight className="w-3.5 h-3.5 text-[#d24b28]" />
+            <Link href="/categories" className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-white border-b border-transparent font-oswald">
+              View all categories <Icons.ArrowRight className="w-3.5 h-3.5 text-[#ff5a36]" />
             </Link>
           </div>
         </div>
 
         {/* Repeating Banner Ticker at Bottom of Categories Section */}
-        <div className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-hidden bg-white border-t border-b border-black/5 py-5 mt-16 select-none">
-          <div className="animate-scroll-ticker flex gap-12 text-black">
+        <div className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-hidden bg-[#151516] border-t border-b border-white/5 py-5 mt-16 select-none">
+          <div className="animate-scroll-ticker flex gap-12 text-white">
             {Array(8).fill(null).map((_, i) => (
               <div key={i} className="ticker-item flex items-center gap-12 text-sm sm:text-base font-bold uppercase tracking-wider">
-                <span>Create Notes</span> <span className="text-[#d24b28]">🧡</span>
-                <span>Grow Knowledge</span> <span className="text-[#d24b28]">📈</span>
-                <span>Earn Points</span> <span className="text-[#d24b28]">🎯</span>
-                <span>Study Smarter</span> <span className="text-[#d24b28]">🧠</span>
+                <span>Create Notes</span> <span className="text-[#ff5a36]">🧡</span>
+                <span>Grow Knowledge</span> <span className="text-[#ff5a36]">📈</span>
+                <span>Earn Points</span> <span className="text-[#ff5a36]">🎯</span>
+                <span>Study Smarter</span> <span className="text-[#ff5a36]">🧠</span>
               </div>
             ))}
           </div>
@@ -460,12 +460,12 @@ export default async function HomePage() {
       </section>
 
       {/* ===== FEATURES ===== */}
-      <section className="section-padding bg-[#f4f1ea]">
+      <section className="section-padding bg-[#0b0b0c]">
         <div className="site-container">
           <div className="text-center mb-14">
-            <p className="text-[10px] font-black uppercase tracking-widest text-[#d24b28] mb-2">— Why NotesOS</p>
-            <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-black mb-3">Built for Speed &amp; Simplicity</h2>
-            <p className="text-sm text-zinc-500 font-medium max-w-md mx-auto">
+            <p className="text-[10px] font-black uppercase tracking-widest text-[#ff5a36] mb-2">— Why NotesOS</p>
+            <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white mb-3">Built for Speed &amp; Simplicity</h2>
+            <p className="text-sm text-zinc-400 font-medium max-w-md mx-auto">
               Every feature is designed to make finding, uploading, and reading notes faster.
             </p>
           </div>
@@ -480,8 +480,8 @@ export default async function HomePage() {
                   <feature.icon className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-black uppercase tracking-tight text-black mb-1.5">{feature.title}</h3>
-                  <p className="text-xs text-zinc-500 leading-relaxed font-medium">{feature.description}</p>
+                  <h3 className="text-sm font-black uppercase tracking-tight text-white mb-1.5">{feature.title}</h3>
+                  <p className="text-xs text-zinc-400 leading-relaxed font-medium">{feature.description}</p>
                 </div>
               </div>
             ))}
@@ -490,9 +490,9 @@ export default async function HomePage() {
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="section-padding bg-[#f4f1ea] pb-20">
+      <section className="section-padding bg-[#0b0b0c] pb-20">
         <div className="site-container">
-          <div className="relative overflow-hidden bg-gradient-to-br from-[#d24b28] to-[#b43c1e] text-white rounded-3xl p-12 sm:p-20 text-center shadow-lg">
+          <div className="relative overflow-hidden bg-gradient-to-br from-[#ff5a36] to-[#db2777] text-white rounded-3xl p-12 sm:p-20 text-center shadow-lg">
             {/* Floating background bubbles */}
             <div className="absolute top-10 left-10 w-20 h-20 rounded-full bg-white/5 animate-bubble-float pointer-events-none" />
             <div className="absolute bottom-10 right-10 w-16 h-16 rounded-full bg-white/5 animate-bubble-float pointer-events-none" style={{ animationDelay: '1.5s' }} />
@@ -507,7 +507,7 @@ export default async function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/upload"
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-[#d24b28] font-bold text-sm uppercase tracking-wider rounded-full shadow-md hover:bg-zinc-50 hover:scale-[1.02] transition-all"
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-[#ff5a36] font-bold text-sm uppercase tracking-wider rounded-full shadow-md hover:bg-zinc-50 hover:scale-[1.02] transition-all"
                 id="cta-upload"
               >
                 <Icons.Upload className="w-4 h-4" />

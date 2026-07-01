@@ -80,29 +80,29 @@
    ============================================ */
 
 :root {
-  --background: #f4f1ea;
-  --foreground: #121212;
-  --card-bg: #f4f1ea;
-  --card-border: #121212;
-  --nav-bg: #f4f1ea;
-  --nav-border: #121212;
-  --input-bg: #ffffff;
-  --input-border: #121212;
-  --muted: #555555;
-  --muted-bg: #eae5db;
+  --background: #0b0b0c;
+  --foreground: #ffffff;
+  --card-bg: #151516;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --nav-bg: rgba(11, 11, 12, 0.8);
+  --nav-border: rgba(255, 255, 255, 0.08);
+  --input-bg: #1b1b1c;
+  --input-border: rgba(255, 255, 255, 0.15);
+  --muted: #a1a1aa;
+  --muted-bg: #222223;
 }
 
 .dark {
-  --background: #f4f1ea;
-  --foreground: #121212;
-  --card-bg: #f4f1ea;
-  --card-border: #121212;
-  --nav-bg: #f4f1ea;
-  --nav-border: #121212;
-  --input-bg: #ffffff;
-  --input-border: #121212;
-  --muted: #555555;
-  --muted-bg: #eae5db;
+  --background: #0b0b0c;
+  --foreground: #ffffff;
+  --card-bg: #151516;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --nav-bg: rgba(11, 11, 12, 0.8);
+  --nav-border: rgba(255, 255, 255, 0.08);
+  --input-bg: #1b1b1c;
+  --input-border: rgba(255, 255, 255, 0.15);
+  --muted: #a1a1aa;
+  --muted-bg: #222223;
 }
 
 /* ============================================
@@ -254,15 +254,10 @@ body {
    ============================================ */
 
 .glass {
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--nav-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.dark .glass {
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--nav-border);
 }
 
 /* ============================================
@@ -353,57 +348,64 @@ body {
    Modern Design System Utilities
    ============================================ */
 .modern-card {
-  background-color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 1.25rem;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modern-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(210, 75, 40, 0.08), 0 10px 10px -5px rgba(210, 75, 40, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(255, 90, 54, 0.15), 0 10px 10px -5px rgba(255, 90, 54, 0.08);
+  border-color: rgba(255, 90, 54, 0.3);
 }
 
 .modern-btn-primary {
-  background-color: #d24b28;
+  background: linear-gradient(to right, #ff5a36, #db2777, #ec4899);
   color: #ffffff;
   border-radius: 9999px;
   font-weight: 700;
-  box-shadow: 0 4px 14px rgba(210, 75, 40, 0.2);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 20px -4px rgba(255, 90, 54, 0.35);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modern-btn-primary:hover {
-  background-color: #be3e1d;
-  box-shadow: 0 6px 20px rgba(210, 75, 40, 0.35);
-  transform: translateY(-1px);
+  background: linear-gradient(to right, #ff7b5d, #e03387, #f45ca2);
+  box-shadow: 0 12px 24px -4px rgba(219, 39, 119, 0.45);
+  transform: scale(1.03);
+}
+
+.modern-btn-primary:active {
+  transform: scale(0.97);
 }
 
 .modern-btn-secondary {
-  background-color: #eae5db;
-  color: #121212;
+  background-color: var(--muted-bg);
+  color: var(--foreground);
   border-radius: 9999px;
   font-weight: 700;
+  border: 1px solid var(--card-border);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modern-btn-secondary:hover {
-  background-color: #dcd6c7;
+  background-color: #222225;
   transform: translateY(-1px);
 }
 
 .modern-input {
-  background-color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--foreground);
   border-radius: 9999px;
   outline: none;
   transition: all 0.2s ease-in-out;
 }
 
 .modern-input:focus {
-  border-color: #d24b28;
-  box-shadow: 0 0 0 4px rgba(210, 75, 40, 0.1);
+  border-color: #ff5a36;
+  box-shadow: 0 0 0 4px rgba(255, 90, 54, 0.15);
 }
 
 /* Floating background bubble animation */

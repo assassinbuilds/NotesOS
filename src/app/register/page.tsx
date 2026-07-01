@@ -53,31 +53,31 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-8rem)] flex items-center justify-center px-4 py-12 font-sans select-none">
+    <div className="min-h-[calc(100vh-8rem)] flex items-center justify-center px-4 py-12 font-sans select-none text-white bg-[#0b0b0c]">
       <div className="w-full max-w-md animate-fade-in-up">
         
         {/* Header Block */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-1.5 group mb-4">
-            <div className="border-2 border-black px-2 py-0.5 bg-black text-white font-black text-xs uppercase tracking-wider leading-none shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+            <div className="border border-white/10 px-2 py-0.5 bg-[#ff5a36] text-white font-black text-xs uppercase tracking-wider leading-none">
               NO
               <br />
               TE
             </div>
-            <div className="border-2 border-black px-2 py-0.5 bg-[#f4f1ea] text-black font-black text-xs uppercase tracking-wider leading-none shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+            <div className="border border-white/10 px-2 py-0.5 bg-[#151516] text-white font-black text-xs uppercase tracking-wider leading-none">
               OS
             </div>
           </div>
-          <h1 className="text-lg font-black uppercase tracking-tight text-black">Create account</h1>
-          <p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-zinc-550">
+          <h1 className="text-lg font-black uppercase tracking-tight text-white">Create account</h1>
+          <p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-zinc-400">
             Join the student shared directory
           </p>
         </div>
 
-        {/* Form Card (Brutalist) */}
-        <div className="border-2 border-black p-6 sm:p-8 bg-[#e8e3d5] shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+        {/* Form Card */}
+        <div className="border border-white/5 p-6 sm:p-8 bg-[#151516] rounded-3xl shadow-sm">
           {error && (
-            <div className="flex items-center gap-2.5 p-3 border-2 border-black bg-red-100 text-red-800 text-xs font-semibold mb-6">
+            <div className="flex items-center gap-2.5 p-3.5 border border-red-900/50 bg-red-955/30 text-red-400 text-xs font-semibold mb-6 rounded-xl">
               <AlertCircle className="w-4 h-4 flex-shrink-0" />
               <span>{error}</span>
             </div>
@@ -85,11 +85,11 @@ export default function RegisterPage() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="name" className="block text-[10px] font-black uppercase tracking-wider text-black mb-1.5">
+              <label htmlFor="name" className="block text-[10px] font-black uppercase tracking-wider text-zinc-400 mb-1.5">
                 Full Name
               </label>
               <div className="relative">
-                <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-black" />
+                <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-450" />
                 <input
                   id="name"
                   type="text"
@@ -97,17 +97,17 @@ export default function RegisterPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="John Doe"
-                  className="w-full pl-10 pr-4 py-3 border-2 border-black bg-white text-xs font-semibold text-black outline-none focus:bg-[#fcfbf9]"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-white/10 bg-[#1b1b1c] text-xs font-semibold text-white outline-none focus:border-[#ff5a36] transition-colors"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-[10px] font-black uppercase tracking-wider text-black mb-1.5">
+              <label htmlFor="email" className="block text-[10px] font-black uppercase tracking-wider text-zinc-400 mb-1.5">
                 Email address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-black" />
+                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-450" />
                 <input
                   id="email"
                   type="email"
@@ -115,17 +115,17 @@ export default function RegisterPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@university.edu"
-                  className="w-full pl-10 pr-4 py-3 border-2 border-black bg-white text-xs font-semibold text-black outline-none focus:bg-[#fcfbf9]"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-white/10 bg-[#1b1b1c] text-xs font-semibold text-white outline-none focus:border-[#ff5a36] transition-colors"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-[10px] font-black uppercase tracking-wider text-black mb-1.5">
+              <label htmlFor="password" className="block text-[10px] font-black uppercase tracking-wider text-zinc-400 mb-1.5">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-black" />
+                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-450" />
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}
@@ -133,12 +133,12 @@ export default function RegisterPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-11 py-3 border-2 border-black bg-white text-xs font-semibold text-black outline-none focus:bg-[#fcfbf9]"
+                  className="w-full pl-10 pr-11 py-3 rounded-xl border border-white/10 bg-[#1b1b1c] text-xs font-semibold text-white outline-none focus:border-[#ff5a36] transition-colors"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-black hover:opacity-75 transition-opacity"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-455 hover:text-white transition-opacity"
                   aria-label="Toggle password visibility"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -152,10 +152,10 @@ export default function RegisterPage() {
                     <div key={check.label} className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider">
                       <Check
                         className={`w-3.5 h-3.5 transition-colors ${
-                          check.met ? "text-green-600" : "text-zinc-400"
+                          check.met ? "text-emerald-500" : "text-zinc-500"
                         }`}
                       />
-                      <span className={check.met ? "text-green-700" : "text-zinc-550"}>
+                      <span className={check.met ? "text-emerald-450" : "text-zinc-500"}>
                         {check.label}
                       </span>
                     </div>
@@ -167,7 +167,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 py-3 bg-black text-[#f4f1ea] border-2 border-black font-black text-xs uppercase tracking-wider shadow-[3px_3px_0px_rgba(210,75,40,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all disabled:opacity-60"
+              className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#ff5a36] hover:bg-[#ff7b5d] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60 shadow-[0_8px_16px_-4px_rgba(255,90,54,0.3)] hover:-translate-y-0.5 active:translate-y-0 disabled:hover:translate-y-0"
               id="register-submit"
             >
               {loading ? (
@@ -183,9 +183,9 @@ export default function RegisterPage() {
         </div>
 
         {/* Footer Link */}
-        <p className="text-center text-xs font-bold uppercase tracking-wider text-zinc-550 mt-6">
+        <p className="text-center text-xs font-bold uppercase tracking-wider text-zinc-400 mt-6">
           Already have an account?{" "}
-          <Link href="/login" className="text-[#d24b28] hover:underline font-black">
+          <Link href="/login" className="text-[#ff5a36] hover:underline font-black">
             Sign In
           </Link>
         </p>

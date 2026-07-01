@@ -25,18 +25,18 @@ export function Header() {
   const { data: session } = useSession();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-[#f4f1ea]/90 backdrop-blur-md text-black shadow-sm">
+    <header className="sticky top-0 z-50 border-b border-white/5 bg-[#0b0b0c]/90 backdrop-blur-md text-white shadow-sm">
       {/* Full-width bg, centred content */}
       <div className="site-container">
         <div className="flex items-center justify-between py-5 relative">
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group flex-shrink-0" id="logo-link">
-            <div className="w-10 h-10 rounded-xl bg-[#d24b28] text-white flex items-center justify-center font-black text-lg shadow-sm group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 rounded-xl bg-[#ff5a36] text-white flex items-center justify-center font-black text-lg shadow-sm group-hover:scale-105 transition-transform">
               N
             </div>
-            <span className="font-black text-lg tracking-tight uppercase text-black">
-              Notes<span className="text-[#d24b28]">OS</span>
+            <span className="font-black text-lg tracking-tight uppercase text-white">
+              Notes<span className="text-[#ff5a36]">OS</span>
             </span>
           </Link>
 
@@ -47,12 +47,12 @@ export function Header() {
                 type="text"
                 name="q"
                 placeholder="Search notes, topics, semesters..."
-                className="w-full modern-input py-2.5 text-sm text-black placeholder-zinc-400 focus:bg-white"
+                className="w-full modern-input py-2.5 text-sm text-white placeholder-zinc-500 focus:bg-[#1b1b1c]"
                 style={{ paddingLeft: "44px", paddingRight: "16px" }}
                 id="header-search-input"
                 autoComplete="off"
               />
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-450 group-focus-within:text-[#d24b28] transition-colors" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 group-focus-within:text-[#ff5a36] transition-colors" />
             </form>
           </div>
 
@@ -66,8 +66,8 @@ export function Header() {
                   href={link.href}
                   className={`text-xs font-bold uppercase tracking-wider transition-all pb-1.5 border-b-2 ${
                     isActive
-                      ? "text-[#d24b28] border-[#d24b28]"
-                      : "text-zinc-650 border-transparent hover:text-black hover:border-zinc-300"
+                      ? "text-[#ff5a36] border-[#ff5a36]"
+                      : "text-zinc-400 border-transparent hover:text-white hover:border-zinc-500"
                   }`}
                   id={`nav-${link.label.toLowerCase()}`}
                 >
@@ -76,12 +76,12 @@ export function Header() {
               );
             })}
 
-            <div className="w-px h-5 bg-zinc-200" />
+            <div className="w-px h-5 bg-white/10" />
 
             {session?.user ? (
               <Link
                 href={`/profile/${session.user.id}`}
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-[#f4f1ea] text-sm font-bold shadow-sm hover:scale-105 transition-transform"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-white text-[#0b0b0c] text-sm font-bold shadow-sm hover:scale-105 transition-transform"
                 id="nav-profile"
               >
                 {session.user.name?.[0]?.toUpperCase() || "U"}
@@ -101,21 +101,21 @@ export function Header() {
           <div className="flex md:hidden items-center gap-2">
             <Link
               href="/search"
-              className="flex items-center justify-center w-10 h-10 rounded-full border border-zinc-200 bg-white shadow-sm hover:bg-[#eae5db] transition-colors"
+              className="flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-white/5 shadow-sm hover:bg-white/10 transition-colors"
               id="mobile-search"
             >
-              <Search className="w-4 h-4 text-black" />
+              <Search className="w-4 h-4 text-white" />
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex items-center justify-center w-10 h-10 rounded-full border border-zinc-200 bg-white shadow-sm hover:bg-[#eae5db] transition-colors"
+              className="flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-white/5 shadow-sm hover:bg-white/10 transition-colors"
               aria-label="Toggle menu"
               id="mobile-menu-toggle"
             >
               {mobileMenuOpen ? (
-                <X className="w-4 h-4 text-black" />
+                <X className="w-4 h-4 text-white" />
               ) : (
-                <Menu className="w-4 h-4 text-black" />
+                <Menu className="w-4 h-4 text-white" />
               )}
             </button>
           </div>
@@ -123,7 +123,7 @@ export function Header() {
 
         {/* Mobile Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-zinc-200 py-5 bg-[#f4f1ea] animate-slide-down">
+          <div className="md:hidden border-t border-white/10 py-5 bg-[#0b0b0c] animate-slide-down">
             <nav className="flex flex-col gap-4">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
@@ -133,21 +133,21 @@ export function Header() {
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`text-xs font-bold uppercase tracking-wider pb-0.5 border-b-2 w-fit ${
-                      isActive ? "text-[#d24b28] border-[#d24b28]" : "text-black border-transparent"
+                      isActive ? "text-[#ff5a36] border-[#ff5a36]" : "text-white border-transparent"
                     }`}
                   >
                     {link.label}
                   </Link>
                 );
               })}
-              <div className="h-px bg-zinc-200 my-1" />
+              <div className="h-px bg-white/10 my-1" />
               {session?.user ? (
                 <Link
                   href={`/profile/${session.user.id}`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-black"
+                  className="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-white"
                 >
-                  <span className="w-9 h-9 rounded-full bg-black text-[#f4f1ea] flex items-center justify-center text-sm font-bold shadow-sm">
+                  <span className="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center text-sm font-bold shadow-sm">
                     {session.user.name?.[0]?.toUpperCase() || "U"}
                   </span>
                   My Profile

@@ -56,52 +56,52 @@ export default function ProfilePage({ params }: { params: Promise<{ id: string }
   if (loading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-[#d24b28] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-[#ff5a36] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   if (!profile) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center px-4 font-sans select-none">
-        <div className="text-center p-8 rounded-3xl bg-white border border-black/5 shadow-sm">
-          <div className="w-12 h-12 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center mx-auto mb-4">
+      <div className="min-h-[60vh] flex items-center justify-center px-4 font-sans select-none text-white bg-[#0b0b0c]">
+        <div className="text-center p-8 rounded-3xl bg-[#151516] border border-white/5 shadow-sm">
+          <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4">
             <User className="w-5 h-5 text-zinc-400" />
           </div>
-          <h1 className="text-sm font-black uppercase tracking-wider text-black">User not found</h1>
-          <Link href="/" className="text-xs font-bold text-[#d24b28] hover:underline mt-2 inline-block">Go Home</Link>
+          <h1 className="text-sm font-black uppercase tracking-wider text-white">User not found</h1>
+          <Link href="/" className="text-xs font-bold text-[#ff5a36] hover:underline mt-2 inline-block">Go Home</Link>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="site-container py-10 sm:py-16 font-sans select-none">
+    <div className="site-container py-10 sm:py-16 font-sans select-none text-white">
       
       {/* Profile Header Card */}
-      <div className="rounded-3xl bg-white border border-black/5 p-6 sm:p-8 mb-10 shadow-sm animate-fade-in-up">
+      <div className="rounded-3xl bg-[#151516] border border-white/5 p-6 sm:p-8 mb-10 shadow-sm animate-fade-in-up">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
           
-          <div className="w-16 h-16 rounded-2xl bg-[#d24b28] text-white flex items-center justify-center text-xl font-black shadow-sm flex-shrink-0">
+          <div className="w-16 h-16 rounded-2xl bg-[#ff5a36] text-white flex items-center justify-center text-xl font-black shadow-sm flex-shrink-0">
             {getInitials(profile.name)}
           </div>
           
-          <div className="flex-1">
-            <h1 className="text-xl font-black uppercase tracking-tight text-black">{profile.name}</h1>
-            {profile.bio && <p className="text-xs font-semibold text-zinc-500 mt-1">{profile.bio}</p>}
-            <div className="flex flex-wrap items-center gap-4 mt-3.5 text-xs font-bold uppercase tracking-wide text-zinc-450">
+          <div className="flex-grow">
+            <h1 className="text-xl font-black uppercase tracking-tight text-white">{profile.name}</h1>
+            {profile.bio && <p className="text-xs font-semibold text-zinc-400 mt-1">{profile.bio}</p>}
+            <div className="flex flex-wrap items-center gap-4 mt-3.5 text-xs font-bold uppercase tracking-wide text-zinc-400">
               {profile.university && (
                 <span className="flex items-center gap-1.5">
-                  <Building2 className="w-4 h-4 text-zinc-400" />
+                  <Building2 className="w-4 h-4 text-zinc-500" />
                   {profile.university}
                 </span>
               )}
               <span className="flex items-center gap-1.5">
-                <Calendar className="w-4 h-4 text-zinc-400" />
+                <Calendar className="w-4 h-4 text-zinc-500" />
                 Joined {formatDate(profile.createdAt)}
               </span>
               <span className="flex items-center gap-1.5">
-                <FileText className="w-4 h-4 text-zinc-400" />
+                <FileText className="w-4 h-4 text-zinc-500" />
                 {profile._count.notes} Notes Shared
               </span>
             </div>
@@ -121,14 +121,14 @@ export default function ProfilePage({ params }: { params: Promise<{ id: string }
 
       {/* Notes Directory Section */}
       <div>
-        <h2 className="text-sm font-black uppercase tracking-widest text-zinc-655 mb-4">
+        <h2 className="text-sm font-black uppercase tracking-widest text-zinc-400 mb-4">
           {isOwnProfile ? "Your" : `${profile.name}'s`} Shared Directory
         </h2>
         
         {profile.notes.length === 0 ? (
-          <div className="text-center py-16 p-8 rounded-3xl border border-dashed border-zinc-200 bg-white shadow-sm">
+          <div className="text-center py-16 p-8 rounded-3xl border border-dashed border-white/10 bg-[#151516] shadow-sm">
             <BookOpen className="w-10 h-10 text-zinc-400 mx-auto mb-3" />
-            <p className="text-xs font-semibold text-zinc-500">
+            <p className="text-xs font-semibold text-zinc-400">
               {isOwnProfile ? "You haven't uploaded any notes yet." : "No notes uploaded to this profile yet."}
             </p>
             {isOwnProfile && (
@@ -146,26 +146,26 @@ export default function ProfilePage({ params }: { params: Promise<{ id: string }
               <Link 
                 key={note.id} 
                 href={`/notes/${note.id}`} 
-                className="block p-5 bg-white rounded-2xl border border-black/5 shadow-sm hover:border-[#d24b28]/10 hover:shadow-md hover:scale-[1.005] transition-all group"
+                className="block p-5 bg-[#151516] rounded-2xl border border-white/5 shadow-sm hover:border-[#ff5a36]/25 hover:shadow-md hover:scale-[1.005] transition-all group"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-xl bg-[#d24b28]/10 text-[#d24b28] flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105">
+                  <div className="w-9 h-9 rounded-xl bg-[#ff5a36]/10 text-[#ff5a36] flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105">
                     <FileText className="w-4 h-4" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-xs font-black text-black group-hover:text-[#d24b28] transition-colors truncate">
+                    <h3 className="text-xs font-black text-white group-hover:text-[#ff5a36] transition-colors truncate">
                       {note.title}
                     </h3>
-                    <div className="flex items-center gap-3 mt-1.5 text-[9px] font-bold text-zinc-450 uppercase tracking-wider">
-                      <span className="px-2.5 py-0.5 rounded-full bg-[#d24b28]/10 text-[#d24b28]">
+                    <div className="flex items-center gap-3 mt-1.5 text-[9px] font-bold text-zinc-500 uppercase tracking-wider">
+                      <span className="px-2.5 py-0.5 rounded-full bg-[#ff5a36]/10 text-[#ff5a36]">
                         {note.subject}
                       </span>
                       <span className="flex items-center gap-1">
-                        <Eye className="w-3.5 h-3.5 text-zinc-400" />
+                        <Eye className="w-3.5 h-3.5 text-zinc-500" />
                         {formatNumber(note.views)}
                       </span>
                       <span className="flex items-center gap-1">
-                        <Download className="w-3.5 h-3.5 text-zinc-400" />
+                        <Download className="w-3.5 h-3.5 text-zinc-500" />
                         {formatNumber(note.downloads)}
                       </span>
                       <span>{formatDate(note.createdAt)}</span>

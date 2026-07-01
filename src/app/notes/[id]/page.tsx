@@ -85,7 +85,7 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
   if (loading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-[#d24b28] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-[#ff5a36] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -93,12 +93,12 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
   if (!note) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center px-4 font-sans select-none">
-        <div className="text-center p-8 rounded-3xl bg-white border border-black/5 shadow-sm max-w-sm">
-          <div className="w-12 h-12 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center mx-auto mb-4">
+        <div className="text-center p-8 rounded-3xl bg-[#151516] border border-white/5 shadow-sm max-w-sm">
+          <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4">
             <FileText className="w-5 h-5 text-zinc-400" />
           </div>
-          <h1 className="text-sm font-black uppercase tracking-wider text-black">Note not found</h1>
-          <p className="text-xs font-semibold text-zinc-500 mb-6">This note may have been removed or doesn&apos;t exist.</p>
+          <h1 className="text-sm font-black uppercase tracking-wider text-white">Note not found</h1>
+          <p className="text-xs font-semibold text-zinc-400 mb-6">This note may have been removed or doesn&apos;t exist.</p>
           <Link href="/" className="modern-btn-primary px-6 py-2.5 text-xs uppercase tracking-wider inline-block">Go Home</Link>
         </div>
       </div>
@@ -115,30 +115,30 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
   ];
 
   return (
-    <div ref={containerRef} className="flex flex-col min-h-[calc(100vh-4.5rem)] bg-[#f4f1ea] font-sans text-black select-none">
+    <div ref={containerRef} className="flex flex-col min-h-[calc(100vh-4.5rem)] bg-[#0b0b0c] font-sans text-white select-none">
       
       {/* Modern Sticky Header Toolbar */}
-      <div className="sticky top-16 z-40 border-b border-black/5 px-4 sm:px-6 bg-[#f4f1ea]/90 backdrop-blur-md shadow-sm">
+      <div className="sticky top-16 z-40 border-b border-white/5 px-4 sm:px-6 bg-[#0b0b0c]/90 backdrop-blur-md shadow-sm">
         <div className="site-container flex items-center justify-between h-14 gap-4">
           
           <div className="flex items-center gap-3 min-w-0">
-            <Link href="/" className="flex-shrink-0 text-black border border-zinc-200 rounded-full p-2 bg-white hover:bg-zinc-50 shadow-sm transition-all hover:scale-105">
+            <Link href="/" className="flex-shrink-0 text-white border border-white/10 rounded-full p-2 bg-white/5 hover:bg-white/10 shadow-sm transition-all hover:scale-105">
               <ArrowLeft className="w-4 h-4" />
             </Link>
             <div className="flex flex-col min-w-0">
-              <h1 className="text-xs font-black truncate text-black uppercase tracking-tight">{note.title}</h1>
-              <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest sm:block hidden">{note.subject} • Sem {note.semester || "N/A"}</span>
+              <h1 className="text-xs font-black truncate text-white uppercase tracking-tight">{note.title}</h1>
+              <span className="text-[9px] font-black text-zinc-400 uppercase tracking-widest sm:block hidden">{note.subject} • Sem {note.semester || "N/A"}</span>
             </div>
           </div>
 
           <div className="flex items-center gap-1.5">
             {!isExternal && (
               <>
-                <button onClick={() => setZoom(Math.max(50, zoom - 10))} className="p-2 border border-zinc-200 bg-white rounded-full hover:bg-zinc-50 shadow-sm transition-colors text-black" aria-label="Zoom out"><ZoomOut className="w-3.5 h-3.5" /></button>
-                <span className="text-[10px] font-bold text-black w-10 text-center">{zoom}%</span>
-                <button onClick={() => setZoom(Math.min(200, zoom + 10))} className="p-2 border border-zinc-200 bg-white rounded-full hover:bg-zinc-50 shadow-sm transition-colors text-black" aria-label="Zoom in"><ZoomIn className="w-3.5 h-3.5" /></button>
-                <div className="w-px h-5 bg-zinc-200 mx-1" />
-                <button onClick={toggleFullscreen} className="p-2 border border-zinc-200 bg-white rounded-full hover:bg-zinc-50 shadow-sm transition-colors text-black" aria-label="Toggle fullscreen">
+                <button onClick={() => setZoom(Math.max(50, zoom - 10))} className="p-2 border border-white/10 bg-white/5 rounded-full hover:bg-white/10 shadow-sm transition-colors text-white" aria-label="Zoom out"><ZoomOut className="w-3.5 h-3.5" /></button>
+                <span className="text-[10px] font-bold text-white w-10 text-center">{zoom}%</span>
+                <button onClick={() => setZoom(Math.min(200, zoom + 10))} className="p-2 border border-white/10 bg-white/5 rounded-full hover:bg-white/10 shadow-sm transition-colors text-white" aria-label="Zoom in"><ZoomIn className="w-3.5 h-3.5" /></button>
+                <div className="w-px h-5 bg-white/10 mx-1" />
+                <button onClick={toggleFullscreen} className="p-2 border border-white/10 bg-white/5 rounded-full hover:bg-white/10 shadow-sm transition-colors text-white" aria-label="Toggle fullscreen">
                   {isFullscreen ? <Minimize className="w-3.5 h-3.5" /> : <Maximize className="w-3.5 h-3.5" />}
                 </button>
               </>
@@ -160,34 +160,34 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
       <div className="flex flex-1 flex-col lg:flex-row">
         
         {/* Main Content Area */}
-        <div className="flex-1 flex items-start justify-center p-4 sm:p-8 overflow-auto bg-[#eae5db]/60 relative border-b lg:border-b-0 lg:border-r border-black/5">
+        <div className="flex-1 flex items-start justify-center p-4 sm:p-8 overflow-auto bg-[#0f0f10] relative border-b lg:border-b-0 lg:border-r border-white/5">
           
           {isExternal ? (
-            <div className="w-full max-w-md text-center py-10 px-8 rounded-3xl border border-black/5 bg-white shadow-sm my-auto animate-scale-in relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-[#d24b28]" />
+            <div className="w-full max-w-md text-center py-10 px-8 rounded-3xl border border-white/5 bg-[#151516] shadow-sm my-auto animate-scale-in relative overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-[#ff5a36]" />
               
               {/* Cover Art / Thumbnail Frame */}
               {note.thumbnailUrl ? (
-                <div className="relative aspect-[3/4] max-w-[200px] mx-auto overflow-hidden mb-6 rounded-2xl border border-black/5 shadow-sm">
+                <div className="relative aspect-[3/4] max-w-[200px] mx-auto overflow-hidden mb-6 rounded-2xl border border-white/5 shadow-sm">
                   <img src={note.thumbnailUrl} alt={note.title} className="w-full h-full object-cover" />
-                  <div className="absolute top-2 right-2 bg-[#d24b28] text-white rounded-full px-2 py-0.5 text-[8px] font-black uppercase tracking-wider">
+                  <div className="absolute top-2 right-2 bg-[#ff5a36] text-white rounded-full px-2 py-0.5 text-[8px] font-black uppercase tracking-wider">
                     Drive Link
                   </div>
                 </div>
               ) : (
-                <div className="w-14 h-14 rounded-full bg-zinc-50 flex items-center justify-center mx-auto mb-6 text-black border border-zinc-100 shadow-sm">
-                  <ExternalLink className="w-5 h-5 text-zinc-400" />
+                <div className="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-6 text-white border border-white/10 shadow-sm">
+                  <ExternalLink className="w-5 h-5 text-zinc-455" />
                 </div>
               )}
               
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#d24b28]/10 text-[#d24b28] text-[9px] font-bold uppercase tracking-wider mb-4">
-                <ShieldAlert className="w-3.5 h-3.5 text-[#d24b28]" /> External Document
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff5a36]/10 text-[#ff5a36] text-[9px] font-bold uppercase tracking-wider mb-4">
+                <ShieldAlert className="w-3.5 h-3.5 text-[#ff5a36]" /> External Document
               </span>
 
-              <h2 className="text-sm font-black text-black uppercase tracking-tight mb-2 leading-tight">
+              <h2 className="text-sm font-black text-white uppercase tracking-tight mb-2 leading-tight">
                 {note.title}
               </h2>
-              <p className="text-xs font-semibold text-zinc-500 mb-6 max-w-sm mx-auto leading-relaxed">
+              <p className="text-xs font-semibold text-zinc-400 mb-6 max-w-sm mx-auto leading-relaxed">
                 {note.description || "This academic resource is hosted on Google Drive. Click below to view the file content directory."}
               </p>
               
@@ -195,7 +195,7 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
                 href={note.fileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-black text-[#f4f1ea] rounded-full font-bold text-xs uppercase tracking-wider shadow-sm hover:scale-[1.02] transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-black rounded-full font-bold text-xs uppercase tracking-wider shadow-sm hover:scale-[1.02] transition-all"
               >
                 <ExternalLink className="w-4 h-4" />
                 Open External Drive
@@ -203,7 +203,7 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
             </div>
           ) : (
             <div className="w-full max-w-5xl" style={{ transform: `scale(${zoom / 100})`, transformOrigin: "top center" }}>
-              <div className="rounded-3xl border border-black/5 shadow-md overflow-hidden bg-white">
+              <div className="rounded-3xl border border-white/5 shadow-md overflow-hidden bg-white">
                 <iframe
                   src={`${note.fileUrl}#toolbar=0`}
                   className="w-full bg-white"
@@ -216,24 +216,24 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
         </div>
 
         {/* Sidebar Info Panel */}
-        <aside className="w-full lg:w-80 bg-[#f4f1ea]/60 backdrop-blur-sm overflow-y-auto">
+        <aside className="w-full lg:w-80 bg-[#0b0b0c]/80 backdrop-blur-sm overflow-y-auto">
           <div className="p-6 space-y-6">
             
             {/* Title Block */}
-            <div className="space-y-2 border-b border-black/5 pb-4">
-              <h2 className="font-black text-sm uppercase tracking-tight text-black leading-snug">{note.title}</h2>
-              {note.description && <p className="text-xs font-semibold text-zinc-500 leading-relaxed">{note.description}</p>}
+            <div className="space-y-2 border-b border-white/5 pb-4">
+              <h2 className="font-black text-sm uppercase tracking-tight text-white leading-snug">{note.title}</h2>
+              {note.description && <p className="text-xs font-semibold text-zinc-400 leading-relaxed">{note.description}</p>}
             </div>
 
             {/* Author */}
-            <div className="flex items-center gap-3 p-4 rounded-2xl border border-black/5 bg-white shadow-sm">
-              <div className="w-8 h-8 rounded-xl bg-black text-white flex items-center justify-center text-[10px] font-black">
+            <div className="flex items-center gap-3 p-4 rounded-2xl border border-white/5 bg-[#151516] shadow-sm">
+              <div className="w-8 h-8 rounded-xl bg-white text-black flex items-center justify-center text-[10px] font-black">
                 {note.author.name[0]?.toUpperCase()}
               </div>
               <div className="min-w-0">
-                <p className="text-xs font-black text-black truncate">{note.author.name}</p>
-                <p className="text-[9px] font-bold text-zinc-450 flex items-center gap-1 mt-0.5">
-                  <Calendar className="w-3 h-3 text-zinc-400" /> {formatDate(note.createdAt)}
+                <p className="text-xs font-black text-white truncate">{note.author.name}</p>
+                <p className="text-[9px] font-bold text-zinc-400 flex items-center gap-1 mt-0.5">
+                  <Calendar className="w-3 h-3 text-zinc-500" /> {formatDate(note.createdAt)}
                 </p>
               </div>
             </div>
@@ -241,37 +241,37 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-3">
               {stats.map((stat) => (
-                <div key={stat.label} className="flex items-center gap-3 p-3 rounded-xl border border-black/5 bg-white shadow-sm">
+                <div key={stat.label} className="flex items-center gap-3 p-3 rounded-xl border border-white/5 bg-[#151516] shadow-sm">
                   <stat.icon className="w-4 h-4 text-zinc-400 flex-shrink-0" />
                   <div className="min-w-0">
-                    <p className="text-xs font-black text-black leading-none">{stat.value}</p>
-                    <p className="text-[8px] font-bold text-zinc-450 tracking-wider uppercase mt-1">{stat.label}</p>
+                    <p className="text-xs font-black text-white leading-none">{stat.value}</p>
+                    <p className="text-[8px] font-bold text-zinc-500 tracking-wider uppercase mt-1">{stat.label}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Meta Properties */}
-            <div className="border-t border-black/5 pt-4 space-y-3">
+            <div className="border-t border-white/5 pt-4 space-y-3">
               <div className="flex justify-between items-center text-xs">
-                <span className="text-zinc-450 font-bold uppercase tracking-wider text-[9px]">Subject</span>
-                <span className="font-black text-black">{note.subject}</span>
+                <span className="text-zinc-550 font-bold uppercase tracking-wider text-[9px]">Subject</span>
+                <span className="font-black text-white">{note.subject}</span>
               </div>
               {note.semester && (
                 <div className="flex justify-between items-center text-xs">
-                  <span className="text-zinc-450 font-bold uppercase tracking-wider text-[9px]">Semester</span>
-                  <span className="font-black text-black">Semester {note.semester}</span>
+                  <span className="text-zinc-550 font-bold uppercase tracking-wider text-[9px]">Semester</span>
+                  <span className="font-black text-white">Semester {note.semester}</span>
                 </div>
               )}
               {note.university && (
                 <div className="flex justify-between items-center text-xs">
-                  <span className="text-zinc-450 font-bold uppercase tracking-wider text-[9px]">University</span>
-                  <span className="font-black text-black truncate max-w-[140px] text-right">{note.university}</span>
+                  <span className="text-zinc-550 font-bold uppercase tracking-wider text-[9px]">University</span>
+                  <span className="font-black text-white truncate max-w-[140px] text-right">{note.university}</span>
                 </div>
               )}
               <div className="flex justify-between items-center text-xs">
-                <span className="text-zinc-450 font-bold uppercase tracking-wider text-[9px]">Source</span>
-                <span className="px-2.5 py-0.5 rounded-full bg-[#d24b28]/10 text-[#d24b28] text-[9px] font-bold">
+                <span className="text-zinc-550 font-bold uppercase tracking-wider text-[9px]">Source</span>
+                <span className="px-2.5 py-0.5 rounded-full bg-[#ff5a36]/10 text-[#ff5a36] text-[9px] font-bold">
                   {isExternal ? "Google Drive" : "Direct PDF"}
                 </span>
               </div>
@@ -280,13 +280,13 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
             {/* Tags */}
             {note.tags.length > 0 && (
               <div className="space-y-2.5 pt-2">
-                <p className="text-[8px] font-bold text-zinc-450 tracking-wider uppercase">Tags</p>
+                <p className="text-[8px] font-bold text-zinc-500 tracking-wider uppercase">Tags</p>
                 <div className="flex flex-wrap gap-1.5">
                   {note.tags.map((tag) => (
                     <Link 
                       key={tag} 
                       href={`/search?q=${encodeURIComponent(tag)}`} 
-                      className="px-2.5 py-0.5 rounded-full bg-white border border-zinc-200 text-[9px] font-semibold text-zinc-650 hover:text-black transition-colors"
+                      className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[9px] font-semibold text-zinc-400 hover:text-white transition-colors"
                     >
                       {tag}
                     </Link>
@@ -296,7 +296,7 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
             )}
 
             {/* Action Bar */}
-            <div className="pt-4 border-t border-black/5">
+            <div className="pt-4 border-t border-white/5">
               <a
                 href={note.fileUrl}
                 target={isExternal ? "_blank" : undefined}
