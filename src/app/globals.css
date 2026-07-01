@@ -321,3 +321,38 @@ body {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+/* ============================================
+   Site Container — centered with side margins
+   ============================================ */
+.site-container {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .site-container {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+}
+
+/* ============================================
+   Section Spacing — guaranteed vertical padding (fluid auto-resize up to 6rem)
+   ============================================ */
+.section-padding {
+  padding-top: clamp(3.5rem, 8vh, 6rem) !important;
+  padding-bottom: clamp(3.5rem, 8vh, 6rem) !important;
+}
+
