@@ -109,44 +109,6 @@ export default async function HomePage() {
           <div className="w-full max-w-6xl border-x-2 border-black/10 h-full hidden lg:block" />
         </div>
 
-        {/* OKTO Header Bar */}
-        <div className="border-b-2 border-black bg-[#f4f1ea]">
-          <div className="max-w-6xl mx-auto px-6 sm:px-12 relative z-10">
-            <div className="flex items-center justify-between py-4">
-            <div className="flex items-center gap-1">
-            <div className="border-2 border-black px-2 py-1.5 bg-black text-white font-black text-xs uppercase tracking-widest leading-none shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-              NO
-              <br />
-              TE
-            </div>
-            <div className="border-2 border-black px-2 py-1.5 bg-[#f4f1ea] text-black font-black text-xs uppercase tracking-widest leading-none shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-              OS
-            </div>
-          </div>
-
-          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 text-[11px] font-black uppercase tracking-wider text-black w-max">
-            <Link href="/search" className="hover:underline">Browse Notes</Link>
-            <Link href="/categories" className="hover:underline">Categories</Link>
-            <Link href="/upload" className="hover:underline">Upload</Link>
-            <span className="text-zinc-400">|</span>
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] tracking-normal font-bold lowercase text-zinc-600">{totalUsers} Active Students</span>
-            </div>
-          </div>
-
-          <div>
-            <Link 
-              href="/upload" 
-              className="px-5 py-2.5 bg-black text-white border-2 border-black font-black text-xs uppercase tracking-wider shadow-[2.5px_2.5px_0px_0px_rgba(210,75,40,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all text-center"
-            >
-              Share Notes
-            </Link>
-          </div>
-          </div>
-        </div>
-        </div>
-
         {/* Main Brutalist Hero Area */}
         <div className="max-w-6xl mx-auto px-6 sm:px-12 pt-16 pb-20 sm:pt-24 sm:pb-28 relative z-10">
           
