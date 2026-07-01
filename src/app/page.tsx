@@ -374,15 +374,19 @@ export default async function HomePage() {
       {/* ===== CATEGORIES ===== */}
       <section className="section-padding bg-white rounded-t-[3rem] relative z-10">
         <div className="site-container">
-          <div className="flex items-end justify-between mb-10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
             <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-[#d24b28] mb-1">— Subjects</p>
-              <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-black">Browse by Category</h2>
-              <p className="mt-1 text-sm text-zinc-500 font-medium">Find notes organized by your field of study</p>
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#d24b28] bg-[#d24b28]/10 px-3.5 py-1.5 rounded-full mb-4 inline-block">
+                Subjects
+              </span>
+              <h2 className="font-oswald font-black text-4xl sm:text-6xl tracking-tighter uppercase leading-[0.95] text-black">
+                Browse by Category. <br />
+                <span className="text-[#d24b28] italic font-medium">Infinite knowledge.</span>
+              </h2>
             </div>
             <Link
               href="/categories"
-              className="hidden sm:flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-black border-b border-transparent hover:text-[#d24b28] transition-colors"
+              className="hidden sm:flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-black border-b border-transparent hover:text-[#d24b28] transition-colors font-oswald"
               id="view-all-categories"
             >
               View all <Icons.ArrowRight className="w-3.5 h-3.5 text-[#d24b28]" />
@@ -409,10 +413,10 @@ export default async function HomePage() {
 
                   {/* Top Text Area */}
                   <div className="flex flex-col z-10">
-                    <h3 className="font-extrabold text-lg sm:text-xl tracking-tight text-white leading-tight">
+                    <h3 className="font-oswald font-bold text-xl uppercase tracking-tighter text-white leading-none">
                       {category.name}
                     </h3>
-                    <span className="text-[10px] font-semibold text-white/80 mt-1 uppercase tracking-wider">
+                    <span className="font-oswald text-[10px] font-semibold text-white/80 mt-1 uppercase tracking-wider">
                       {subtitle}
                     </span>
                   </div>
@@ -433,11 +437,24 @@ export default async function HomePage() {
             })}
           </div>
 
-
           <div className="sm:hidden mt-8 text-center">
-            <Link href="/categories" className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-black border-b border-transparent">
+            <Link href="/categories" className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-black border-b border-transparent font-oswald">
               View all categories <Icons.ArrowRight className="w-3.5 h-3.5 text-[#d24b28]" />
             </Link>
+          </div>
+        </div>
+
+        {/* Repeating Banner Ticker at Bottom of Categories Section */}
+        <div className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-hidden bg-white border-t border-b border-black/5 py-5 mt-16 select-none">
+          <div className="animate-scroll-ticker flex gap-12 text-black">
+            {Array(8).fill(null).map((_, i) => (
+              <div key={i} className="ticker-item flex items-center gap-12 text-sm sm:text-base font-bold uppercase tracking-wider">
+                <span>Create Notes</span> <span className="text-[#d24b28]">🧡</span>
+                <span>Grow Knowledge</span> <span className="text-[#d24b28]">📈</span>
+                <span>Earn Points</span> <span className="text-[#d24b28]">🎯</span>
+                <span>Study Smarter</span> <span className="text-[#d24b28]">🧠</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>

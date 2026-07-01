@@ -416,4 +416,34 @@ body {
   animation: bubbleFloat 6s ease-in-out infinite;
 }
 
+/* YouTube Creators Layout additions */
+.font-oswald {
+  font-family: "Oswald", "Inter", sans-serif;
+}
+
+@keyframes scrollTicker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-ticker {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: scrollTicker 25s linear infinite;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
 

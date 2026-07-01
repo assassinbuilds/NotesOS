@@ -51,15 +51,15 @@ export default async function CategoriesPage() {
   return (
     <div className="site-container py-10 sm:py-16 font-sans select-none animate-fade-in">
       
-      {/* Modern Header Block */}
-      <div className="mb-10 p-8 rounded-3xl bg-white border border-black/5 shadow-sm relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-[#d24b28]/5 -mr-5 -mt-5" />
-        <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-black">
-          Browse Categories
+      {/* Modern High-Impact Header Block */}
+      <div className="mb-14 py-4 relative overflow-hidden flex flex-col items-start">
+        <span className="text-[10px] font-black uppercase tracking-widest text-[#d24b28] bg-[#d24b28]/10 px-3.5 py-1.5 rounded-full mb-5">
+          Academic Directory
+        </span>
+        <h1 className="font-oswald font-black text-5xl sm:text-7xl tracking-tighter uppercase leading-[0.95] text-black">
+          Browse Categories. <br />
+          <span className="text-[#d24b28] italic font-medium">Infinite knowledge.</span>
         </h1>
-        <p className="mt-1.5 text-xs font-semibold uppercase text-[#d24b28] tracking-wider">
-          Explore notes organized by field of study
-        </p>
       </div>
 
       {/* Grid of Categories */}
@@ -84,10 +84,10 @@ export default async function CategoriesPage() {
 
               {/* Top Text Area */}
               <div className="flex flex-col z-10">
-                <h3 className="font-extrabold text-xl sm:text-2xl tracking-tight text-white leading-tight">
+                <h3 className="font-oswald font-bold text-2xl uppercase tracking-tighter text-white leading-none">
                   {cat.name}
                 </h3>
-                <span className="text-xs font-semibold text-white/80 mt-1 uppercase tracking-wider">
+                <span className="font-oswald text-xs font-semibold text-white/80 mt-1 uppercase tracking-wider">
                   {subtitle}
                 </span>
               </div>
@@ -107,7 +107,23 @@ export default async function CategoriesPage() {
           );
         })}
       </div>
+
+      {/* Repeating Banner Ticker at Bottom */}
+      <div className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-hidden bg-white border-t border-b border-black/5 py-5 mt-20 select-none">
+        <div className="animate-scroll-ticker flex gap-12 text-black">
+          {Array(8).fill(null).map((_, i) => (
+            <div key={i} className="ticker-item flex items-center gap-12 text-sm sm:text-base font-bold uppercase tracking-wider">
+              <span>Create Notes</span> <span className="text-[#d24b28]">🧡</span>
+              <span>Grow Knowledge</span> <span className="text-[#d24b28]">📈</span>
+              <span>Earn Points</span> <span className="text-[#d24b28]">🎯</span>
+              <span>Study Smarter</span> <span className="text-[#d24b28]">🧠</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 }
+
 
