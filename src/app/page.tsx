@@ -4,15 +4,37 @@ import * as Icons from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-const categoryDescriptions: Record<string, string> = {
-  "computer-science": "Data structures, algorithms, programming, databases, OS",
-  "mathematics": "Calculus, algebra, statistics, discrete math",
-  "physics": "Mechanics, thermodynamics, optics, quantum physics",
-  "engineering": "Mechanical, civil, electrical engineering fundamentals",
-  "chemistry": "Organic, inorganic, physical chemistry",
-  "biology": "Cell biology, genetics, ecology, microbiology",
-  "business": "Management, marketing, finance, accounting",
-  "law": "Constitutional, criminal, civil, corporate law",
+const categorySubtitles: Record<string, string> = {
+  "computer-science": "Smart & Code",
+  "mathematics": "Equations & Logic",
+  "physics": "Quantum & Space",
+  "engineering": "Robots & Build",
+  "chemistry": "Atoms & Reactions",
+  "biology": "Life & DNA",
+  "business": "Markets & Strategy",
+  "law": "Order & Justice",
+};
+
+const categoryGradients: Record<string, string> = {
+  "computer-science": "from-indigo-500 via-indigo-600 to-purple-600",
+  "mathematics": "from-blue-400 via-blue-500 to-indigo-600",
+  "physics": "from-[#ff758c] via-[#ff7e93] to-[#ff7eb3]",
+  "engineering": "from-cyan-400 via-sky-500 to-blue-600",
+  "chemistry": "from-rose-400 via-red-500 to-orange-500",
+  "biology": "from-emerald-400 via-teal-500 to-cyan-600",
+  "business": "from-amber-400 via-orange-555 to-red-500",
+  "law": "from-slate-500 via-zinc-600 to-neutral-800",
+};
+
+const categoryEmojis: Record<string, string> = {
+  "computer-science": "💻",
+  "mathematics": "🧮",
+  "physics": "⚛️",
+  "engineering": "⚙️",
+  "chemistry": "🧪",
+  "biology": "🧬",
+  "business": "📈",
+  "law": "⚖️",
 };
 
 export default async function HomePage() {
@@ -367,35 +389,50 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 stagger-children">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
             {categoriesFromDb.map((category) => {
-              const IconComp = (Icons as any)[category.icon || ""] || Icons.BookOpen;
-              const colorClass = category.color || "#4f46e5";
-              const desc = categoryDescriptions[category.slug] || `${category.name} lecture notes`;
+              const subtitle = categorySubtitles[category.slug] || "Study guides";
+              const gradient = categoryGradients[category.slug] || "from-[#d24b28] via-[#e25c28] to-[#ffaa00]";
+              const emoji = categoryEmojis[category.slug] || "📚";
               return (
                 <Link
                   key={category.id}
-                  href={`/categories?q=${encodeURIComponent(category.name)}`}
-                  className="group flex flex-col gap-4 p-6 rounded-2xl bg-[#f4f1ea]/40 border border-zinc-100 hover:bg-white hover:border-[#d24b28]/10 hover:shadow-md transition-all duration-300"
+                  href={`/search?q=&subject=${encodeURIComponent(category.name)}`}
+                  className={`group relative flex flex-col justify-between p-6 rounded-[2rem] bg-gradient-to-br ${gradient} text-white shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden h-[180px]`}
                   id={`category-${category.slug}`}
                 >
-                  <div
-                    className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform flex-shrink-0"
-                    style={{ backgroundColor: `${colorClass}15`, color: colorClass }}
-                  >
-                    <IconComp className="w-5 h-5" />
+                  {/* Concentric decorative background circles radiating from bottom right */}
+                  <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full border border-white/10 pointer-events-none" />
+                  <div className="absolute -bottom-16 -right-16 w-48 h-48 rounded-full border border-white/10 pointer-events-none" />
+                  <div className="absolute -bottom-28 -right-28 w-64 h-64 rounded-full border border-white/10 pointer-events-none" />
+                  <div className="absolute -bottom-40 -right-40 w-80 h-80 rounded-full border border-white/10 pointer-events-none" />
+
+                  {/* Top Text Area */}
+                  <div className="flex flex-col z-10">
+                    <h3 className="font-extrabold text-lg sm:text-xl tracking-tight text-white leading-tight">
+                      {category.name}
+                    </h3>
+                    <span className="text-[10px] font-semibold text-white/80 mt-1 uppercase tracking-wider">
+                      {subtitle}
+                    </span>
                   </div>
-                  <div>
-                    <h3 className="font-black text-sm uppercase tracking-tight text-black leading-tight">{category.name}</h3>
-                    <p className="text-[10px] text-zinc-500 font-semibold mt-0.5">
+
+                  {/* Bottom Area: Notes Count Pill */}
+                  <div className="z-10 mt-auto">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/15 text-[9px] font-bold uppercase tracking-wider text-white/95 backdrop-blur-sm">
                       {category._count.notes.toLocaleString()} note{category._count.notes !== 1 ? "s" : ""}
-                    </p>
-                    <p className="text-[11px] text-zinc-450 mt-2 leading-relaxed line-clamp-2">{desc}</p>
+                    </span>
+                  </div>
+
+                  {/* 3D Emoji Sticker */}
+                  <div className="absolute -bottom-2 -right-2 text-5xl filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.3)] select-none transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 group-hover:-translate-y-1 group-hover:-translate-x-1">
+                    {emoji}
                   </div>
                 </Link>
               );
             })}
           </div>
+
 
           <div className="sm:hidden mt-8 text-center">
             <Link href="/categories" className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-black border-b border-transparent">
