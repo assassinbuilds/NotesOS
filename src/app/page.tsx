@@ -169,39 +169,38 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Floating Mission Banner Card */}
+        {/* Floating Mission & Stats Card */}
         <div className="site-container mt-4 pb-16 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 md:p-12 bg-white rounded-3xl border border-black/5 shadow-sm">
-            <div className="flex flex-col justify-center">
-              <p className="text-[10px] font-black uppercase tracking-widest text-[#d24b28] mb-3">— Our Mission</p>
-              <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-black leading-tight">
-                NotesOS is the world's cleanest &amp; simplest notes platform.
-              </h2>
+          <div className="bg-white rounded-[2rem] border border-black/5 shadow-sm overflow-hidden">
+            {/* Top Half: Mission */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 md:p-12">
+              <div className="flex flex-col justify-center">
+                <p className="text-[10px] font-black uppercase tracking-widest text-[#d24b28] mb-3">— Our Mission</p>
+                <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-black leading-tight">
+                  NotesOS is the world's cleanest &amp; simplest notes platform.
+                </h2>
+              </div>
+              <div className="flex flex-col justify-center border-t md:border-t-0 md:border-l border-zinc-100 md:pl-10 pt-6 md:pt-0">
+                <p className="text-sm font-medium leading-relaxed text-zinc-550 max-w-md">
+                  A community-driven directory to browse digital notes, lecture slides, study guides, and past exams. Built for students, by students.
+                </p>
+                <Link href="/categories" className="mt-5 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-black hover:text-[#d24b28] transition-colors w-fit">
+                  Browse All Subjects <Icons.ArrowRight className="w-3.5 h-3.5 text-[#d24b28]" />
+                </Link>
+              </div>
             </div>
-            <div className="flex flex-col justify-center border-t md:border-t-0 md:border-l border-zinc-100 md:pl-10 pt-6 md:pt-0">
-              <p className="text-sm font-medium leading-relaxed text-zinc-550 max-w-md">
-                A community-driven directory to browse digital notes, lecture slides, study guides, and past exams. Built for students, by students.
-              </p>
-              <Link href="/categories" className="mt-5 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-black hover:text-[#d24b28] transition-colors w-fit">
-                Browse All Subjects <Icons.ArrowRight className="w-3.5 h-3.5 text-[#d24b28]" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ===== FLOATING STATS STRIP ===== */}
-      <section className="bg-[#f4f1ea] py-16">
-        <div className="site-container">
-          <div className="bg-black text-[#f4f1ea] rounded-3xl p-8 sm:p-12 shadow-md">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 lg:gap-y-0 lg:divide-x lg:divide-zinc-800">
-              {stats.map((stat) => (
-                <div key={stat.label} className="flex flex-col items-center justify-center text-center px-4">
-                  <stat.icon className="w-5 h-5 text-[#d24b28] mb-2" />
-                  <span className="text-4xl font-black tracking-tighter text-white">{stat.value}</span>
-                  <span className="text-[10px] font-black uppercase tracking-widest text-[#f4f1ea]/40 mt-1">{stat.label}</span>
-                </div>
-              ))}
+            {/* Bottom Half: Stats Strip */}
+            <div className="bg-black text-[#f4f1ea] p-8 sm:p-10 border-t border-zinc-900">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 lg:gap-y-0 lg:divide-x lg:divide-zinc-800">
+                {stats.map((stat) => (
+                  <div key={stat.label} className="flex flex-col items-center justify-center text-center px-4">
+                    <stat.icon className="w-5 h-5 text-[#d24b28] mb-2" />
+                    <span className="text-3xl sm:text-4xl font-black tracking-tighter text-white">{stat.value}</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-[#f4f1ea]/40 mt-1">{stat.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -220,16 +219,16 @@ export default async function HomePage() {
                 We make it incredibly easy to find, share, and study notes. No clutter, no distractions. Here is how you can get started:
               </p>
 
-              <div className="relative pl-12 space-y-6 text-left max-w-xl">
-                {/* Dotted connecting line */}
-                <div className="absolute left-[15px] top-4 bottom-4 w-px border-l-2 border-dashed border-[#d24b28]/35 z-0" />
+              <div className="relative pl-16 space-y-8 text-left max-w-xl">
+                {/* Dotted connecting line aligned perfectly at 28px center */}
+                <div className="absolute left-[28px] top-5 bottom-5 w-px border-l-2 border-dashed border-[#d24b28]/30 z-0" />
                 
                 {/* Step 1 */}
                 <div className="relative flex items-start gap-4 z-10">
-                  <span className="absolute -left-12 w-8 h-8 rounded-full bg-[#d24b28] text-white flex items-center justify-center text-xs font-black shadow-sm">1</span>
-                  <div>
+                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#d24b28] text-white flex items-center justify-center text-xs font-black shadow-sm">1</span>
+                  <div className="pl-2 pt-1.5">
                     <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-black">Find Notes</h3>
-                    <p className="text-[11px] font-semibold text-zinc-500 mt-0.5 leading-relaxed">
+                    <p className="text-[11px] font-semibold text-zinc-550 mt-1 leading-relaxed">
                       Search notes by subject, semester, or university to access study material instantly.
                     </p>
                   </div>
@@ -237,10 +236,10 @@ export default async function HomePage() {
 
                 {/* Step 2 */}
                 <div className="relative flex items-start gap-4 z-10">
-                  <span className="absolute -left-12 w-8 h-8 rounded-full bg-[#d24b28] text-white flex items-center justify-center text-xs font-black shadow-sm">2</span>
-                  <div>
+                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#d24b28] text-white flex items-center justify-center text-xs font-black shadow-sm">2</span>
+                  <div className="pl-2 pt-1.5">
                     <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-black">Read Instantly</h3>
-                    <p className="text-[11px] font-semibold text-zinc-500 mt-0.5 leading-relaxed">
+                    <p className="text-[11px] font-semibold text-zinc-550 mt-1 leading-relaxed">
                       Open documents in our high-performance, clutter-free online PDF viewer.
                     </p>
                   </div>
@@ -248,10 +247,10 @@ export default async function HomePage() {
 
                 {/* Step 3 */}
                 <div className="relative flex items-start gap-4 z-10">
-                  <span className="absolute -left-12 w-8 h-8 rounded-full bg-[#d24b28] text-white flex items-center justify-center text-xs font-black shadow-sm">3</span>
-                  <div>
+                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#d24b28] text-white flex items-center justify-center text-xs font-black shadow-sm">3</span>
+                  <div className="pl-2 pt-1.5">
                     <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-black">Share Material</h3>
-                    <p className="text-[11px] font-semibold text-zinc-500 mt-0.5 leading-relaxed">
+                    <p className="text-[11px] font-semibold text-zinc-550 mt-1 leading-relaxed">
                       Upload your own lecture notes or study guides in seconds to help the community.
                     </p>
                   </div>
@@ -259,41 +258,39 @@ export default async function HomePage() {
 
                 {/* Step 4 */}
                 <div className="relative flex items-start gap-4 z-10">
-                  <span className="absolute -left-12 w-8 h-8 rounded-full bg-[#d24b28] text-white flex items-center justify-center text-xs font-black shadow-sm">4</span>
-                  <div>
+                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#d24b28] text-white flex items-center justify-center text-xs font-black shadow-sm">4</span>
+                  <div className="pl-2 pt-1.5">
                     <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-black">Grow Profile</h3>
-                    <p className="text-[11px] font-semibold text-zinc-500 mt-0.5 leading-relaxed">
+                    <p className="text-[11px] font-semibold text-zinc-550 mt-1 leading-relaxed">
                       Build your academic presence, track your downloads, and earn recognition.
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
+              {/* Action Buttons with clean margins */}
+              <div className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
                 <Link
                   href="/search"
-                  className="modern-btn-primary px-8 py-3 text-xs uppercase tracking-wider text-center w-full sm:w-auto"
+                  className="modern-btn-primary px-8 py-3.5 text-xs uppercase tracking-wider text-center w-full sm:w-auto"
                 >
                   Get Started
                 </Link>
                 <Link
                   href="/categories"
-                  className="px-8 py-3 bg-white border border-[#d24b28] text-[#d24b28] rounded-full font-bold text-xs uppercase tracking-wider text-center hover:bg-[#d24b28]/5 transition-all w-full sm:w-auto"
+                  className="px-8 py-3.5 bg-white border border-[#d24b28] text-[#d24b28] rounded-full font-black text-xs uppercase tracking-wider text-center hover:bg-[#d24b28]/5 transition-all w-full sm:w-auto shadow-sm"
                 >
                   Browse Subjects
                 </Link>
               </div>
             </div>
 
-            {/* Right Column: 3D Workflow Illustration */}
-            <div className="lg:col-span-5 flex justify-center items-center relative animate-fade-in-up">
-              {/* Soft background radial glow */}
-              <div className="absolute w-72 h-72 rounded-full bg-[#d24b28]/5 filter blur-3xl pointer-events-none" />
+            {/* Right Column: 3D Workflow Illustration - Completely Static */}
+            <div className="lg:col-span-5 flex justify-center items-center relative">
               <img 
                 src="/workflow.png" 
                 alt="Student studying in armchair 3D illustration" 
-                className="w-full max-w-[360px] sm:max-w-[400px] lg:max-w-full object-contain mix-blend-multiply select-none pointer-events-none animate-bubble-float z-10"
+                className="w-full max-w-[360px] sm:max-w-[400px] lg:max-w-full object-contain mix-blend-multiply select-none pointer-events-none z-10"
               />
             </div>
 
