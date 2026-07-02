@@ -144,7 +144,7 @@ export default async function HomePage() {
           </div>
 
           {/* Centered Notebook Mockup - Extends to the bottom and cropped by card's rounded-b edge */}
-          <div className="relative w-full overflow-hidden h-[270px] mt-6 flex justify-center items-start z-10">
+          <div className="relative w-full overflow-hidden h-[350px] mt-6 flex justify-center items-start z-10">
             <div className="relative w-full max-w-[260px] aspect-[1/2] translate-y-0 transition-transform duration-700 hover:scale-[1.02]">
               <Image
                 src="/hero-product.png"
@@ -158,7 +158,7 @@ export default async function HomePage() {
           </div>
 
           {/* Bottom Glassmorphic Stats Grid Row - Floating at bottom of card */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl w-full mx-auto mt-6 relative z-20 translate-y-1/2">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl w-full mx-auto mt-[-160px] relative z-20 translate-y-1/2">
             {[
               { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
               { number: formatStatNumber(totalUsers), label: "STUDENTS ACTIVE" },
