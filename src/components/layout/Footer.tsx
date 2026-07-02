@@ -1,75 +1,82 @@
+"use client";
+
 import Link from "next/link";
-import { BookOpen, Globe, MessageCircle, Mail } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Globe, MessageCircle, Mail } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const pathname = usePathname();
+
+  // On the absolute minimum Botole home page, we want the bottom absolute elements to act as the footer.
+  // The global footer would clash with the home page's fullscreen layout.
+  if (pathname === "/") {
+    return null;
+  }
 
   return (
-    <footer className="w-full border-t border-white/5 bg-zinc-950 py-12 text-zinc-400">
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4 lg:gap-12">
+    <footer className="w-full border-t border-[#e5e5e5] bg-[#f5f5f5] py-16 text-[#666666] font-sans relative z-10">
+      <div className="mx-auto w-full max-w-[1400px] px-10">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
           
           {/* Brand & Description */}
           <div className="md:col-span-1">
-            <Link href="/" className="mb-4 flex items-center gap-2 group transition-opacity hover:opacity-80" aria-label="NotesOS Home">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-500 shadow-sm">
-                <span className="text-sm font-bold text-white">N</span>
-              </div>
-              <span className="text-sm font-bold text-zinc-50">NotesOS</span>
+            <Link href="/" className="mb-6 block text-xl font-bold tracking-tight text-[#1a1a1a]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+              NotesOS
             </Link>
-            <p className="text-xs leading-relaxed text-zinc-500">
+            <p className="text-[13px] leading-[1.8] text-[#888888] max-w-[250px]">
               The fastest way for students to share, find, and read academic notes. Built for speed and simplicity.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-zinc-50">Platform</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="mb-6 text-[14px] font-semibold text-[#1a1a1a]" style={{ fontFamily: "'Outfit', sans-serif" }}>Platform</h3>
+            <ul className="space-y-4 text-[13px] font-medium">
               <li>
-                <Link href="/search" className="transition-colors hover:text-zinc-50">Search Notes</Link>
+                <Link href="/search" className="transition-colors hover:text-[#1a1a1a]">Search Notes</Link>
               </li>
               <li>
-                <Link href="/categories" className="transition-colors hover:text-zinc-50">Browse Subjects</Link>
+                <Link href="/categories" className="transition-colors hover:text-[#1a1a1a]">Browse Subjects</Link>
               </li>
               <li>
-                <Link href="/upload" className="transition-colors hover:text-zinc-50">Upload Material</Link>
+                <Link href="/upload" className="transition-colors hover:text-[#1a1a1a]">Upload Material</Link>
               </li>
             </ul>
           </div>
 
           {/* Popular Categories */}
           <div>
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-zinc-50">Popular</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="mb-6 text-[14px] font-semibold text-[#1a1a1a]" style={{ fontFamily: "'Outfit', sans-serif" }}>Popular</h3>
+            <ul className="space-y-4 text-[13px] font-medium">
               <li>
-                <Link href="/search?q=&subject=Computer+Science" className="transition-colors hover:text-zinc-50">Computer Science</Link>
+                <Link href="/search?q=&subject=Computer+Science" className="transition-colors hover:text-[#1a1a1a]">Computer Science</Link>
               </li>
               <li>
-                <Link href="/search?q=&subject=Mathematics" className="transition-colors hover:text-zinc-50">Mathematics</Link>
+                <Link href="/search?q=&subject=Mathematics" className="transition-colors hover:text-[#1a1a1a]">Mathematics</Link>
               </li>
               <li>
-                <Link href="/search?q=&subject=Physics" className="transition-colors hover:text-zinc-50">Physics</Link>
+                <Link href="/search?q=&subject=Physics" className="transition-colors hover:text-[#1a1a1a]">Physics</Link>
               </li>
             </ul>
           </div>
 
           {/* Connect */}
           <div>
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-zinc-50">Connect</h3>
-            <ul className="flex items-center gap-4">
+            <h3 className="mb-6 text-[14px] font-semibold text-[#1a1a1a]" style={{ fontFamily: "'Outfit', sans-serif" }}>Connect</h3>
+            <ul className="flex items-center gap-5">
               <li>
-                <a href="#" className="text-zinc-500 transition-colors hover:text-zinc-50" aria-label="Website">
+                <a href="#" className="text-[#888888] transition-colors hover:text-[#1a1a1a]" aria-label="Website">
                   <Globe className="h-5 w-5" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-zinc-500 transition-colors hover:text-zinc-50" aria-label="Community">
+                <a href="#" className="text-[#888888] transition-colors hover:text-[#1a1a1a]" aria-label="Community">
                   <MessageCircle className="h-5 w-5" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-zinc-500 transition-colors hover:text-zinc-50" aria-label="Email">
+                <a href="#" className="text-[#888888] transition-colors hover:text-[#1a1a1a]" aria-label="Email">
                   <Mail className="h-5 w-5" />
                 </a>
               </li>
@@ -77,13 +84,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 sm:flex-row">
-          <p className="text-xs text-zinc-500">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-[#e5e5e5] pt-8 sm:flex-row">
+          <p className="text-[12px] font-medium text-[#888888]">
             &copy; {currentYear} NotesOS. All rights reserved.
           </p>
-          <div className="flex items-center gap-4 text-xs text-zinc-500">
-            <Link href="/privacy" className="transition-colors hover:text-zinc-50">Privacy Policy</Link>
-            <Link href="/terms" className="transition-colors hover:text-zinc-50">Terms of Service</Link>
+          <div className="flex items-center gap-6 text-[12px] font-medium text-[#888888]">
+            <Link href="/privacy" className="transition-colors hover:text-[#1a1a1a]">Privacy Policy</Link>
+            <Link href="/terms" className="transition-colors hover:text-[#1a1a1a]">Terms of Service</Link>
           </div>
         </div>
       </div>
