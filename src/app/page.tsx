@@ -104,7 +104,7 @@ export default async function HomePage() {
         <div className="flex-1 flex flex-col justify-center items-center max-w-4xl w-full mx-auto px-6 pt-6 pb-0 relative z-10 text-center">
 
           <h1 
-            className="text-[3.6rem] sm:text-[4.8rem] lg:text-[5.4rem] font-black leading-[1.05] tracking-tighter text-white" 
+            className="text-[3.6rem] sm:text-[4.8rem] lg:text-[5.4rem] font-black leading-[1.05] tracking-tighter text-white mt-[-30px]" 
             style={{ fontFamily: "'Outfit', sans-serif" }}
           >
             Academic Notes<br />Directory
@@ -130,13 +130,13 @@ export default async function HomePage() {
           </div>
 
           {/* Centered Notebook Mockup - In relative layout flow, clipped at the bottom to align perfectly with the stats card bottom */}
-          <div className="relative w-full max-w-[360px] h-[260px] overflow-hidden mt-[45px] z-10 flex justify-center items-start shrink-0 [clip-path:inset(0_0_92px_0)]">
-            <div className="relative w-full h-[360px] transition-transform duration-700 hover:scale-[1.02]">
+          <div className="relative w-full max-w-[400px] h-[290px] overflow-hidden mt-[45px] z-10 flex justify-center items-start shrink-0 [clip-path:inset(0_0_112px_0)]">
+            <div className="relative w-full h-[400px] transition-transform duration-700 hover:scale-[1.02]">
               <Image
                 src="/hero-product.png"
                 alt="Minimalist Black Notebook"
                 fill
-                sizes="360px"
+                sizes="400px"
                 className="object-contain object-top mix-blend-multiply"
                 priority
               />
@@ -144,7 +144,7 @@ export default async function HomePage() {
           </div>
 
           {/* Bottom Single Glassmorphic Stats Pill - Overlaps the bottom of the notebook and transitions into the next section with translate-y-1/2 */}
-          <div className="w-[92%] max-w-2xl bg-white/95 border border-white/60 backdrop-blur-md rounded-[20px] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.06)] mt-[-200px] relative z-20 translate-y-1/2 shrink-0">
+          <div className="w-[92%] max-w-2xl bg-white/95 border border-white/60 backdrop-blur-md rounded-[20px] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.06)] mt-[-220px] relative z-20 translate-y-1/2 shrink-0">
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y-0">
               {[
                 { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
