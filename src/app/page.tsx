@@ -1,29 +1,21 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import * as Icons from "lucide-react";
+import {
+  FileText, Users, Download, Eye,
+  Upload, BookOpen, ChevronRight, Check, RefreshCw, ArrowRight
+} from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-const categorySubtitles: Record<string, string> = {
-  "computer-science": "Smart & Code",
-  "mathematics": "Equations & Logic",
-  "physics": "Quantum & Space",
-  "engineering": "Robots & Build",
-  "chemistry": "Atoms & Reactions",
-  "biology": "Life & DNA",
-  "business": "Markets & Strategy",
-  "law": "Order & Justice",
-};
-
 const categoryGradients: Record<string, string> = {
-  "computer-science": "from-indigo-500 via-indigo-600 to-purple-600",
-  "mathematics": "from-blue-400 via-blue-500 to-indigo-600",
-  "physics": "from-[#ff758c] via-[#ff7e93] to-[#ff7eb3]",
-  "engineering": "from-cyan-400 via-sky-500 to-blue-600",
-  "chemistry": "from-rose-400 via-red-500 to-orange-500",
-  "biology": "from-emerald-400 via-teal-500 to-cyan-600",
-  "business": "from-amber-400 via-orange-555 to-red-500",
-  "law": "from-slate-500 via-zinc-600 to-neutral-800",
+  "computer-science": "from-purple-600 to-indigo-600",
+  "mathematics": "from-blue-600 to-purple-600",
+  "physics": "from-pink-600 to-purple-600",
+  "engineering": "from-cyan-600 to-blue-600",
+  "chemistry": "from-rose-600 to-pink-600",
+  "biology": "from-emerald-600 to-teal-600",
+  "business": "from-amber-600 to-orange-600",
+  "law": "from-slate-600 to-zinc-700",
 };
 
 const categoryEmojis: Record<string, string> = {
@@ -38,332 +30,351 @@ const categoryEmojis: Record<string, string> = {
 };
 
 export default async function HomePage() {
-  const totalNotes = await prisma.note.count({ where: { status: "PUBLISHED" } });
-  const totalUsers = await prisma.user.count();
-  const aggregateStats = await prisma.note.aggregate({
-    where: { status: "PUBLISHED" },
-    _sum: { downloads: true, views: true },
-  });
+  const [totalNotes, totalUsers, aggregateStats, categoriesFromDb, recentNotes] = await Promise.all([
+    prisma.note.count({ where: { status: "PUBLISHED" } }),
+    prisma.user.count(),
+    prisma.note.aggregate({
+      where: { status: "PUBLISHED" },
+      _sum: { downloads: true, views: true },
+    }),
+    prisma.category.findMany({
+      take: 8,
+      include: { _count: { select: { notes: true } } },
+      orderBy: { notes: { _count: "desc" } },
+    }),
+    prisma.note.findMany({
+      where: { status: "PUBLISHED" },
+      orderBy: { createdAt: "desc" },
+      take: 4,
+      include: {
+        author: { select: { name: true } },
+        category: { select: { name: true } },
+      },
+    })
+  ]);
+
   const totalDownloads = aggregateStats._sum.downloads || 0;
   const totalViews = aggregateStats._sum.views || 0;
 
-  const categoriesFromDb = await prisma.category.findMany({
-    take: 8,
-    include: { _count: { select: { notes: true } } },
-    orderBy: { notes: { _count: "desc" } },
-  });
-
-  const recentNotes = await prisma.note.findMany({
-    where: { status: "PUBLISHED" },
-    orderBy: { createdAt: "desc" },
-    take: 4,
-    include: {
-      author: { select: { name: true } },
-      category: { select: { name: true } },
-    },
-  });
-
-  const stats = [
-    { label: "Notes Shared",    value: `${totalNotes}`,     icon: Icons.FileText },
-    { label: "Active Students", value: `${totalUsers}`,     icon: Icons.Users },
-    { label: "Downloads",       value: `${totalDownloads}`, icon: Icons.Download },
-    { label: "Total Views",     value: `${totalViews}`,     icon: Icons.Eye },
-  ];
-
-  const features = [
-    { icon: Icons.Zap,       title: "Lightning Fast",           description: "Pages load instantly. Search returns results in milliseconds. No waiting.",                               color: "from-amber-400 to-amber-600" },
-    { icon: Icons.Upload,    title: "Upload in Seconds",         description: "Drag, drop, add a title and subject. Your notes are live in under a minute.",                              color: "from-indigo-400 to-indigo-600" },
-    { icon: Icons.BookOpen,  title: "Distraction-Free Reading",  description: "Large reading area, zoom controls, dark mode, and fullscreen. Focus on what matters.",                    color: "from-emerald-400 to-emerald-600" },
-    { icon: Icons.Search,    title: "Smart Search",              description: "Typo-tolerant search with instant suggestions. Find any note in seconds.",                                color: "from-blue-400 to-blue-600" },
-    { icon: Icons.Shield,    title: "Community Moderated",       description: "Quality content maintained by active moderation and community ratings.",                                  color: "from-purple-400 to-purple-600" },
-    { icon: Icons.TrendingUp, title: "Always Growing",           description: "New notes added daily across every subject and semester.",                                                 color: "from-rose-400 to-rose-600" },
-  ];
-
   return (
-    <div className="relative bg-[#0b0b0c] text-white overflow-hidden">
+    <div className="relative min-h-screen w-full overflow-hidden bg-zinc-950 text-zinc-50 selection:bg-purple-500/30">
       
-      {/* Decorative background bubbles/blobs */}
-      <div className="absolute top-24 left-[8%] w-6 h-6 rounded-full bg-[#ff5a36]/10 animate-bubble-float z-0" />
-      <div className="absolute top-48 right-[12%] w-4 h-4 rounded-full bg-[#ff5a36]/15 animate-bubble-float z-0" style={{ animationDelay: '1.5s' }} />
-      <div className="absolute top-1/2 left-[5%] w-8 h-8 rounded-full bg-[#ff5a36]/8 animate-bubble-float z-0" style={{ animationDelay: '3s' }} />
-      <div className="absolute bottom-[20%] right-[10%] w-6 h-6 rounded-full bg-[#ff5a36]/10 animate-bubble-float z-0" style={{ animationDelay: '4.5s' }} />
+      {/* Decorative ambient glow */}
+      <div 
+        aria-hidden="true" 
+        className="pointer-events-none absolute left-1/2 top-[-10%] -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-purple-600/20 blur-[100px]" 
+      />
 
-      {/* ===== HERO — bg full-width, content centred ===== */}
-      <section
-        className="relative font-sans select-none overflow-hidden"
-        style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.015) 1px, transparent 1px)", backgroundSize: "28px 28px" }}
-      >
-        {/* Star sticker */}
-        <div className="absolute top-8 left-[4%] lg:left-[8%] hidden sm:block animate-pulse pointer-events-none z-0">
-          <svg viewBox="0 0 100 100" className="w-8 h-8 text-[#ff5a36]/20" style={{ transform: "rotate(15deg)" }}>
-            <path fill="currentColor" d="M50 0 L55 35 L90 10 L65 45 L100 50 L65 55 L90 90 L55 65 L50 100 L45 65 L10 90 L35 55 L0 50 L35 45 L10 10 L45 35 Z" />
-          </svg>
+      {/* ===== HERO SECTION ===== */}
+      <section aria-labelledby="hero-heading" className="relative z-10 w-full pt-20 pb-16 md:pt-28 md:pb-20 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        
+        {/* Main Headline */}
+        <h1 id="hero-heading" className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
+          <span className="text-gradient">Unlimited Academic</span>
+          <br />
+          <span className="text-zinc-50 block mt-2">Notes Directory</span>
+        </h1>
+
+        {/* Subtitle */}
+        <p className="mx-auto max-w-2xl text-zinc-400 text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-8">
+          Access study guides, lecture notes, and textbook solutions. 
+          All in one simple, hyper-fast interface built by students, for students.
+        </p>
+
+        {/* Value Proposition Pills */}
+        <ul aria-label="Key Benefits" className="flex flex-wrap justify-center gap-3 sm:gap-6 mb-10">
+          {[
+            "100% Free platform",
+            "No paywalls or contracts",
+            "Direct PDF downloads"
+          ].map((benefit, index) => (
+            <li key={index} className="flex items-center gap-2 text-sm text-zinc-300 bg-white/[0.02] border border-white/10 rounded-full px-5 py-2 backdrop-blur-md">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-purple-500/20" aria-hidden="true">
+                <Check className="h-3 w-3 text-purple-400" />
+              </span>
+              {benefit}
+            </li>
+          ))}
+        </ul>
+
+        {/* CTA */}
+        <div className="mb-20">
+          <Link 
+            href="/search" 
+            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
+          >
+            Explore Study Guides
+          </Link>
         </div>
 
-        {/* Upgraded premium graphics sticker */}
-        <div className="absolute bottom-[24%] left-[4%] lg:left-[8%] hidden lg:block z-20 hover:scale-110 transition-transform cursor-pointer">
-          <div className="w-12 h-12 rounded-2xl bg-[#151516] border border-white/5 flex items-center justify-center shadow-sm">
-            <Icons.Sparkles className="w-5 h-5 text-[#ff5a36]" />
-          </div>
+        {/* Social Proof */}
+        <div className="border-t border-white/5 pt-8">
+          <h2 className="text-xs font-bold tracking-[0.2em] text-zinc-500 uppercase mb-6">
+            Trusted by students at
+          </h2>
+          <ul aria-label="Universities" className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 opacity-50 grayscale">
+            {["MIT", "STANFORD", "HARVARD", "OXFORD", "CALTECH"].map((uni) => (
+              <li key={uni} className="text-lg font-bold tracking-wider text-zinc-300">{uni}</li>
+            ))}
+          </ul>
         </div>
+      </section>
 
-        {/* Stones stack */}
-        <div className="absolute bottom-[24%] right-[4%] lg:right-[8%] hidden lg:flex flex-col items-center gap-0.5 z-0">
-          <div className="w-7 h-7 bg-white/10 rounded-t-full border border-white/5 shadow-sm" />
-          <div className="w-10 h-3 bg-white/5 rounded-full border border-white/5 shadow-sm" />
-          <div className="w-14 h-3.5 bg-white/5 rounded-full border border-white/5 shadow-sm" />
-        </div>
+      {/* ===== TIMELINE SECTION ===== */}
+      <section aria-labelledby="timeline-heading" className="relative z-10 border-t border-white/5 py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          
+          <header className="text-center mb-16">
+            <h2 id="timeline-heading" className="text-xs font-bold tracking-[0.2em] text-purple-500 uppercase mb-3">
+              A Step-by-Step Approach
+            </h2>
+            <p className="text-3xl sm:text-4xl font-extrabold text-zinc-50">
+              Learning, without the hassle
+            </p>
+          </header>
 
-        {/* Hero content — centered on mobile, 2-column grid on desktop */}
-        <div className="site-container relative z-10 py-16 lg:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            
-            {/* Left Column: Text & Actions */}
-            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
-              <div>
-                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-[#ff5a36] bg-[#ff5a36]/10 px-3.5 py-1.5 rounded-full">
-                  Your Academic Hub
-                </span>
-              </div>
+          <div className="relative mx-auto max-w-3xl">
+            {/* Center Timeline Line */}
+            <div aria-hidden="true" className="absolute bottom-0 left-1/2 top-0 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-purple-500/30 to-transparent" />
 
-              <h1 className="font-oswald font-black tracking-tighter uppercase leading-[0.9] mt-6 text-left w-full">
-                <span className="block text-[2.8rem] sm:text-[4.5rem] xl:text-[5.5rem] text-white">Find &amp; Share</span>
-                <span className="block text-[2.8rem] sm:text-[4.5rem] xl:text-[5.5rem] text-[#ff5a36] italic font-medium">
-                  Notes OS
-                </span>
-                <span className="block text-[2.8rem] sm:text-[4.5rem] xl:text-[5.5rem] text-zinc-400">
-                  Study Faster.
-                </span>
-              </h1>
-
-              <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3 w-full">
-                <span className="inline-flex items-center -space-x-2">
-                  {[
-                    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80",
-                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80",
-                    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80",
-                  ].map((src, i) => (
-                    <span key={i} className="w-8 h-8 rounded-full border border-[#0b0b0c] overflow-hidden block shadow-sm" style={{ zIndex: i }}>
-                      <img src={src} alt="student" className="w-full h-full object-cover" />
-                    </span>
-                  ))}
-                </span>
-                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-zinc-400">
-                  Trusted by students worldwide
-                </span>
-              </div>
-
-              <p className="mt-6 text-xs sm:text-sm font-medium text-zinc-400 max-w-md leading-relaxed">
-                No clutter. No distractions. A clean, premium academic directory for students to share and access study material.
-              </p>
-
-              <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-                <Link
-                  href="/search"
-                  className="bg-gradient-to-r from-[#ff5a36] via-[#db2777] to-[#ec4899] hover:from-[#ff7b5d] hover:via-[#e03387] hover:to-[#f45ca2] hover:scale-[1.03] active:scale-[0.97] text-white rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-[0_8px_20px_-4px_rgba(255,90,54,0.35)] hover:shadow-[0_12px_24px_-4px_rgba(219,39,119,0.45)] duration-200 w-full sm:w-auto"
-                >
-                  Explore Platform <Icons.ArrowRight className="w-5 h-5 text-white" />
-                </Link>
-                <Link
-                  href="/upload"
-                  className="bg-transparent hover:bg-white/5 border-2 border-[#ff5a36] hover:scale-[1.02] active:scale-95 text-[#ff5a36] rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-sm duration-200 w-full sm:w-auto"
-                >
-                  Upload Notes <Icons.Upload className="w-5 h-5 text-[#ff5a36]" />
-                </Link>
-              </div>
-
-              <div className="mt-10 text-[#ff5a36] font-bold animate-bounce hidden lg:block">
-                <Icons.ChevronDown className="w-5 h-5" />
-              </div>
-            </div>
-
-            {/* Right Column: 3D Cartoon Illustration */}
-            <div className="lg:col-span-5 flex justify-center items-center relative animate-fade-in-up">
-              {/* Soft background radial glow */}
-              <div className="absolute w-72 h-72 rounded-full bg-[#ff5a36]/10 filter blur-3xl pointer-events-none" />
-              <img 
-                src="/students.png" 
-                alt="Students studying 3D illustration" 
-                className="w-full max-w-[380px] sm:max-w-[420px] lg:max-w-full object-contain select-none pointer-events-none animate-bubble-float z-10"
-              />
-            </div>
-
-          </div>
-        </div>
-
-        {/* Floating Mission & Stats Card */}
-        <div className="site-container mt-4 pb-16 relative z-10">
-          <div className="bg-[#151516] rounded-[2rem] border border-white/5 shadow-sm overflow-hidden">
-            {/* Top Half: Mission */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 md:p-12">
-              <div className="flex flex-col justify-center">
-                <p className="text-[10px] font-black uppercase tracking-widest text-[#ff5a36] mb-3">— Our Mission</p>
-                <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white leading-tight">
-                  NotesOS is the world's cleanest &amp; simplest notes platform.
-                </h2>
-              </div>
-              <div className="flex flex-col justify-center border-t md:border-t-0 md:border-l border-white/5 md:pl-10 pt-6 md:pt-0">
-                <p className="text-sm font-medium leading-relaxed text-zinc-400 max-w-md">
-                  A community-driven directory to browse digital notes, lecture slides, study guides, and past exams. Built for students, by students.
-                </p>
-                <Link href="/categories" className="mt-5 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-white hover:text-[#ff5a36] transition-colors w-fit">
-                  Browse All Subjects <Icons.ArrowRight className="w-3.5 h-3.5 text-[#ff5a36]" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Bottom Half: Stats Strip */}
-            <div className="bg-[#0b0b0c] text-white p-8 sm:p-10 border-t border-white/5">
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 lg:gap-y-0 lg:divide-x lg:divide-white/10">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="flex flex-col items-center justify-center text-center px-4">
-                    <stat.icon className="w-5 h-5 text-[#ff5a36] mb-2" />
-                    <span className="text-3xl sm:text-4xl font-black tracking-tighter text-white">{stat.value}</span>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mt-1">{stat.label}</span>
+            {/* Step 1 */}
+            <article className="relative mb-16 flex flex-col items-center gap-8 md:flex-row md:gap-0">
+              <div className="flex w-full justify-center md:w-1/2 md:justify-end md:pr-12">
+                {/* Mockup Card */}
+                <div aria-hidden="true" className="flex aspect-[4/3] w-full max-w-[280px] flex-col justify-between rounded-xl border border-white/10 bg-zinc-900/80 p-4 shadow-lg backdrop-blur-md">
+                  <div className="flex gap-2 border-b border-white/10 pb-2">
+                    <span className="h-3 w-3 rounded-full bg-red-500/80" />
+                    <span className="h-3 w-3 rounded-full bg-yellow-500/80" />
+                    <span className="h-3 w-3 rounded-full bg-green-500/80" />
                   </div>
-                ))}
+                  <div className="space-y-2 py-4">
+                    <div className="h-2 w-3/4 rounded bg-white/10" />
+                    <div className="h-2 w-1/2 rounded bg-white/5" />
+                  </div>
+                  <div className="flex h-6 w-full items-center justify-center rounded border border-purple-500/30 bg-purple-500/10 text-[10px] font-bold text-purple-300">
+                    Find Notes
+                  </div>
+                </div>
               </div>
-            </div>
+              <div aria-hidden="true" className="absolute left-1/2 flex -translate-x-1/2 items-center justify-center">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-500 text-sm font-bold text-white shadow-[0_0_15px_rgba(168,85,247,0.4)]">1</div>
+              </div>
+              <div className="w-full text-center md:w-1/2 md:pl-12 md:text-left">
+                <h3 className="mb-2 text-lg font-bold text-zinc-50">Search Catalog</h3>
+                <p className="mx-auto max-w-sm text-sm leading-relaxed text-zinc-400 md:mx-0">
+                  Search through thousands of notes by subject, semester, or college keyword. Discover high-quality materials instantly.
+                </p>
+              </div>
+            </article>
+
+            {/* Step 2 */}
+            <article className="relative mb-16 flex flex-col-reverse items-center gap-8 md:flex-row md:gap-0">
+              <div className="flex w-full flex-col items-center text-center md:w-1/2 md:items-end md:pr-12 md:text-right">
+                <h3 className="mb-2 text-lg font-bold text-zinc-50">Read Instantly</h3>
+                <p className="mx-auto max-w-sm text-sm leading-relaxed text-zinc-400 md:mx-0">
+                  Open documents within our built-in clutter-free viewer. Control zoom levels, go fullscreen, and focus on studying.
+                </p>
+              </div>
+              <div aria-hidden="true" className="absolute left-1/2 flex -translate-x-1/2 items-center justify-center">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-500 text-sm font-bold text-white shadow-[0_0_15px_rgba(168,85,247,0.4)]">2</div>
+              </div>
+              <div className="flex w-full justify-center md:w-1/2 md:justify-start md:pl-12">
+                {/* Mockup Card */}
+                <div aria-hidden="true" className="flex aspect-[4/3] w-full max-w-[280px] flex-col justify-between rounded-xl border border-white/10 bg-zinc-900/80 p-4 shadow-lg backdrop-blur-md">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2">
+                    <span className="text-[10px] text-zinc-500">Document Reader</span>
+                    <span className="rounded bg-zinc-800 px-1.5 py-0.5 text-[9px] text-zinc-300">PDF</span>
+                  </div>
+                  <div className="flex flex-1 flex-col items-center justify-center gap-2">
+                    <BookOpen className="h-8 w-8 text-purple-400 opacity-80" />
+                  </div>
+                  <div className="flex h-6 w-full items-center justify-center rounded border border-white/10 bg-white/5 text-[10px] font-semibold text-zinc-400">
+                    Fullscreen
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            {/* Step 3 */}
+            <article className="relative mb-16 flex flex-col items-center gap-8 md:flex-row md:gap-0">
+              <div className="flex w-full justify-center md:w-1/2 md:justify-end md:pr-12">
+                {/* Mockup Card */}
+                <div aria-hidden="true" className="flex aspect-[4/3] w-full max-w-[280px] flex-col justify-between rounded-xl border border-white/10 bg-zinc-900/80 p-4 shadow-lg backdrop-blur-md">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2">
+                    <span className="text-[10px] font-medium text-zinc-500">Uploader</span>
+                    <span className="rounded bg-purple-500/10 px-1.5 py-0.5 text-[9px] font-bold text-purple-400">DRAG</span>
+                  </div>
+                  <div className="my-2 flex flex-1 flex-col items-center justify-center gap-1.5 rounded-lg border border-dashed border-white/10">
+                    <Upload className="h-5 w-5 text-purple-400" />
+                  </div>
+                  <div className="flex h-6 w-full items-center justify-center rounded bg-gradient-to-r from-purple-600 to-pink-600 text-[10px] font-bold text-white">
+                    Submit File
+                  </div>
+                </div>
+              </div>
+              <div aria-hidden="true" className="absolute left-1/2 flex -translate-x-1/2 items-center justify-center">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-500 text-sm font-bold text-white shadow-[0_0_15px_rgba(168,85,247,0.4)]">3</div>
+              </div>
+              <div className="w-full text-center md:w-1/2 md:pl-12 md:text-left">
+                <h3 className="mb-2 text-lg font-bold text-zinc-50">Share & Upload</h3>
+                <p className="mx-auto max-w-sm text-sm leading-relaxed text-zinc-400 md:mx-0">
+                  Drag and drop files to list them. Help other students succeed by contributing your notes.
+                </p>
+              </div>
+            </article>
+
+            {/* Step 4 (End) */}
+            <article className="relative pt-8 text-center flex flex-col items-center">
+              <div aria-hidden="true" className="absolute left-1/2 top-0 flex -translate-x-1/2 items-center justify-center">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-500 text-sm font-bold text-white shadow-[0_0_15px_rgba(168,85,247,0.4)]">4</div>
+              </div>
+              <div className="pt-16 max-w-sm">
+                <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-purple-500/20 bg-purple-500/10 px-3 py-1 text-xs text-purple-400">
+                  <RefreshCw className="h-3.5 w-3.5 text-purple-400" /> Simplifying Study
+                </span>
+                <h3 className="mb-2 text-lg font-bold text-zinc-50">Direct & Clean</h3>
+                <p className="text-sm leading-relaxed text-zinc-400">
+                  We guarantee direct document downloads without annoying ads, redirect links, or hidden subscriptions.
+                </p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
-      {/* ===== SIMPLE WORKFLOW SECTION ===== */}
-      <section className="section-padding bg-[#0b0b0c] border-t border-white/5">
-        <div className="site-container">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Left Column: Workflow Steps */}
-            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
-              <p className="text-[10px] font-black uppercase tracking-widest text-[#ff5a36] mb-3">— How it works</p>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-white mb-3">Simple Process!</h2>
-              <p className="text-xs sm:text-sm text-zinc-400 font-medium max-w-xl mb-8 leading-relaxed">
-                We make it incredibly easy to find, share, and study notes. No clutter, no distractions. Here is how you can get started:
-              </p>
-
-              <div className="relative pl-16 space-y-8 text-left max-w-xl">
-                {/* Dotted connecting line aligned perfectly at 28px center */}
-                <div className="absolute left-[28px] top-5 bottom-5 w-px border-l-2 border-dashed border-[#ff5a36]/40 z-0" />
-                
-                {/* Step 1 */}
-                <div className="relative flex items-start gap-4 z-10">
-                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#ff5a36] text-white flex items-center justify-center text-xs font-black shadow-sm">1</span>
-                  <div className="pl-2 pt-1.5">
-                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-white">Find Notes</h3>
-                    <p className="text-[11px] font-semibold text-zinc-400 mt-1 leading-relaxed">
-                      Search notes by subject, semester, or university to access study material instantly.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Step 2 */}
-                <div className="relative flex items-start gap-4 z-10">
-                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#ff5a36] text-white flex items-center justify-center text-xs font-black shadow-sm">2</span>
-                  <div className="pl-2 pt-1.5">
-                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-white">Read Instantly</h3>
-                    <p className="text-[11px] font-semibold text-zinc-400 mt-1 leading-relaxed">
-                      Open documents in our high-performance, clutter-free online PDF viewer.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Step 3 */}
-                <div className="relative flex items-start gap-4 z-10">
-                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#ff5a36] text-white flex items-center justify-center text-xs font-black shadow-sm">3</span>
-                  <div className="pl-2 pt-1.5">
-                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-white">Share Material</h3>
-                    <p className="text-[11px] font-semibold text-zinc-400 mt-1 leading-relaxed">
-                      Upload your own lecture notes or study guides in seconds to help the community.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Step 4 */}
-                <div className="relative flex items-start gap-4 z-10">
-                  <span className="absolute -left-14 w-10 h-10 rounded-full bg-[#ff5a36] text-white flex items-center justify-center text-xs font-black shadow-sm">4</span>
-                  <div className="pl-2 pt-1.5">
-                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-white">Grow Profile</h3>
-                    <p className="text-[11px] font-semibold text-zinc-400 mt-1 leading-relaxed">
-                      Build your academic presence, track your downloads, and earn recognition.
-                    </p>
-                  </div>
-                </div>
+      {/* ===== PLATFORM STATS ===== */}
+      <section aria-label="Platform Statistics" className="border-t border-white/5 bg-white/[0.01] py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { label: "Notes Available", value: totalNotes, icon: FileText },
+              { label: "Active Scholars", value: totalUsers, icon: Users },
+              { label: "Total Downloads", value: totalDownloads, icon: Download },
+              { label: "Total Views", value: totalViews, icon: Eye },
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col items-center rounded-2xl border border-white/10 bg-white/[0.02] p-6 text-center backdrop-blur-md">
+                <stat.icon className="mb-2 h-6 w-6 text-purple-400" aria-hidden="true" />
+                <span className="text-3xl font-extrabold tracking-tight text-zinc-50">{stat.value}</span>
+                <span className="mt-1 text-xs font-semibold uppercase tracking-wider text-zinc-500">{stat.label}</span>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              {/* Action Buttons with clean margins */}
-              <div className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
-                <Link
-                  href="/search"
-                  className="bg-gradient-to-r from-[#ff5a36] via-[#db2777] to-[#ec4899] hover:from-[#ff7b5d] hover:via-[#e03387] hover:to-[#f45ca2] hover:scale-[1.03] active:scale-[0.97] text-white rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-[0_8px_20px_-4px_rgba(255,90,54,0.35)] hover:shadow-[0_12px_24px_-4px_rgba(219,39,119,0.45)] duration-200 w-full sm:w-auto"
-                >
-                  Get Started <Icons.ArrowRight className="w-5 h-5 text-white" />
-                </Link>
-                <Link
-                  href="/categories"
-                  className="bg-white/5 hover:bg-white/10 border-2 border-white/10 hover:scale-[1.02] active:scale-95 text-white rounded-full font-semibold text-base px-10 py-4 inline-flex items-center justify-center gap-2.5 transition-all shadow-sm duration-200 w-full sm:w-auto"
-                >
-                  Browse Subjects <Icons.ArrowRight className="w-5 h-5 text-white" />
-                </Link>
-              </div>
+      {/* ===== CATEGORIES ===== */}
+      <section aria-labelledby="categories-heading" className="border-t border-white/5 py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <header className="mb-12 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <h2 id="categories-heading" className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-purple-500">
+                Subjects
+              </h2>
+              <p className="text-3xl font-extrabold text-zinc-50">Browse by Category</p>
             </div>
+            <Link 
+              href="/categories" 
+              className="group flex items-center gap-1.5 text-sm font-semibold text-zinc-400 transition-colors hover:text-zinc-50"
+            >
+              View all subjects 
+              <ArrowRight className="h-4 w-4 text-purple-400 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </header>
 
-            {/* Right Column: 3D Workflow Illustration - Completely Static */}
-            <div className="lg:col-span-5 flex justify-center items-center relative">
-              <img 
-                src="/workflow.png" 
-                alt="Student studying in armchair 3D illustration" 
-                className="w-full max-w-[360px] sm:max-w-[400px] lg:max-w-full object-contain select-none pointer-events-none z-10"
-              />
-            </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {categoriesFromDb.map((category) => {
+              const gradient = categoryGradients[category.slug] || "from-purple-600 to-pink-600";
+              const emoji = categoryEmojis[category.slug] || "📚";
+              return (
+                <Link
+                  key={category.id}
+                  href={`/search?q=&subject=${encodeURIComponent(category.name)}`}
+                  className={`group relative flex h-40 flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br ${gradient} p-6 shadow-lg transition-transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-zinc-950`}
+                  aria-label={`Browse ${category.name} notes (${category._count.notes} total)`}
+                >
+                  {/* Decorative Elements */}
+                  <div aria-hidden="true" className="absolute -bottom-6 -right-6 h-24 w-24 rounded-full border border-white/20" />
+                  <div aria-hidden="true" className="absolute -bottom-14 -right-14 h-36 w-36 rounded-full border border-white/20" />
 
+                  <div className="relative z-10">
+                    <h3 className="text-lg sm:text-xl font-extrabold leading-tight text-white">{category.name}</h3>
+                  </div>
+
+                  <div className="relative z-10 flex items-center justify-between">
+                    <span className="rounded-full bg-white/20 px-3 py-1 text-[10px] font-bold text-white backdrop-blur-md">
+                      {category._count.notes} note{category._count.notes !== 1 ? "s" : ""}
+                    </span>
+                    <span className="text-3xl opacity-70 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100" aria-hidden="true">
+                      {emoji}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ===== RECENT UPLOADS ===== */}
       {recentNotes.length > 0 && (
-        <section className="section-padding bg-[#0b0b0c]">
-          <div className="site-container">
-            <div className="flex items-end justify-between mb-10">
+        <section aria-labelledby="recent-heading" className="border-t border-white/5 py-20 px-4 sm:px-6 lg:px-8 bg-zinc-950">
+          <div className="max-w-6xl mx-auto">
+            <header className="mb-12 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
               <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-[#ff5a36] mb-1">— Live</p>
-                <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">Recent Uploads</h2>
-                <p className="mt-1 text-sm text-zinc-400 font-medium">Fresh notes shared by the community</p>
+                <h2 id="recent-heading" className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-purple-500">
+                  Latest Contributions
+                </h2>
+                <p className="text-3xl font-extrabold text-zinc-50">Recent Uploads</p>
               </div>
-              <Link href="/search" className="hidden sm:flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-white border-b border-transparent hover:text-[#ff5a36] transition-colors">
-                Explore All <Icons.ArrowRight className="w-3.5 h-3.5 text-[#ff5a36]" />
+              <Link 
+                href="/search" 
+                className="group flex items-center gap-1.5 text-sm font-semibold text-zinc-400 transition-colors hover:text-zinc-50"
+              >
+                View all uploads 
+                <ArrowRight className="h-4 w-4 text-purple-400 transition-transform group-hover:translate-x-1" />
               </Link>
-            </div>
+            </header>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {recentNotes.map((note) => {
                 const isDrive = note.fileKey === "external";
                 return (
-                  <div key={note.id} className="group flex flex-col modern-card overflow-hidden">
-                    <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/5 bg-white/5">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-white truncate mr-2">{note.subject || note.category?.name || "General"}</span>
-                      <span className={`px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full ${isDrive ? "bg-amber-500/10 text-amber-400" : "bg-[#ff5a36]/10 text-[#ff5a36]"}`}>
+                  <Link 
+                    key={note.id} 
+                    href={`/notes/${note.id}`} 
+                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-colors hover:border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
+                  >
+                    <div className="flex items-center justify-between border-b border-white/5 bg-white/[0.01] px-4 py-3">
+                      <span className="max-w-[120px] truncate text-[10px] font-bold text-zinc-400">
+                        {note.subject || note.category?.name || "General"}
+                      </span>
+                      <span className={`rounded-full border px-2 py-0.5 text-[9px] font-bold ${
+                        isDrive ? "border-amber-500/20 bg-amber-500/10 text-amber-400" 
+                        : "border-purple-500/20 bg-purple-500/10 text-purple-400"
+                      }`}>
                         {isDrive ? "Drive" : "PDF"}
                       </span>
                     </div>
-                    <div className="flex flex-col flex-1 p-5">
-                      <h3 className="font-black text-sm text-white line-clamp-2 leading-tight mb-2 group-hover:text-[#ff5a36] transition-colors">
+                    <div className="flex flex-1 flex-col p-5">
+                      <h3 className="mb-2 line-clamp-2 text-sm font-bold leading-snug text-zinc-50 transition-colors group-hover:text-purple-400">
                         {note.title}
                       </h3>
-                      <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed flex-1">
+                      <p className="mb-4 flex-grow line-clamp-2 text-xs leading-relaxed text-zinc-500">
                         {note.description || "No description provided."}
                       </p>
-                      <div className="mt-4 flex items-center justify-between pt-3.5 border-t border-white/5">
-                        <div className="flex items-center gap-1.5">
-                          <Icons.User className="w-3.5 h-3.5 text-zinc-400" />
-                          <span className="text-[10px] text-zinc-400 font-semibold truncate max-w-[80px]">{note.author.name}</span>
+                      <footer className="mt-auto flex items-center justify-between border-t border-white/5 pt-3">
+                        <div className="flex items-center gap-2">
+                          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-800 text-[9px] font-bold text-zinc-50" aria-hidden="true">
+                            {note.author.name?.[0]?.toUpperCase() || "U"}
+                          </div>
+                          <span className="max-w-[80px] truncate text-[10px] text-zinc-400">{note.author.name}</span>
                         </div>
-                        <Link href={`/notes/${note.id}`} className="text-[10px] font-bold uppercase tracking-wider text-[#ff5a36] hover:text-[#ff7b5d] transition-colors flex items-center gap-0.5">
-                          Read <Icons.ChevronRight className="w-3.5 h-3.5" />
-                        </Link>
-                      </div>
+                        <span className="flex items-center gap-0.5 text-[10px] font-bold text-purple-400 transition-transform group-hover:translate-x-1">
+                          Read <ChevronRight className="h-3.5 w-3.5" />
+                        </span>
+                      </footer>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </div>
@@ -371,160 +382,43 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ===== CATEGORIES ===== */}
-      <section className="section-padding bg-[#0b0b0c] border-t border-white/5 relative z-10">
-        <div className="site-container">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
-            <div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-[#ff5a36] bg-[#ff5a36]/10 px-3.5 py-1.5 rounded-full mb-4 inline-block">
-                Subjects
+      {/* ===== BOTTOM CTA ===== */}
+      <section aria-labelledby="cta-heading" className="border-t border-white/5 py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="relative overflow-hidden rounded-3xl border border-purple-500/20 bg-gradient-to-br from-purple-900/60 to-pink-900/40 p-10 text-center text-zinc-50 backdrop-blur-md sm:p-16">
+            
+            {/* Ambient decorative glow */}
+            <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-500/20 blur-[100px]" />
+
+            <div className="relative z-10">
+              <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-purple-500/20 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300">
+                Get Started
               </span>
-              <h2 className="font-oswald font-black text-4xl sm:text-6xl tracking-tighter uppercase leading-[0.95] text-white">
-                Browse by Category. <br />
-                <span className="text-[#ff5a36] italic font-medium">Infinite knowledge.</span>
+              <h2 id="cta-heading" className="mb-4 text-3xl sm:text-4xl font-extrabold tracking-tight">
+                Ready to Share Your Knowledge?
               </h2>
-            </div>
-            <Link
-              href="/categories"
-              className="hidden sm:flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-white border-b border-transparent hover:text-[#ff5a36] transition-colors font-oswald"
-              id="view-all-categories"
-            >
-              View all <Icons.ArrowRight className="w-3.5 h-3.5 text-[#ff5a36]" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
-            {categoriesFromDb.map((category) => {
-              const subtitle = categorySubtitles[category.slug] || "Study guides";
-              const gradient = categoryGradients[category.slug] || "from-[#ff5a36] via-[#ff7c5d] to-[#ffb800]";
-              const emoji = categoryEmojis[category.slug] || "📚";
-              return (
-                <Link
-                  key={category.id}
-                  href={`/search?q=&subject=${encodeURIComponent(category.name)}`}
-                  className={`group relative flex flex-col justify-between p-6 rounded-[2rem] bg-gradient-to-br ${gradient} text-white shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden h-[180px]`}
-                  id={`category-${category.slug}`}
+              <p className="mx-auto mb-8 max-w-md text-sm leading-relaxed text-zinc-300">
+                Join thousands of students already uploading and reading academic papers globally.
+              </p>
+              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <Link 
+                  href="/upload" 
+                  className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-3.5 text-sm font-bold text-white shadow-lg transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-zinc-900"
                 >
-                  {/* Concentric decorative background circles radiating from bottom right */}
-                  <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full border border-white/10 pointer-events-none" />
-                  <div className="absolute -bottom-16 -right-16 w-48 h-48 rounded-full border border-white/10 pointer-events-none" />
-                  <div className="absolute -bottom-28 -right-28 w-64 h-64 rounded-full border border-white/10 pointer-events-none" />
-                  <div className="absolute -bottom-40 -right-40 w-80 h-80 rounded-full border border-white/10 pointer-events-none" />
-
-                  {/* Top Text Area */}
-                  <div className="flex flex-col z-10">
-                    <h3 className="font-oswald font-bold text-xl uppercase tracking-tighter text-white leading-none">
-                      {category.name}
-                    </h3>
-                    <span className="font-oswald text-[10px] font-semibold text-white/80 mt-1 uppercase tracking-wider">
-                      {subtitle}
-                    </span>
-                  </div>
-
-                  {/* Bottom Area: Notes Count Pill */}
-                  <div className="z-10 mt-auto">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/15 text-[9px] font-bold uppercase tracking-wider text-white/95 backdrop-blur-sm">
-                      {category._count.notes.toLocaleString()} note{category._count.notes !== 1 ? "s" : ""}
-                    </span>
-                  </div>
-
-                  {/* 3D Emoji Sticker */}
-                  <div className="absolute -bottom-2 -right-2 text-5xl filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.3)] select-none transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 group-hover:-translate-y-1 group-hover:-translate-x-1">
-                    {emoji}
-                  </div>
+                  <Upload className="h-4 w-4" aria-hidden="true" /> Upload Study Material
                 </Link>
-              );
-            })}
-          </div>
-
-          <div className="sm:hidden mt-8 text-center">
-            <Link href="/categories" className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-white border-b border-transparent font-oswald">
-              View all categories <Icons.ArrowRight className="w-3.5 h-3.5 text-[#ff5a36]" />
-            </Link>
-          </div>
-        </div>
-
-        {/* Repeating Banner Ticker at Bottom of Categories Section */}
-        <div className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-hidden bg-[#151516] border-t border-b border-white/5 py-5 mt-16 select-none">
-          <div className="animate-scroll-ticker flex gap-12 text-white">
-            {Array(8).fill(null).map((_, i) => (
-              <div key={i} className="ticker-item flex items-center gap-12 text-sm sm:text-base font-bold uppercase tracking-wider">
-                <span>Create Notes</span> <span className="text-[#ff5a36]">🧡</span>
-                <span>Grow Knowledge</span> <span className="text-[#ff5a36]">📈</span>
-                <span>Earn Points</span> <span className="text-[#ff5a36]">🎯</span>
-                <span>Study Smarter</span> <span className="text-[#ff5a36]">🧠</span>
+                <Link 
+                  href="/categories" 
+                  className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-3.5 text-sm font-bold text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-900"
+                >
+                  Browse Directory <ArrowRight className="h-4 w-4 text-purple-400" aria-hidden="true" />
+                </Link>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== FEATURES ===== */}
-      <section className="section-padding bg-[#0b0b0c]">
-        <div className="site-container">
-          <div className="text-center mb-14">
-            <p className="text-[10px] font-black uppercase tracking-widest text-[#ff5a36] mb-2">— Why NotesOS</p>
-            <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white mb-3">Built for Speed &amp; Simplicity</h2>
-            <p className="text-sm text-zinc-400 font-medium max-w-md mx-auto">
-              Every feature is designed to make finding, uploading, and reading notes faster.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
-            {features.map((feature) => (
-              <div
-                key={feature.title}
-                className="group flex flex-col gap-4 p-6 modern-card"
-              >
-                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform`}>
-                  <feature.icon className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-black uppercase tracking-tight text-white mb-1.5">{feature.title}</h3>
-                  <p className="text-xs text-zinc-400 leading-relaxed font-medium">{feature.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== CTA ===== */}
-      <section className="section-padding bg-[#0b0b0c] pb-20">
-        <div className="site-container">
-          <div className="relative overflow-hidden bg-gradient-to-br from-[#ff5a36] to-[#db2777] text-white rounded-3xl p-12 sm:p-20 text-center shadow-lg">
-            {/* Floating background bubbles */}
-            <div className="absolute top-10 left-10 w-20 h-20 rounded-full bg-white/5 animate-bubble-float pointer-events-none" />
-            <div className="absolute bottom-10 right-10 w-16 h-16 rounded-full bg-white/5 animate-bubble-float pointer-events-none" style={{ animationDelay: '1.5s' }} />
-
-            <p className="text-[10px] font-black uppercase tracking-widest text-[#fcd34d] mb-4">— Get Started</p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
-              Ready to Share<br />Your Knowledge?
-            </h2>
-            <p className="text-white/80 text-sm sm:text-base font-medium max-w-lg mx-auto mb-10 leading-relaxed">
-              Join thousands of students already sharing and accessing notes. Upload takes less than a minute.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/upload"
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-[#ff5a36] font-bold text-sm uppercase tracking-wider rounded-full shadow-md hover:bg-zinc-50 hover:scale-[1.02] transition-all"
-                id="cta-upload"
-              >
-                <Icons.Upload className="w-4 h-4" />
-                Upload Notes
-              </Link>
-              <Link
-                href="/categories"
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-transparent text-white font-bold text-sm uppercase tracking-wider rounded-full border border-white/30 hover:border-white transition-all"
-                id="cta-browse"
-              >
-                Browse Notes
-                <Icons.ArrowRight className="w-4 h-4" />
-              </Link>
             </div>
           </div>
         </div>
       </section>
+
     </div>
   );
 }

@@ -13,20 +13,18 @@ export default function CategoryImage({ src, alt, fallbackEmoji }: CategoryImage
 
   if (hasError) {
     return (
-      <div className="text-9xl filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.35)] select-none transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 group-hover:-translate-y-2">
+      <div className="text-5xl sm:text-6xl select-none filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.25)]">
         {fallbackEmoji}
       </div>
     );
   }
 
   return (
-    <div className="relative h-48 flex items-center justify-center">
-      <img
-        src={src}
-        alt={alt}
-        onError={() => setHasError(true)}
-        className="h-48 w-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)] select-none pointer-events-none transition-all duration-300 group-hover:scale-115 group-hover:-translate-y-3"
-      />
-    </div>
+    <img
+      src={src}
+      alt={alt}
+      onError={() => setHasError(true)}
+      className="h-20 sm:h-24 w-auto object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] select-none pointer-events-none"
+    />
   );
 }

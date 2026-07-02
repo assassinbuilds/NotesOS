@@ -55,127 +55,116 @@ export default function ProfilePage({ params }: { params: Promise<{ id: string }
 
   if (loading) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-[#ff5a36] border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-[60vh] flex items-center justify-center bg-[#08080c]">
+        <div className="w-6 h-6 border-2 border-purple-500 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   if (!profile) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center px-4 font-sans select-none text-white bg-[#0b0b0c]">
-        <div className="text-center p-8 rounded-3xl bg-[#151516] border border-white/5 shadow-sm">
-          <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4">
-            <User className="w-5 h-5 text-zinc-400" />
-          </div>
-          <h1 className="text-sm font-black uppercase tracking-wider text-white">User not found</h1>
-          <Link href="/" className="text-xs font-bold text-[#ff5a36] hover:underline mt-2 inline-block">Go Home</Link>
+      <div className="min-h-[60vh] flex items-center justify-center px-4 bg-[#08080c]">
+        <div className="text-center glass-card p-8">
+          <User className="w-8 h-8 text-zinc-600 mx-auto mb-3" />
+          <h1 className="text-sm font-bold text-white">User not found</h1>
+          <Link href="/" className="text-xs text-purple-400 hover:underline mt-2 inline-block">Go Home</Link>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="site-container py-10 sm:py-16 font-sans select-none text-white">
+    <div className="relative overflow-hidden bg-[#08080c] min-h-screen text-white select-none">
       
-      {/* Profile Header Card */}
-      <div className="rounded-3xl bg-[#151516] border border-white/5 p-6 sm:p-8 mb-10 shadow-sm animate-fade-in-up">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-          
-          <div className="w-16 h-16 rounded-2xl bg-[#ff5a36] text-white flex items-center justify-center text-xl font-black shadow-sm flex-shrink-0">
-            {getInitials(profile.name)}
-          </div>
-          
-          <div className="flex-grow">
-            <h1 className="text-xl font-black uppercase tracking-tight text-white">{profile.name}</h1>
-            {profile.bio && <p className="text-xs font-semibold text-zinc-400 mt-1">{profile.bio}</p>}
-            <div className="flex flex-wrap items-center gap-4 mt-3.5 text-xs font-bold uppercase tracking-wide text-zinc-400">
-              {profile.university && (
-                <span className="flex items-center gap-1.5">
-                  <Building2 className="w-4 h-4 text-zinc-500" />
-                  {profile.university}
-                </span>
-              )}
-              <span className="flex items-center gap-1.5">
-                <Calendar className="w-4 h-4 text-zinc-500" />
-                Joined {formatDate(profile.createdAt)}
-              </span>
-              <span className="flex items-center gap-1.5">
-                <FileText className="w-4 h-4 text-zinc-500" />
-                {profile._count.notes} Notes Shared
-              </span>
+      {/* Ambient Glow */}
+      <div className="hero-glow" />
+
+      <div className="site-container py-12 relative z-10">
+
+        {/* Profile Card */}
+        <div className="glass-card p-6 sm:p-8 mb-8 animate-fade-in">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+            
+            {/* Avatar matching header/screenshot logo */}
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 text-white flex items-center justify-center text-xl font-bold shrink-0 shadow-[0_0_20px_rgba(168,85,247,0.3)]">
+              {getInitials(profile.name)}
             </div>
-          </div>
 
-          {isOwnProfile && (
-            <button 
-              onClick={() => signOut({ callbackUrl: "/" })} 
-              className="modern-btn-secondary flex items-center gap-2 px-6 py-2.5 text-[10px] uppercase tracking-wider self-stretch sm:self-auto text-center justify-center"
-            >
-              <LogOut className="w-4 h-4" />
-              <span>Sign Out</span>
-            </button>
-          )}
-        </div>
-      </div>
+            <div className="flex-1 min-w-0">
+              <h1 className="text-2xl font-extrabold text-white leading-tight">{profile.name}</h1>
+              {profile.bio && <p className="text-xs sm:text-sm text-zinc-400 mt-1 leading-relaxed">{profile.bio}</p>}
+              
+              <div className="flex flex-wrap items-center gap-4 mt-4 text-[11px] text-zinc-500">
+                {profile.university && (
+                  <span className="flex items-center gap-1.5 font-medium"><Building2 className="w-3.5 h-3.5" />{profile.university}</span>
+                )}
+                <span className="flex items-center gap-1.5 font-medium"><Calendar className="w-3.5 h-3.5" />Joined {formatDate(profile.createdAt)}</span>
+                <span className="flex items-center gap-1.5 font-medium"><FileText className="w-3.5 h-3.5" />{profile._count.notes} shared notes</span>
+              </div>
+            </div>
 
-      {/* Notes Directory Section */}
-      <div>
-        <h2 className="text-sm font-black uppercase tracking-widest text-zinc-400 mb-4">
-          {isOwnProfile ? "Your" : `${profile.name}'s`} Shared Directory
-        </h2>
-        
-        {profile.notes.length === 0 ? (
-          <div className="text-center py-16 p-8 rounded-3xl border border-dashed border-white/10 bg-[#151516] shadow-sm">
-            <BookOpen className="w-10 h-10 text-zinc-400 mx-auto mb-3" />
-            <p className="text-xs font-semibold text-zinc-400">
-              {isOwnProfile ? "You haven't uploaded any notes yet." : "No notes uploaded to this profile yet."}
-            </p>
             {isOwnProfile && (
-              <Link 
-                href="/upload" 
-                className="modern-btn-primary inline-flex items-center gap-2 px-8 py-3 text-xs uppercase tracking-wider mt-4"
+              <button
+                onClick={() => signOut({ callbackUrl: "/" })}
+                className="btn-secondary px-6 py-2.5 text-xs font-bold uppercase tracking-wider self-stretch sm:self-auto"
               >
-                Upload Your First Note
-              </Link>
+                <LogOut className="w-4 h-4 text-purple-400" /> Sign Out
+              </button>
             )}
           </div>
-        ) : (
-          <div className="space-y-4 stagger-children">
-            {profile.notes.map((note) => (
-              <Link 
-                key={note.id} 
-                href={`/notes/${note.id}`} 
-                className="block p-5 bg-[#151516] rounded-2xl border border-white/5 shadow-sm hover:border-[#ff5a36]/25 hover:shadow-md hover:scale-[1.005] transition-all group"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-xl bg-[#ff5a36]/10 text-[#ff5a36] flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105">
-                    <FileText className="w-4 h-4" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-xs font-black text-white group-hover:text-[#ff5a36] transition-colors truncate">
-                      {note.title}
-                    </h3>
-                    <div className="flex items-center gap-3 mt-1.5 text-[9px] font-bold text-zinc-500 uppercase tracking-wider">
-                      <span className="px-2.5 py-0.5 rounded-full bg-[#ff5a36]/10 text-[#ff5a36]">
-                        {note.subject}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Eye className="w-3.5 h-3.5 text-zinc-500" />
-                        {formatNumber(note.views)}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Download className="w-3.5 h-3.5 text-zinc-500" />
-                        {formatNumber(note.downloads)}
-                      </span>
-                      <span>{formatDate(note.createdAt)}</span>
+        </div>
+
+        {/* User Notes Shared Directory */}
+        <div>
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="text-sm font-bold text-zinc-400 uppercase tracking-wider">
+              {isOwnProfile ? "Your" : `${profile.name}'s`} Shared Directory
+            </h2>
+          </div>
+
+          {profile.notes.length === 0 ? (
+            <div className="text-center py-16 glass-card">
+              <BookOpen className="w-8 h-8 text-zinc-600 mx-auto mb-3" />
+              <p className="text-xs text-zinc-500">
+                {isOwnProfile ? "You haven't shared any notes yet." : "No notes uploaded to this profile yet."}
+              </p>
+              {isOwnProfile && (
+                <Link href="/upload" className="btn-primary px-6 py-2.5 text-xs font-bold uppercase tracking-wider mt-4 inline-flex">
+                  Upload First Note
+                </Link>
+              )}
+            </div>
+          ) : (
+            <div className="space-y-4 stagger-children">
+              {profile.notes.map((note) => (
+                <Link
+                  key={note.id}
+                  href={`/notes/${note.id}`}
+                  className="block glass-card p-5 hover:border-purple-500/20 hover:shadow-[0_4px_20px_rgba(168,85,247,0.05)] transition-all group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center shrink-0">
+                      <FileText className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base font-extrabold text-white group-hover:text-purple-400 transition-colors truncate">
+                        {note.title}
+                      </h3>
+                      <div className="flex items-center gap-3 mt-1.5 text-[11px] text-zinc-500">
+                        <span className="px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 font-bold">
+                          {note.subject}
+                        </span>
+                        <span className="flex items-center gap-1"><Eye className="w-3.5 h-3.5" />{formatNumber(note.views)}</span>
+                        <span className="flex items-center gap-1"><Download className="w-3.5 h-3.5" />{formatNumber(note.downloads)}</span>
+                        <span>{formatDate(note.createdAt)}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -53,111 +53,90 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-8rem)] flex items-center justify-center px-4 py-12 font-sans select-none text-white bg-[#0b0b0c]">
-      <div className="w-full max-w-md animate-fade-in-up">
-        
-        {/* Header Block */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-1.5 group mb-4">
-            <div className="border border-white/10 px-2 py-0.5 bg-[#ff5a36] text-white font-black text-xs uppercase tracking-wider leading-none">
-              NO
-              <br />
-              TE
+    <div className="relative overflow-hidden bg-[#08080c] min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 py-12">
+      
+      {/* Ambient glow */}
+      <div className="hero-glow" />
+
+      <div className="w-full max-w-sm relative z-10 animate-fade-in">
+
+        {/* Header */}
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center gap-2 mb-4 group">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+              <span className="text-white font-bold text-sm">N</span>
             </div>
-            <div className="border border-white/10 px-2 py-0.5 bg-[#151516] text-white font-black text-xs uppercase tracking-wider leading-none">
-              OS
-            </div>
+            <span className="font-bold text-sm text-white">NotesOS</span>
           </div>
-          <h1 className="text-lg font-black uppercase tracking-tight text-white">Create account</h1>
-          <p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-zinc-400">
-            Join the student shared directory
-          </p>
+          <h1 className="text-xl font-extrabold text-white">Create account</h1>
+          <p className="mt-1 text-xs text-zinc-500">Join the student community</p>
         </div>
 
         {/* Form Card */}
-        <div className="border border-white/5 p-6 sm:p-8 bg-[#151516] rounded-3xl shadow-sm">
+        <div className="glass-card p-6 sm:p-8">
           {error && (
-            <div className="flex items-center gap-2.5 p-3.5 border border-red-900/50 bg-red-955/30 text-red-400 text-xs font-semibold mb-6 rounded-xl">
-              <AlertCircle className="w-4 h-4 flex-shrink-0" />
+            <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 text-red-400 text-xs rounded-xl mb-5 animate-scale-in">
+              <AlertCircle className="w-4 h-4 shrink-0" />
               <span>{error}</span>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-[10px] font-black uppercase tracking-wider text-zinc-400 mb-1.5">
-                Full Name
-              </label>
+              <label htmlFor="name" className="block text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">Full Name</label>
               <div className="relative">
-                <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-450" />
+                <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
                 <input
-                  id="name"
-                  type="text"
-                  required
-                  value={name}
+                  id="name" type="text" required value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="John Doe"
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-white/10 bg-[#1b1b1c] text-xs font-semibold text-white outline-none focus:border-[#ff5a36] transition-colors"
+                  className="input pl-11 py-3 text-xs"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-[10px] font-black uppercase tracking-wider text-zinc-400 mb-1.5">
-                Email address
-              </label>
+              <label htmlFor="email" className="block text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">Email Address</label>
               <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-450" />
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
                 <input
-                  id="email"
-                  type="email"
-                  required
-                  value={email}
+                  id="email" type="email" required value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@university.edu"
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-white/10 bg-[#1b1b1c] text-xs font-semibold text-white outline-none focus:border-[#ff5a36] transition-colors"
+                  className="input pl-11 py-3 text-xs"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-[10px] font-black uppercase tracking-wider text-zinc-400 mb-1.5">
-                Password
-              </label>
+              <label htmlFor="password" className="block text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">Password</label>
               <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-450" />
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  required
-                  value={password}
+                  required value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-11 py-3 rounded-xl border border-white/10 bg-[#1b1b1c] text-xs font-semibold text-white outline-none focus:border-[#ff5a36] transition-colors"
+                  className="input pl-11 pr-11 py-3 text-xs"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-455 hover:text-white transition-opacity"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white transition-colors"
                   aria-label="Toggle password visibility"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
-              
-              {/* Password strength */}
+
+              {/* Password checks */}
               {password.length > 0 && (
-                <div className="mt-3 space-y-1 animate-fade-in">
+                <div className="mt-2.5 space-y-1.5 animate-fade-in pl-1">
                   {passwordChecks.map((check) => (
-                    <div key={check.label} className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider">
-                      <Check
-                        className={`w-3.5 h-3.5 transition-colors ${
-                          check.met ? "text-emerald-500" : "text-zinc-500"
-                        }`}
-                      />
-                      <span className={check.met ? "text-emerald-450" : "text-zinc-500"}>
-                        {check.label}
-                      </span>
+                    <div key={check.label} className="flex items-center gap-2 text-[10px] font-medium">
+                      <Check className={`w-3.5 h-3.5 ${check.met ? "text-emerald-500" : "text-zinc-600"}`} />
+                      <span className={check.met ? "text-emerald-400" : "text-zinc-500"}>{check.label}</span>
                     </div>
                   ))}
                 </div>
@@ -165,29 +144,24 @@ export default function RegisterPage() {
             </div>
 
             <button
-              type="submit"
-              disabled={loading}
-              className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#ff5a36] hover:bg-[#ff7b5d] text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-60 shadow-[0_8px_16px_-4px_rgba(255,90,54,0.3)] hover:-translate-y-0.5 active:translate-y-0 disabled:hover:translate-y-0"
+              type="submit" disabled={loading}
+              className="w-full btn-primary py-3 text-xs uppercase tracking-wider font-bold rounded-full disabled:opacity-50 mt-2"
               id="register-submit"
             >
               {loading ? (
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto" />
               ) : (
                 <>
-                  <UserPlus className="w-4 h-4" />
-                  <span>Create Account</span>
+                  <UserPlus className="w-4 h-4" /> Create Account
                 </>
               )}
             </button>
           </form>
         </div>
 
-        {/* Footer Link */}
-        <p className="text-center text-xs font-bold uppercase tracking-wider text-zinc-400 mt-6">
+        <p className="text-center text-xs text-zinc-500 mt-5">
           Already have an account?{" "}
-          <Link href="/login" className="text-[#ff5a36] hover:underline font-black">
-            Sign In
-          </Link>
+          <Link href="/login" className="text-purple-400 font-semibold hover:underline">Sign In</Link>
         </p>
       </div>
     </div>

@@ -42,25 +42,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="dark bg-zinc-950">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="font-sans antialiased min-h-screen overflow-x-hidden">
-        <div className="w-full relative">
-          <div className="flex flex-col min-h-screen">
-            <Providers>
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </Providers>
-          </div>
-        </div>
+      <body className="font-sans antialiased min-h-screen text-zinc-50 flex flex-col">
+        <Providers>
+          <Header />
+          {/* Main content wrapper with flex-1 to push footer down */}
+          <main className="flex-1 flex flex-col w-full">
+            {children}
+          </main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
