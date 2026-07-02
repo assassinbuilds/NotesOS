@@ -19,7 +19,7 @@ export default async function HomePage() {
     <div className="w-full bg-[#e6ebf0] text-[#1a1a1a] font-sans selection:bg-blue-100 pb-20">
       
       {/* ===== HERO SECTION (FLOATING SKY BLUE GRADIENT CARD) ===== */}
-      <section className="relative mx-auto max-w-[1300px] mt-24 mb-8 rounded-[40px] bg-gradient-to-b from-[#4fa5e8] via-[#70b7f0] to-[#99c8f2] text-white p-12 md:p-20 overflow-hidden shadow-2xl shadow-blue-900/10">
+      <section className="relative mx-auto max-w-[1300px] mt-16 mb-8 rounded-[40px] bg-gradient-to-b from-[#4fa5e8] via-[#70b7f0] to-[#99c8f2] text-white p-12 md:p-20 overflow-hidden shadow-2xl shadow-blue-900/10">
         
         {/* Subtle white grid overlay inside hero */}
         <div 
@@ -41,10 +41,6 @@ export default async function HomePage() {
           
           {/* Left Column: Typography & CTA */}
           <div className="flex flex-col justify-center pr-4">
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full w-fit mb-6 shadow-sm">
-              <Sparkles className="h-3.5 w-3.5 text-white" />
-              <span className="text-[11px] font-bold uppercase tracking-wider text-white">Academic Directory</span>
-            </div>
             <h1 
               className="text-[4.2rem] sm:text-[4.8rem] font-black leading-[1.02] tracking-tighter text-white" 
               style={{ fontFamily: "'Outfit', sans-serif" }}
