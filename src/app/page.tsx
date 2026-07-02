@@ -143,8 +143,8 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Centered Notebook Mockup - Half above, half below the bottom line */}
-          <div className="flex justify-center relative items-end min-h-[300px] mt-12 mb-[-180px] z-10">
+          {/* Centered Notebook Mockup - Align to top, overflow-hidden wrapper to crop only the bottom */}
+          <div className="relative w-full overflow-hidden h-[320px] mt-12 flex justify-center items-start z-10">
             <div className="relative w-full max-w-[260px] aspect-[1/2] transition-transform duration-700 hover:scale-[1.02]">
               <Image
                 src="/hero-product.png"
@@ -182,8 +182,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ===== SECTION 2: UNIVERSITY PARTNERS LOGO STRIP (Shifted down to clear overflow) ===== */}
-      <section className="pt-28 pb-8 max-w-[1300px] mx-auto overflow-hidden">
+      {/* ===== SECTION 2: UNIVERSITY PARTNERS LOGO STRIP (Tighter spacing since mockup is cropped) ===== */}
+      <section className="pt-16 pb-8 max-w-[1300px] mx-auto overflow-hidden">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 px-6">
           <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#888888]">
             Trusted by students from top institutions
