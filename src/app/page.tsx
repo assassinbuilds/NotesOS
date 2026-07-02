@@ -100,8 +100,8 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Main Hero Content - Positioned toward top and centered horizontally */}
-        <div className="flex-1 flex flex-col justify-start items-center max-w-4xl w-full mx-auto px-6 pt-16 md:pt-20 pb-0 relative z-10 text-center">
+        {/* Main Hero Content - Centers content vertically and horizontally */}
+        <div className="flex-1 flex flex-col justify-center items-center max-w-4xl w-full mx-auto px-6 pt-6 pb-0 relative z-10 text-center">
 
           <h1 
             className="text-[3.6rem] sm:text-[4.8rem] lg:text-[5.4rem] font-black leading-[1.05] tracking-tighter text-white" 
@@ -133,8 +133,8 @@ export default async function HomePage() {
             </form>
           </div>
 
-          {/* Centered Notebook Mockup - Positioned absolutely at the bottom to guarantee perfect alignment with the stats card bottom */}
-          <div className="absolute bottom-[10px] left-1/2 -translate-x-1/2 w-full max-w-[360px] h-[180px] overflow-hidden z-10 flex justify-center items-start shrink-0">
+          {/* Centered Notebook Mockup - In relative layout flow, clipped at the bottom to align perfectly with the stats card bottom */}
+          <div className="relative w-full max-w-[360px] h-[260px] overflow-hidden mt-[60px] z-10 flex justify-center items-start shrink-0 [clip-path:inset(0_0_92px_0)]">
             <div className="relative w-full h-[360px] transition-transform duration-700 hover:scale-[1.02]">
               <Image
                 src="/hero-product.png"
@@ -148,7 +148,7 @@ export default async function HomePage() {
           </div>
 
           {/* Bottom Single Glassmorphic Stats Pill - Overlaps the bottom of the notebook and transitions into the next section with translate-y-1/2 */}
-          <div className="w-[92%] max-w-2xl bg-white/95 border border-white/60 backdrop-blur-md rounded-[20px] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.06)] mt-[100px] relative z-20 translate-y-1/2 shrink-0">
+          <div className="w-[92%] max-w-2xl bg-white/95 border border-white/60 backdrop-blur-md rounded-[20px] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.06)] mt-[-200px] relative z-20 translate-y-1/2 shrink-0">
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y-0">
               {[
                 { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
