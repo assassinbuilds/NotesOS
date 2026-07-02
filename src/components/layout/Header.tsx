@@ -8,6 +8,8 @@ export function Header() {
   const pathname = usePathname();
   const { data: session } = useSession();
 
+  if (pathname === "/") return null;
+
   return (
     <header className="fixed top-6 left-0 right-0 z-50 w-full px-6">
       <div className="mx-auto max-w-[1300px] rounded-full border border-white/30 bg-white/40 backdrop-blur-lg px-8 py-3.5 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.03)]">

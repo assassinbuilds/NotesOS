@@ -19,7 +19,7 @@ export default async function HomePage() {
     <div className="w-full bg-[#e6ebf0] text-[#1a1a1a] font-sans selection:bg-blue-100 pb-20">
       
       {/* ===== HERO SECTION (FLOATING SKY BLUE GRADIENT CARD) ===== */}
-      <section className="relative mx-auto max-w-[1300px] mt-24 mb-8 rounded-[40px] bg-gradient-to-b from-[#4fa5e8] via-[#70b7f0] to-[#99c8f2] text-white p-10 md:p-14 overflow-hidden shadow-2xl shadow-blue-900/10">
+      <section className="relative mx-auto max-w-[1300px] mt-6 mb-8 rounded-[40px] bg-gradient-to-b from-[#4fa5e8] via-[#70b7f0] to-[#99c8f2] text-white p-6 md:p-12 overflow-hidden shadow-2xl shadow-blue-900/10">
         
         {/* Subtle white grid overlay inside hero */}
         <div 
@@ -37,90 +37,116 @@ export default async function HomePage() {
           aria-hidden="true" 
         />
 
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-          
-          {/* Left Column: Typography & CTA */}
-          <div className="flex flex-col justify-center pr-4">
-            <h1 
-              className="text-[3.2rem] sm:text-[3.8rem] font-black leading-[1.05] tracking-tighter text-white" 
-              style={{ fontFamily: "'Outfit', sans-serif" }}
+        {/* Integrated Header Row (Matching Nearo Logo & Right Button inside the card) */}
+        <div className="flex items-center justify-between w-full mb-14 px-4 relative z-10">
+          {/* Brand Logo */}
+          <Link href="/" className="flex items-center gap-2.5">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/25 border border-white/35 backdrop-blur-md">
+              <GraduationCap className="h-5 w-5 text-white" />
+            </div>
+            <span className="text-[17px] font-black tracking-tight text-white" style={{ fontFamily: "'Outfit', sans-serif" }}>
+              NotesOS
+            </span>
+          </Link>
+
+          {/* Navigation Items (Centered inside Header Row) */}
+          <nav className="hidden md:flex items-center gap-8 bg-white/15 border border-white/25 backdrop-blur-md px-6 py-2 rounded-full shadow-sm">
+            <Link href="/" className="text-[12.5px] font-bold text-white transition-colors hover:text-white/80">
+              Home
+            </Link>
+            <Link href="/categories" className="text-[12.5px] font-bold text-white/85 transition-colors hover:text-white">
+              Subjects
+            </Link>
+            <Link href="/search" className="text-[12.5px] font-bold text-white/85 transition-colors hover:text-white">
+              Explore
+            </Link>
+            <Link href="/upload" className="text-[12.5px] font-bold text-white/85 transition-colors hover:text-white">
+              Upload
+            </Link>
+          </nav>
+
+          {/* Right CTA */}
+          <div>
+            <Link 
+              href="/login" 
+              className="flex items-center justify-center rounded-full bg-white px-6 py-2 text-[11px] font-black uppercase tracking-wider text-[#4fa5e8] transition-all hover:bg-white/95 active:scale-95 shadow-sm"
             >
-              Academic<br />
-              Notes<br />
-              Directory
-            </h1>
-            <p className="mt-8 max-w-[300px] text-[13px] leading-[1.8] text-white/80 font-medium">
-              The platform is simple without excess details and you can find notes pleasantly,
-              like reading out of a clean physical notebook.
-            </p>
-            <div className="mt-10 flex items-center gap-4">
-              <Link 
-                href="/search" 
-                className="inline-flex items-center justify-center rounded-full bg-white px-9 py-4 text-[13px] font-bold uppercase tracking-wider text-[#4fa5e8] transition-all hover:bg-white/90 hover:-translate-y-0.5 shadow-lg shadow-black/5"
-              >
-                Start Now
-              </Link>
-              <button 
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 border border-white/20 backdrop-blur-md shadow-sm transition-all hover:scale-105"
-                aria-label="Watch video"
-              >
-                <Play className="h-4 w-4 fill-current text-white ml-0.5" />
-              </button>
-            </div>
+              Sign In
+            </Link>
           </div>
+        </div>
 
-          {/* Center Column: Product Image */}
-          <div className="flex justify-center relative items-center min-h-[380px]">
-            <div className="relative w-full max-w-[240px] aspect-[1/2] transition-transform duration-700 hover:scale-[1.02]">
-              <Image
-                src="/hero-product.png"
-                alt="Minimalist Black Notebook"
-                fill
-                sizes="(max-width: 768px) 100vw, 240px"
-                className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] mix-blend-multiply"
-                priority
+        {/* Centered Hero Content */}
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto z-10 relative">
+          <span className="text-[9px] font-black uppercase tracking-[0.25em] text-white/90 bg-white/15 border border-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-6">
+            Now Online
+          </span>
+
+          <h1 
+            className="text-[3.6rem] sm:text-[4.8rem] lg:text-[5.4rem] font-black leading-[1.05] tracking-tighter text-white" 
+            style={{ fontFamily: "'Outfit', sans-serif" }}
+          >
+            Academic Notes<br />Directory
+          </h1>
+
+          <p className="mt-6 max-w-xl text-[14px] sm:text-[15px] leading-[1.7] text-white/90 font-medium">
+            The platform is simple without excess details. Find notes pleasantly, like reading out of a clean physical notebook.
+          </p>
+
+          {/* Search Bar (Matches Waitlist Email input in the mockup!) */}
+          <div className="w-full max-w-lg mt-10">
+            <form action="/search" method="GET" className="relative flex items-center p-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-lg shadow-lg shadow-black/5 hover:border-white/30 transition-all">
+              <Search className="absolute left-5 h-4.5 w-4.5 text-white/70" />
+              <input 
+                type="text" 
+                name="q"
+                placeholder="Search subjects, notes, formulas..." 
+                className="w-full bg-transparent pl-12 pr-32 py-3.5 text-[13px] font-semibold text-white placeholder-white/60 focus:outline-none"
               />
-            </div>
+              <button 
+                type="submit"
+                className="absolute right-1.5 rounded-full bg-white px-6 py-2.5 text-[11px] font-extrabold uppercase tracking-wider text-[#4fa5e8] transition-all hover:bg-white/95 active:scale-95 shadow-md shadow-black/5"
+              >
+                Search
+              </button>
+            </form>
           </div>
+        </div>
 
-          {/* Right Column: Features / Categories List */}
-          <div className="flex flex-col justify-center lg:pl-10">
-            <div className="flex flex-col divide-y divide-white/20">
-              {categoriesFromDb.length > 0 ? (
-                categoriesFromDb.map((cat, i) => (
-                  <Link 
-                    href={`/search?subject=${encodeURIComponent(cat.name)}`}
-                    key={cat.id} 
-                    className="py-6 first:pt-0 last:pb-0 group cursor-pointer block"
-                  >
-                    <h3 className="text-[17px] font-bold text-white flex items-center gap-2 transition-colors hover:text-white/80" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                      <span className="text-[12px] text-white/50 font-mono">0{i+1}.</span>
-                      {cat.name} 
-                      <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 translate-y-1 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all text-white" />
-                    </h3>
-                    <p className="mt-2 text-[12px] leading-[1.6] text-white/70 max-w-[240px] font-medium">
-                      We provide high-quality {cat.name.toLowerCase()} material. Explore our curated selection.
-                    </p>
-                  </Link>
-                ))
-              ) : (
-                <>
-                  <div className="py-6 first:pt-0 last:pb-0">
-                    <h3 className="text-[17px] font-semibold text-white" style={{ fontFamily: "'Outfit', sans-serif" }}>Computer Science</h3>
-                    <p className="mt-2 text-[12px] leading-[1.6] text-white/70 max-w-[240px]">
-                      We provide high-quality computer science material. Explore our curated selection.
-                    </p>
-                  </div>
-                  <div className="py-6 first:pt-0 last:pb-0">
-                    <h3 className="text-[17px] font-semibold text-white" style={{ fontFamily: "'Outfit', sans-serif" }}>Mathematics</h3>
-                    <p className="mt-2 text-[12px] leading-[1.6] text-white/70 max-w-[240px]">
-                      We provide high-quality mathematics material. Explore our curated selection.
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
+        {/* Centered Notebook Mockup */}
+        <div className="flex justify-center relative items-end min-h-[300px] mt-12 z-0">
+          <div className="relative w-full max-w-[260px] aspect-[1/2] transition-transform duration-700 hover:scale-[1.02]">
+            <Image
+              src="/hero-product.png"
+              alt="Minimalist Black Notebook"
+              fill
+              sizes="(max-width: 768px) 100vw, 260px"
+              className="object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.25)] mix-blend-multiply"
+              priority
+            />
           </div>
+        </div>
+
+        {/* Bottom Glassmorphic Stats Grid Row (Countdown boxes in Nearo mockup) */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-6 relative z-10">
+          {[
+            { number: "2,450+", label: "NOTES SHARED" },
+            { number: "18k+", label: "STUDENTS ACTIVE" },
+            { number: "99.8%", label: "HIGH RATINGS" },
+            { number: "0.2s", label: "INSTANT SEARCH" }
+          ].map((stat, i) => (
+            <div 
+              key={i} 
+              className="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl p-5 text-center shadow-lg"
+            >
+              <div className="text-2xl font-black text-white tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                {stat.number}
+              </div>
+              <div className="text-[9px] font-extrabold text-white/70 uppercase tracking-widest mt-1.5">
+                {stat.label}
+              </div>
+            </div>
+          ))}
         </div>
 
       </section>
