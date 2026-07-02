@@ -15,11 +15,38 @@ export default async function HomePage() {
     orderBy: { notes: { _count: "desc" } },
   });
 
+  // Fetch real-time statistics from DB
+  const totalNotes = await prisma.note.count({
+    where: { status: "PUBLISHED" }
+  });
+  const totalUsers = await prisma.user.count();
+  
+  const aggregations = await prisma.note.aggregate({
+    _sum: {
+      views: true,
+      downloads: true,
+    }
+  });
+  
+  const totalViews = aggregations._sum.views || 0;
+  const totalDownloads = aggregations._sum.downloads || 0;
+
+  // Formatting helper for real-time stats
+  const formatStatNumber = (num: number): string => {
+    if (num >= 1000000) {
+      return (num / 1000000).toFixed(1).replace(/\.0$/, "") + "M+";
+    }
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1).replace(/\.0$/, "") + "k+";
+    }
+    return num.toString();
+  };
+
   return (
     <div className="w-full bg-[#e6ebf0] text-[#1a1a1a] font-sans selection:bg-blue-100 pb-20">
       
-      {/* ===== HERO SECTION (FLOATING SKY BLUE GRADIENT CARD) ===== */}
-      <section className="relative mx-auto max-w-[1300px] mt-6 mb-8 rounded-[40px] bg-gradient-to-b from-[#4fa5e8] via-[#70b7f0] to-[#99c8f2] text-white p-6 md:p-12 overflow-hidden shadow-2xl shadow-blue-900/10">
+      {/* ===== HERO SECTION (FLOATING SKY BLUE GRADIENT CARD - FULL WIDTH / TOUCH SIDES) ===== */}
+      <section className="relative w-full mt-0 mb-8 rounded-b-[50px] bg-gradient-to-b from-[#4fa5e8] via-[#70b7f0] to-[#99c8f2] text-white overflow-hidden shadow-2xl shadow-blue-900/10">
         
         {/* Subtle white grid overlay inside hero */}
         <div 
@@ -37,118 +64,122 @@ export default async function HomePage() {
           aria-hidden="true" 
         />
 
-        {/* Integrated Header Row (Matching Nearo Logo & Right Button inside the card) */}
-        <div className="flex items-center justify-between w-full mb-14 px-4 relative z-10">
-          {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/25 border border-white/35 backdrop-blur-md">
-              <GraduationCap className="h-5 w-5 text-white" />
-            </div>
-            <span className="text-[17px] font-black tracking-tight text-white" style={{ fontFamily: "'Outfit', sans-serif" }}>
-              NotesOS
-            </span>
-          </Link>
-
-          {/* Navigation Items (Centered inside Header Row) */}
-          <nav className="hidden md:flex items-center gap-8 bg-white/15 border border-white/25 backdrop-blur-md px-6 py-2 rounded-full shadow-sm">
-            <Link href="/" className="text-[12.5px] font-bold text-white transition-colors hover:text-white/80">
-              Home
+        {/* Content Wrapper aligned with the page content */}
+        <div className="mx-auto max-w-[1300px] w-full px-6 pt-10 pb-12 relative z-10 flex flex-col">
+          
+          {/* Integrated Header Row (Matching Nearo Logo & Right Button inside the card) */}
+          <div className="flex items-center justify-between w-full mb-14 px-4">
+            {/* Brand Logo */}
+            <Link href="/" className="flex items-center gap-2.5">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/25 border border-white/35 backdrop-blur-md">
+                <GraduationCap className="h-5 w-5 text-white" />
+              </div>
+              <span className="text-[17px] font-black tracking-tight text-white" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                NotesOS
+              </span>
             </Link>
-            <Link href="/categories" className="text-[12.5px] font-bold text-white/85 transition-colors hover:text-white">
-              Subjects
-            </Link>
-            <Link href="/search" className="text-[12.5px] font-bold text-white/85 transition-colors hover:text-white">
-              Explore
-            </Link>
-            <Link href="/upload" className="text-[12.5px] font-bold text-white/85 transition-colors hover:text-white">
-              Upload
-            </Link>
-          </nav>
 
-          {/* Right CTA */}
-          <div>
-            <Link 
-              href="/login" 
-              className="flex items-center justify-center rounded-full bg-white px-6 py-2 text-[11px] font-black uppercase tracking-wider text-[#4fa5e8] transition-all hover:bg-white/95 active:scale-95 shadow-sm"
-            >
-              Sign In
-            </Link>
-          </div>
-        </div>
+            {/* Navigation Items (Centered inside Header Row) */}
+            <nav className="hidden md:flex items-center gap-8 bg-white/15 border border-white/25 backdrop-blur-md px-6 py-2 rounded-full shadow-sm">
+              <Link href="/" className="text-[12.5px] font-bold text-white transition-colors hover:text-white/80">
+                Home
+              </Link>
+              <Link href="/categories" className="text-[12.5px] font-bold text-white/85 transition-colors hover:text-white">
+                Subjects
+              </Link>
+              <Link href="/search" className="text-[12.5px] font-bold text-white/85 transition-colors hover:text-white">
+                Explore
+              </Link>
+              <Link href="/upload" className="text-[12.5px] font-bold text-white/85 transition-colors hover:text-white">
+                Upload
+              </Link>
+            </nav>
 
-        {/* Centered Hero Content */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto z-10 relative">
-          <span className="text-[9px] font-black uppercase tracking-[0.25em] text-white/90 bg-white/15 border border-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-6">
-            Now Online
-          </span>
-
-          <h1 
-            className="text-[3.6rem] sm:text-[4.8rem] lg:text-[5.4rem] font-black leading-[1.05] tracking-tighter text-white" 
-            style={{ fontFamily: "'Outfit', sans-serif" }}
-          >
-            Academic Notes<br />Directory
-          </h1>
-
-          <p className="mt-6 max-w-xl text-[14px] sm:text-[15px] leading-[1.7] text-white/90 font-medium">
-            The platform is simple without excess details. Find notes pleasantly, like reading out of a clean physical notebook.
-          </p>
-
-          {/* Search Bar (Matches Waitlist Email input in the mockup!) */}
-          <div className="w-full max-w-lg mt-10">
-            <form action="/search" method="GET" className="relative flex items-center p-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-lg shadow-lg shadow-black/5 hover:border-white/30 transition-all">
-              <Search className="absolute left-5 h-4.5 w-4.5 text-white/70" />
-              <input 
-                type="text" 
-                name="q"
-                placeholder="Search subjects, notes, formulas..." 
-                className="w-full bg-transparent pl-12 pr-32 py-3.5 text-[13px] font-semibold text-white placeholder-white/60 focus:outline-none"
-              />
-              <button 
-                type="submit"
-                className="absolute right-1.5 rounded-full bg-white px-6 py-2.5 text-[11px] font-extrabold uppercase tracking-wider text-[#4fa5e8] transition-all hover:bg-white/95 active:scale-95 shadow-md shadow-black/5"
+            {/* Right CTA */}
+            <div>
+              <Link 
+                href="/login" 
+                className="flex items-center justify-center rounded-full bg-white px-6 py-2 text-[11px] font-black uppercase tracking-wider text-[#4fa5e8] transition-all hover:bg-white/95 active:scale-95 shadow-sm"
               >
-                Search
-              </button>
-            </form>
-          </div>
-        </div>
-
-        {/* Centered Notebook Mockup */}
-        <div className="flex justify-center relative items-end min-h-[300px] mt-12 z-0">
-          <div className="relative w-full max-w-[260px] aspect-[1/2] transition-transform duration-700 hover:scale-[1.02]">
-            <Image
-              src="/hero-product.png"
-              alt="Minimalist Black Notebook"
-              fill
-              sizes="(max-width: 768px) 100vw, 260px"
-              className="object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.25)] mix-blend-multiply"
-              priority
-            />
-          </div>
-        </div>
-
-        {/* Bottom Glassmorphic Stats Grid Row (Countdown boxes in Nearo mockup) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-6 relative z-10">
-          {[
-            { number: "2,450+", label: "NOTES SHARED" },
-            { number: "18k+", label: "STUDENTS ACTIVE" },
-            { number: "99.8%", label: "HIGH RATINGS" },
-            { number: "0.2s", label: "INSTANT SEARCH" }
-          ].map((stat, i) => (
-            <div 
-              key={i} 
-              className="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl p-5 text-center shadow-lg"
-            >
-              <div className="text-2xl font-black text-white tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                {stat.number}
-              </div>
-              <div className="text-[9px] font-extrabold text-white/70 uppercase tracking-widest mt-1.5">
-                {stat.label}
-              </div>
+                Sign In
+              </Link>
             </div>
-          ))}
-        </div>
+          </div>
 
+          {/* Centered Hero Content */}
+          <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
+            <span className="text-[9px] font-black uppercase tracking-[0.25em] text-white/90 bg-white/15 border border-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-6">
+              Now Online
+            </span>
+
+            <h1 
+              className="text-[3.6rem] sm:text-[4.8rem] lg:text-[5.4rem] font-black leading-[1.05] tracking-tighter text-white" 
+              style={{ fontFamily: "'Outfit', sans-serif" }}
+            >
+              Academic Notes<br />Directory
+            </h1>
+
+            <p className="mt-6 max-w-xl text-[14px] sm:text-[15px] leading-[1.7] text-white/90 font-medium">
+              The platform is simple without excess details. Find notes pleasantly, like reading out of a clean physical notebook.
+            </p>
+
+            {/* Search Bar (Matches Waitlist Email input in the mockup!) */}
+            <div className="w-full max-w-lg mt-10">
+              <form action="/search" method="GET" className="relative flex items-center p-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-lg shadow-lg shadow-black/5 hover:border-white/30 transition-all">
+                <Search className="absolute left-5 h-4.5 w-4.5 text-white/70" />
+                <input 
+                  type="text" 
+                  name="q"
+                  placeholder="Search subjects, notes, formulas..." 
+                  className="w-full bg-transparent pl-12 pr-32 py-3.5 text-[13px] font-semibold text-white placeholder-white/60 focus:outline-none"
+                />
+                <button 
+                  type="submit"
+                  className="absolute right-1.5 rounded-full bg-white px-6 py-2.5 text-[11px] font-extrabold uppercase tracking-wider text-[#4fa5e8] transition-all hover:bg-white/95 active:scale-95 shadow-md shadow-black/5"
+                >
+                  Search
+                </button>
+              </form>
+            </div>
+          </div>
+
+          {/* Centered Notebook Mockup */}
+          <div className="flex justify-center relative items-end min-h-[300px] mt-12">
+            <div className="relative w-full max-w-[260px] aspect-[1/2] transition-transform duration-700 hover:scale-[1.02]">
+              <Image
+                src="/hero-product.png"
+                alt="Minimalist Black Notebook"
+                fill
+                sizes="(max-width: 768px) 100vw, 260px"
+                className="object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.25)] mix-blend-multiply"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Bottom Glassmorphic Stats Grid Row */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl w-full mx-auto mt-6">
+            {[
+              { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
+              { number: formatStatNumber(totalUsers), label: "STUDENTS ACTIVE" },
+              { number: formatStatNumber(totalDownloads), label: "TOTAL DOWNLOADS" },
+              { number: formatStatNumber(totalViews), label: "TOTAL VIEWS" }
+            ].map((stat, i) => (
+              <div 
+                key={i} 
+                className="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl p-5 text-center shadow-lg"
+              >
+                <div className="text-2xl font-black text-white tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                  {stat.number}
+                </div>
+                <div className="text-[9px] font-extrabold text-white/70 uppercase tracking-widest mt-1.5">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
       </section>
 
       {/* ===== SECTION 2: UNIVERSITY PARTNERS LOGO STRIP ===== */}
