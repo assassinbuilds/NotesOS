@@ -106,7 +106,8 @@ export default async function HomePage() {
         </div>
 
         {/* Main Hero Content - Centers content vertically and horizontally */}
-        <div className="flex-1 flex flex-col justify-center items-center max-w-4xl w-full mx-auto px-6 py-6 relative z-10 text-center">
+        {/* Main Hero Content - Centers content vertically and horizontally */}
+        <div className="flex-1 flex flex-col justify-center items-center max-w-4xl w-full mx-auto px-6 pt-6 pb-48 relative z-10 text-center">
           
           <span className="text-[9px] font-black uppercase tracking-[0.25em] text-white/90 bg-white/15 border border-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-6">
             Now Online
@@ -141,24 +142,22 @@ export default async function HomePage() {
               </button>
             </form>
           </div>
-
-          {/* Centered Notebook Mockup - Exactly 46% visible, 54% hidden */}
-          <div className="relative w-full overflow-hidden h-[240px] mt-16 flex justify-center items-start z-10">
-            <div className="relative w-full max-w-[260px] aspect-[1/2] transition-transform duration-700 hover:scale-[1.02]">
-              <Image
-                src="/hero-product.png"
-                alt="Minimalist Black Notebook"
-                fill
-                sizes="(max-width: 768px) 100vw, 260px"
-                className="object-contain drop-shadow-[0_35px_60px_rgba(0,0,0,0.3)] mix-blend-multiply"
-                priority
-              />
-            </div>
-          </div>
         </div>
 
-        {/* Bottom Single Glassmorphic Stats Pill - Absolute positioning at the bottom edge */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-20 w-[92%] max-w-4xl bg-white/75 border border-white/40 backdrop-blur-2xl rounded-[28px] p-2 shadow-xl shadow-blue-950/10">
+        {/* Centered Notebook Mockup - Absolute positioned behind the statistics card */}
+        <div className="absolute bottom-[-20px] left-1/2 -translate-x-1/2 z-[2] w-[200px] h-[200px] transition-transform duration-700 hover:scale-[1.02]">
+          <Image
+            src="/hero-product.png"
+            alt="Minimalist Black Notebook"
+            fill
+            sizes="200px"
+            className="object-contain object-bottom drop-shadow-[0_35px_60px_rgba(0,0,0,0.3)] mix-blend-multiply"
+            priority
+          />
+        </div>
+
+        {/* Bottom Single Glassmorphic Stats Pill - Absolute positioned at the bottom edge */}
+        <div className="absolute bottom-[-40px] left-1/2 -translate-x-1/2 z-[5] w-[92%] max-w-4xl bg-white/75 border border-white/40 backdrop-blur-2xl rounded-[28px] p-2 shadow-xl shadow-blue-950/10">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-y-0">
             {[
               { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
