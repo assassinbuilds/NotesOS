@@ -59,6 +59,7 @@ export default async function HomePage() {
               src="/hero-product.png"
               alt="Minimalist Black Notebook"
               fill
+              sizes="(max-width: 768px) 100vw, 320px"
               className="object-contain drop-shadow-2xl mix-blend-multiply"
               priority
             />
