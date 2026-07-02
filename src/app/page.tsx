@@ -138,21 +138,21 @@ export default async function HomePage() {
           </div>
 
           {/* Centered Notebook Mockup - In relative layout flow to guarantee exact 60px gap from search bar */}
-          <div className="relative w-full max-w-[240px] h-[200px] overflow-hidden mt-[60px] z-10 flex justify-center items-start shrink-0">
-            <div className="relative w-full h-[240px] transition-transform duration-700 hover:scale-[1.02]">
+          <div className="relative w-full max-w-[260px] h-[220px] overflow-hidden mt-[60px] z-10 flex justify-center items-start shrink-0">
+            <div className="relative w-full h-[260px] transition-transform duration-700 hover:scale-[1.02]">
               <Image
                 src="/hero-product.png"
                 alt="Minimalist Black Notebook"
                 fill
-                sizes="240px"
+                sizes="260px"
                 className="object-contain object-top mix-blend-multiply"
                 priority
               />
             </div>
           </div>
 
-          {/* Bottom Single Glassmorphic Stats Pill - Overlaps the bottom of the notebook by mt-[-150px] and transitions into the next section with translate-y-1/2 */}
-          <div className="w-[92%] max-w-4xl bg-white/95 border border-white/60 backdrop-blur-md rounded-[32px] p-2 shadow-[0_20px_50px_rgba(0,0,0,0.06)] mt-[-150px] relative z-20 translate-y-1/2 shrink-0">
+          {/* Bottom Single Glassmorphic Stats Pill - Overlaps the bottom of the notebook by mt-[-165px] and transitions into the next section with translate-y-1/2 */}
+          <div className="w-[92%] max-w-4xl bg-white/95 border border-white/60 backdrop-blur-md rounded-[32px] p-2 shadow-[0_20px_50px_rgba(0,0,0,0.06)] mt-[-165px] relative z-20 translate-y-1/2 shrink-0">
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y-0">
               {[
                 { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
