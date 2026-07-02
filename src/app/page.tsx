@@ -137,22 +137,22 @@ export default async function HomePage() {
             </form>
           </div>
 
-          {/* Centered Notebook Mockup - In relative layout flow to guarantee exact 60px gap from search bar */}
-          <div className="relative w-full max-w-[320px] h-[260px] overflow-hidden mt-[60px] z-10 flex justify-center items-start shrink-0">
-            <div className="relative w-full h-[320px] transition-transform duration-700 hover:scale-[1.02]">
+          {/* Centered Notebook Mockup - Positioned absolutely at the bottom to guarantee perfect alignment with the stats card bottom */}
+          <div className="absolute bottom-[-36px] left-1/2 -translate-x-1/2 w-full max-w-[360px] h-[180px] overflow-hidden z-10 flex justify-center items-start shrink-0">
+            <div className="relative w-full h-[360px] transition-transform duration-700 hover:scale-[1.02]">
               <Image
                 src="/hero-product.png"
                 alt="Minimalist Black Notebook"
                 fill
-                sizes="320px"
+                sizes="360px"
                 className="object-contain object-top mix-blend-multiply"
                 priority
               />
             </div>
           </div>
 
-          {/* Bottom Single Glassmorphic Stats Pill - Overlaps the bottom of the notebook by mt-[-140px] and transitions into the next section with translate-y-1/2 */}
-          <div className="w-[92%] max-w-4xl bg-white/95 border border-white/60 backdrop-blur-md rounded-[32px] p-2 shadow-[0_20px_50px_rgba(0,0,0,0.06)] mt-[-140px] relative z-20 translate-y-1/2 shrink-0">
+          {/* Bottom Single Glassmorphic Stats Pill - Overlaps the bottom of the notebook and transitions into the next section with translate-y-1/2 */}
+          <div className="w-[92%] max-w-2xl bg-white/95 border border-white/60 backdrop-blur-md rounded-[20px] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.06)] mt-[100px] relative z-20 translate-y-1/2 shrink-0">
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y-0">
               {[
                 { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
@@ -162,16 +162,16 @@ export default async function HomePage() {
               ].map((stat, i) => (
                 <div 
                   key={i} 
-                  className={`text-center py-4 md:py-6 px-4 flex flex-col justify-center items-center
+                  className={`text-center py-2 md:py-3.5 px-3 flex flex-col justify-center items-center
                     ${i === 0 ? "border-r border-b border-zinc-200/50" : ""}
                     ${i === 1 ? "border-b md:border-b-0 md:border-r border-zinc-200/50" : ""}
                     ${i === 2 ? "border-r border-zinc-200/50" : ""}
                   `}
                 >
-                  <div className="text-3xl font-black text-zinc-900 tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                  <div className="text-2xl font-black text-zinc-900 tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
                     {stat.number}
                   </div>
-                  <div className="text-[9px] font-extrabold text-zinc-500 uppercase tracking-widest mt-1.5">
+                  <div className="text-[8px] font-extrabold text-zinc-500 uppercase tracking-widest mt-0.5">
                     {stat.label}
                   </div>
                 </div>
