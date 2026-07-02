@@ -46,7 +46,7 @@ export default async function HomePage() {
     <div className="w-full bg-[#e6ebf0] text-[#1a1a1a] font-sans selection:bg-blue-100 pb-20">
       
       {/* ===== HERO SECTION (FLOATING SKY BLUE GRADIENT CARD - FULL WIDTH / TOUCH SIDES) ===== */}
-      <section className="relative w-full mt-0 mb-8 rounded-b-[50px] bg-gradient-to-b from-[#4fa5e8] via-[#70b7f0] to-[#99c8f2] text-white overflow-hidden shadow-2xl shadow-blue-900/10">
+      <section className="relative w-full mt-0 mb-8 rounded-b-[50px] bg-gradient-to-b from-[#4fa5e8] via-[#70b7f0] to-[#99c8f2] text-white shadow-2xl shadow-blue-900/10">
         
         {/* Subtle white grid overlay inside hero */}
         <div 
@@ -143,8 +143,8 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Centered Notebook Mockup */}
-          <div className="flex justify-center relative items-end min-h-[300px] mt-12">
+          {/* Centered Notebook Mockup - Half above, half below the bottom line */}
+          <div className="flex justify-center relative items-end min-h-[300px] mt-12 mb-[-180px] z-10">
             <div className="relative w-full max-w-[260px] aspect-[1/2] transition-transform duration-700 hover:scale-[1.02]">
               <Image
                 src="/hero-product.png"
@@ -157,8 +157,8 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Bottom Glassmorphic Stats Grid Row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl w-full mx-auto mt-6">
+          {/* Bottom Glassmorphic Stats Grid Row - Half above, half below bottom line */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl w-full mx-auto mt-6 relative z-20 translate-y-1/2">
             {[
               { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
               { number: formatStatNumber(totalUsers), label: "STUDENTS ACTIVE" },
@@ -182,8 +182,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ===== SECTION 2: UNIVERSITY PARTNERS LOGO STRIP ===== */}
-      <section className="py-6 max-w-[1300px] mx-auto overflow-hidden">
+      {/* ===== SECTION 2: UNIVERSITY PARTNERS LOGO STRIP (Shifted down to clear overflow) ===== */}
+      <section className="pt-28 pb-8 max-w-[1300px] mx-auto overflow-hidden">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 px-6">
           <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#888888]">
             Trusted by students from top institutions
