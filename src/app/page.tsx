@@ -157,26 +157,32 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Bottom Glassmorphic Stats Grid Row - Floating at bottom of card */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl w-full mx-auto mt-[-160px] relative z-20 translate-y-1/2">
-            {[
-              { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
-              { number: formatStatNumber(totalUsers), label: "STUDENTS ACTIVE" },
-              { number: formatStatNumber(totalDownloads), label: "TOTAL DOWNLOADS" },
-              { number: formatStatNumber(totalViews), label: "TOTAL VIEWS" }
-            ].map((stat, i) => (
-              <div 
-                key={i} 
-                className="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl p-5 text-center shadow-lg"
-              >
-                <div className="text-2xl font-black text-white tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                  {stat.number}
+          {/* Bottom Single Glassmorphic Stats Pill - Overlapping the bottom of the notebook */}
+          <div className="bg-white/10 border border-white/20 backdrop-blur-md rounded-[28px] p-2 shadow-xl max-w-4xl w-full mx-auto mt-[-160px] relative z-20 translate-y-1/2">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-y-0">
+              {[
+                { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
+                { number: formatStatNumber(totalUsers), label: "STUDENTS ACTIVE" },
+                { number: formatStatNumber(totalDownloads), label: "TOTAL DOWNLOADS" },
+                { number: formatStatNumber(totalViews), label: "TOTAL VIEWS" }
+              ].map((stat, i) => (
+                <div 
+                  key={i} 
+                  className={`text-center py-4 md:py-6 px-4 flex flex-col justify-center items-center
+                    ${i === 0 ? "border-r border-b border-white/10" : ""}
+                    ${i === 1 ? "border-b md:border-b-0 md:border-r border-white/10" : ""}
+                    ${i === 2 ? "border-r border-white/10" : ""}
+                  `}
+                >
+                  <div className="text-3xl font-black text-white tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                    {stat.number}
+                  </div>
+                  <div className="text-[9px] font-extrabold text-white/70 uppercase tracking-widest mt-1.5">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-[9px] font-extrabold text-white/70 uppercase tracking-widest mt-1.5">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
         </div>
