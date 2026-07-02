@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen, Github, Twitter, Mail } from "lucide-react";
+import { BookOpen, Globe, MessageCircle, Mail } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -59,13 +59,13 @@ export function Footer() {
             <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-zinc-50">Connect</h3>
             <ul className="flex items-center gap-4">
               <li>
-                <a href="#" className="text-zinc-500 transition-colors hover:text-zinc-50" aria-label="GitHub">
-                  <Github className="h-5 w-5" />
+                <a href="#" className="text-zinc-500 transition-colors hover:text-zinc-50" aria-label="Website">
+                  <Globe className="h-5 w-5" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-zinc-500 transition-colors hover:text-zinc-50" aria-label="Twitter">
-                  <Twitter className="h-5 w-5" />
+                <a href="#" className="text-zinc-500 transition-colors hover:text-zinc-50" aria-label="Community">
+                  <MessageCircle className="h-5 w-5" />
                 </a>
               </li>
               <li>
