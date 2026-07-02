@@ -145,7 +145,7 @@ export default async function HomePage() {
                 alt="Minimalist Black Notebook"
                 fill
                 sizes="240px"
-                className="object-contain drop-shadow-[0_35px_60px_rgba(0,0,0,0.3)] mix-blend-multiply"
+                className="object-contain mix-blend-multiply"
                 priority
               />
             </div>
