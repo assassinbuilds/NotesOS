@@ -50,7 +50,7 @@ export default async function HomePage() {
         
         {/* Subtle white grid overlay inside hero */}
         <div 
-          className="absolute inset-0 pointer-events-none opacity-[0.06] mix-blend-overlay" 
+          className="absolute inset-0 pointer-events-none opacity-[0.06] mix-blend-overlay rounded-b-[50px]" 
           style={{
             backgroundImage: "radial-gradient(white 1px, transparent 1px)",
             backgroundSize: "24px 24px"
@@ -157,8 +157,8 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Bottom Glassmorphic Stats Grid Row - Overlapping the bottom of the notebook */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl w-full mx-auto mt-[-90px] relative z-20 translate-y-1/2">
+          {/* Bottom Glassmorphic Stats Grid Row - Floating at bottom of card */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl w-full mx-auto mt-6 relative z-20 translate-y-1/2">
             {[
               { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
               { number: formatStatNumber(totalUsers), label: "STUDENTS ACTIVE" },
