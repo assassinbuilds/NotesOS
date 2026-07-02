@@ -153,38 +153,38 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 3: FEATURE SHOWCASE (GRID BLOCK WITH NEARO CARDS) ===== */}
-      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/50 mb-8 border border-zinc-200/30">
+      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/30 mb-8">
         
         {/* Header */}
         <div className="text-center max-w-xl mx-auto mb-20">
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#4fa5e8] bg-blue-50 px-3.5 py-1.5 rounded-full">Core Value</span>
-          <h2 className="text-4xl sm:text-5xl font-extrabold mt-6 text-[#111111] tracking-tight leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+          <h2 className="text-5xl sm:text-6xl font-black mt-6 text-[#111111] tracking-tight leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
             Academic tools without distraction
           </h2>
         </div>
 
         {/* Large Dashboard Card with beautiful gradient mockups */}
-        <div className="w-full bg-[#f4f7fa] rounded-[36px] p-8 md:p-14 shadow-inner border border-zinc-200/40 mb-8 overflow-hidden relative group">
+        <div className="w-full bg-[#f4f7fa] rounded-[36px] p-8 md:p-14 shadow-inner mb-8 overflow-hidden relative group">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="rounded-full bg-white border border-zinc-200/60 px-3.5 py-1 text-[10px] font-bold text-[#4fa5e8] uppercase tracking-wide">Interface Spotlight</span>
-              <h3 className="text-3xl sm:text-4xl font-extrabold mt-5 text-[#111111] tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+              <span className="rounded-full bg-white px-3.5 py-1 text-[10px] font-bold text-[#4fa5e8] uppercase tracking-wide">Interface Spotlight</span>
+              <h3 className="text-4xl sm:text-5xl font-black mt-5 text-[#111111] tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
                 A clean, unified document reader
               </h3>
-              <p className="mt-5 text-[13px] leading-[1.8] text-[#555555] max-w-md font-medium">
+              <p className="mt-5 text-[15px] leading-[1.8] text-zinc-800 font-medium">
                 Say goodbye to standard browser PDF viewers. NotesOS provides side-by-side note stats, full-screen study modes, and zoom levels built directly into the UI.
               </p>
               <div className="mt-8 flex items-center gap-2.5">
-                <span className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-white border border-zinc-200 text-[#4fa5e8]">
+                <span className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-white text-[#4fa5e8]">
                   <Check className="h-3 w-3 stroke-[3]" />
                 </span>
-                <span className="text-[12px] font-bold text-zinc-700">100% Ad-free reading environment</span>
+                <span className="text-[14px] font-bold text-zinc-900">100% Ad-free reading environment</span>
               </div>
             </div>
 
             {/* Dynamic Gradient Mockup Container */}
-            <div className="relative aspect-[4/3] w-full bg-gradient-to-tr from-[#4fa5e8]/20 via-[#70b7f0]/10 to-[#99c8f2]/20 rounded-2xl border border-zinc-150 shadow-inner overflow-hidden flex items-center justify-center p-6">
-              <div className="w-full h-full bg-white rounded-xl border border-zinc-200/60 p-4 shadow-xl flex flex-col justify-between transition-transform duration-500 group-hover:scale-[1.02]">
+            <div className="relative aspect-[4/3] w-full bg-gradient-to-tr from-[#4fa5e8]/20 via-[#70b7f0]/10 to-[#99c8f2]/20 rounded-2xl shadow-inner overflow-hidden flex items-center justify-center p-6">
+              <div className="w-full h-full bg-white rounded-xl p-4 shadow-xl flex flex-col justify-between transition-transform duration-500 group-hover:scale-[1.02]">
                 <div className="flex items-center justify-between border-b border-zinc-100 pb-3">
                   <div className="flex gap-1.5">
                     <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
@@ -226,15 +226,15 @@ export default async function HomePage() {
               desc: "No waiting loops, ads, or premium subscriptions. Download standard PDFs with a single click." 
             }
           ].map((card, i) => (
-            <div key={i} className="bg-[#f4f7fa] rounded-[32px] p-8 border border-zinc-200/40 flex flex-col justify-between h-[280px] hover:border-blue-200 transition-all hover:bg-white hover:shadow-xl group">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white border border-zinc-200 group-hover:bg-blue-50 group-hover:border-blue-100 transition-colors">
+            <div key={i} className="bg-[#f4f7fa] rounded-[32px] p-8 flex flex-col justify-between h-[300px] transition-all hover:bg-white hover:shadow-xl group">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white border border-zinc-205 group-hover:bg-blue-50 group-hover:border-blue-100 transition-colors">
                 <card.icon className="h-5 w-5 text-[#111111] group-hover:text-[#4fa5e8] transition-colors" />
               </div>
               <div>
-                <h4 className="text-[17px] font-bold text-[#111111] tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                <h4 className="text-[20px] font-black text-[#111111] tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
                   {card.title}
                 </h4>
-                <p className="mt-2.5 text-[12.5px] leading-[1.7] text-[#666666] font-medium">
+                <p className="mt-2.5 text-[14px] leading-[1.7] text-[#555555] font-semibold">
                   {card.desc}
                 </p>
               </div>
@@ -245,13 +245,13 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 4: SMART TRACKING FEATURE SHOWCASE ===== */}
-      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/50 mb-8 border border-zinc-200/30">
+      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/30 mb-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           {/* Left text */}
           <div>
             <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#4fa5e8] bg-blue-50 px-3.5 py-1.5 rounded-full">Library Control</span>
-            <h2 className="text-4xl sm:text-5xl font-extrabold mt-6 mb-8 text-[#111111] tracking-tight leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+            <h2 className="text-5xl sm:text-6xl font-black mt-6 mb-8 text-[#111111] tracking-tight leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
               Keep your revision organized
             </h2>
             <ul className="space-y-5">
@@ -261,30 +261,30 @@ export default async function HomePage() {
                 "Categorize uploaded papers by semesters and subjects"
               ].map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3.5">
-                  <span className="flex h-5.5 w-5.5 shrink-0 items-center justify-center rounded-full bg-[#f4f7fa] border border-zinc-200 text-zinc-800 mt-0.5">
+                  <span className="flex h-5.5 w-5.5 shrink-0 items-center justify-center rounded-full bg-[#f4f7fa] text-zinc-900 mt-0.5 font-bold">
                     <Check className="h-3.5 w-3.5 stroke-[3]" />
                   </span>
-                  <span className="text-[13px] font-semibold text-[#555555]">{item}</span>
+                  <span className="text-[15px] font-bold text-zinc-800">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Right: Floating UI mockup with premium gradient backgrounds */}
-          <div className="relative aspect-[4/3] w-full bg-gradient-to-tr from-[#4fa5e8]/10 via-[#70b7f0]/5 to-[#99c8f2]/10 rounded-[36px] border border-zinc-150 shadow-inner overflow-hidden flex items-center justify-center p-8 group">
-            <div className="w-full bg-[#f4f7fa] rounded-2xl border border-zinc-200/60 p-6 shadow-2xl space-y-5 transition-transform duration-500 group-hover:scale-[1.02]">
+          <div className="relative aspect-[4/3] w-full bg-gradient-to-tr from-[#4fa5e8]/10 via-[#70b7f0]/5 to-[#99c8f2]/10 rounded-[36px] shadow-inner overflow-hidden flex items-center justify-center p-8 group">
+            <div className="w-full bg-[#f4f7fa] rounded-2xl p-6 shadow-2xl space-y-5 transition-transform duration-500 group-hover:scale-[1.02]">
               <div className="flex justify-between items-center">
                 <span className="text-xs font-bold text-zinc-800 uppercase tracking-wider">Stats Tracker</span>
-                <span className="text-[10px] font-bold text-[#4fa5e8] bg-white border border-zinc-200 px-2.5 py-0.5 rounded-full">Live Synced</span>
+                <span className="text-[10px] font-bold text-[#4fa5e8] bg-white border border-zinc-150 px-2.5 py-0.5 rounded-full">Live Synced</span>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="border border-zinc-200/60 p-4 rounded-xl bg-white shadow-sm">
+                <div className="p-4 rounded-xl bg-white shadow-sm">
                   <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider">Total Views</span>
-                  <p className="text-2xl font-black text-zinc-800 mt-1" style={{ fontFamily: "'Outfit', sans-serif" }}>4,219</p>
+                  <p className="text-3xl font-black text-zinc-950 mt-1" style={{ fontFamily: "'Outfit', sans-serif" }}>4,219</p>
                 </div>
-                <div className="border border-zinc-200/60 p-4 rounded-xl bg-white shadow-sm">
+                <div className="p-4 rounded-xl bg-white shadow-sm">
                   <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider">Downloads</span>
-                  <p className="text-2xl font-black text-zinc-800 mt-1" style={{ fontFamily: "'Outfit', sans-serif" }}>1,840</p>
+                  <p className="text-3xl font-black text-zinc-950 mt-1" style={{ fontFamily: "'Outfit', sans-serif" }}>1,840</p>
                 </div>
               </div>
             </div>
@@ -294,11 +294,11 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 5: TESTIMONIALS ===== */}
-      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/50 mb-8 border border-zinc-200/30">
+      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/30 mb-8">
         
         <header className="mb-20 text-center md:text-left">
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#4fa5e8] bg-blue-50 px-3.5 py-1.5 rounded-full">Student Voices</span>
-          <h2 className="text-4xl font-extrabold mt-6 text-[#111111]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+          <h2 className="text-5xl sm:text-6xl font-black mt-6 text-[#111111]" style={{ fontFamily: "'Outfit', sans-serif" }}>
             Incredibly effective at tracking notes
           </h2>
         </header>
@@ -324,8 +324,8 @@ export default async function HomePage() {
               gradient: "from-[#4fa5e8] to-[#70b7f0]"
             }
           ].map((t, idx) => (
-            <div key={idx} className="bg-[#f4f7fa] rounded-[32px] p-8 border border-zinc-200/60 shadow-sm flex flex-col justify-between hover:bg-white hover:border-blue-200 transition-all hover:shadow-lg">
-              <p className="text-[13.5px] leading-[1.8] text-[#555555] font-medium italic">
+            <div key={idx} className="bg-[#f4f7fa] rounded-[32px] p-8 shadow-sm flex flex-col justify-between h-[300px] hover:bg-white transition-all hover:shadow-xl">
+              <p className="text-[15px] leading-[1.8] text-zinc-800 font-bold italic">
                 &ldquo;{t.quote}&rdquo;
               </p>
               <div className="mt-8 flex items-center gap-3.5 pt-5 border-t border-zinc-200">
@@ -344,12 +344,12 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 6: FAQ ACCORDION SECTION ===== */}
-      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/50 mb-8 border border-zinc-200/30">
+      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/30 mb-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-400">FAQS</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold mt-5 text-[#111111] leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+            <h2 className="text-4xl sm:text-5xl font-black mt-5 text-[#111111] leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
               Dedicated to help you learn
             </h2>
           </div>
@@ -361,11 +361,11 @@ export default async function HomePage() {
               { q: "Can I manage or delete my uploaded documents?", a: "Yes, navigate to your Profile page by clicking your avatar. You can review all your publications there." }
             ].map((faq, i) => (
               <div key={i} className="border-b border-zinc-200/80 pb-5">
-                <h3 className="text-[14px] font-bold text-[#111111] flex justify-between items-center cursor-pointer py-2 hover:text-[#4fa5e8] transition-colors">
+                <h3 className="text-[16px] font-black text-[#111111] flex justify-between items-center cursor-pointer py-2 hover:text-[#4fa5e8] transition-colors">
                   {faq.q}
                   <ChevronDown className="h-4 w-4 text-zinc-400" />
                 </h3>
-                <p className="mt-2 text-[12.5px] leading-[1.8] text-[#666666] font-medium max-w-2xl">
+                <p className="mt-2 text-[14px] leading-[1.8] text-zinc-800 font-medium max-w-2xl">
                   {faq.a}
                 </p>
               </div>
@@ -376,10 +376,10 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 7: SUCCESS STORY SPOTLIGHT ===== */}
-      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/50 mb-8 border border-zinc-200/30">
+      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/30 mb-8">
         <div className="text-center">
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#4fa5e8] bg-blue-50 px-3.5 py-1.5 rounded-full">Contributor Spotlight</span>
-          <p className="max-w-3xl mx-auto text-2xl font-bold mt-8 text-[#111111] italic leading-[1.7]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+          <p className="max-w-3xl mx-auto text-3xl font-black mt-8 text-[#111111] italic leading-[1.7]" style={{ fontFamily: "'Outfit', sans-serif" }}>
             &ldquo;Sharing my lecture summaries helped me study better, while helping over 500 classmates download revision notes during semesters.&rdquo;
           </p>
           <div className="mt-10 flex flex-col items-center">
