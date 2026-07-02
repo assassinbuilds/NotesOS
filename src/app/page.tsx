@@ -110,12 +110,8 @@ export default async function HomePage() {
             Academic Notes<br />Directory
           </h1>
 
-          <p className="mt-6 max-w-xl text-[14px] sm:text-[15px] leading-[1.7] text-white/90 font-medium">
-            The platform is simple without excess details. Find notes pleasantly, like reading out of a clean physical notebook.
-          </p>
-
           {/* Search Bar */}
-          <div className="w-full max-w-lg mt-9">
+          <div className="w-full max-w-lg mt-6">
             <form action="/search" method="GET" className="relative flex items-center p-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-lg shadow-lg shadow-black/5 hover:border-white/30 transition-all">
               <Search className="absolute left-5 h-4.5 w-4.5 text-white/70" />
               <input 
@@ -134,7 +130,7 @@ export default async function HomePage() {
           </div>
 
           {/* Centered Notebook Mockup - In relative layout flow, clipped at the bottom to align perfectly with the stats card bottom */}
-          <div className="relative w-full max-w-[360px] h-[260px] overflow-hidden mt-[60px] z-10 flex justify-center items-start shrink-0 [clip-path:inset(0_0_92px_0)]">
+          <div className="relative w-full max-w-[360px] h-[260px] overflow-hidden mt-[45px] z-10 flex justify-center items-start shrink-0 [clip-path:inset(0_0_92px_0)]">
             <div className="relative w-full h-[360px] transition-transform duration-700 hover:scale-[1.02]">
               <Image
                 src="/hero-product.png"
