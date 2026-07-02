@@ -153,7 +153,7 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 3: FEATURE SHOWCASE (GRID BLOCK WITH NEARO CARDS) ===== */}
-      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/30 mb-8">
+      <section className="mx-auto max-w-[1300px] px-6 py-24">
         
         {/* Header */}
         <div className="text-center max-w-xl mx-auto mb-20">
@@ -164,10 +164,10 @@ export default async function HomePage() {
         </div>
 
         {/* Large Dashboard Card with beautiful gradient mockups */}
-        <div className="w-full bg-[#f4f7fa] rounded-[36px] p-8 md:p-14 shadow-inner mb-8 overflow-hidden relative group">
+        <div className="w-full bg-white border border-zinc-200/25 rounded-[36px] p-8 md:p-14 shadow-lg shadow-blue-900/5 mb-8 overflow-hidden relative group">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="rounded-full bg-white px-3.5 py-1 text-[10px] font-bold text-[#4fa5e8] uppercase tracking-wide">Interface Spotlight</span>
+              <span className="rounded-full bg-[#f4f7fa] px-3.5 py-1 text-[10px] font-bold text-[#4fa5e8] uppercase tracking-wide">Interface Spotlight</span>
               <h3 className="text-4xl sm:text-5xl font-black mt-5 text-[#111111] tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
                 A clean, unified document reader
               </h3>
@@ -175,7 +175,7 @@ export default async function HomePage() {
                 Say goodbye to standard browser PDF viewers. NotesOS provides side-by-side note stats, full-screen study modes, and zoom levels built directly into the UI.
               </p>
               <div className="mt-8 flex items-center gap-2.5">
-                <span className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-white text-[#4fa5e8]">
+                <span className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-[#f4f7fa] text-[#4fa5e8]">
                   <Check className="h-3 w-3 stroke-[3]" />
                 </span>
                 <span className="text-[14px] font-bold text-zinc-900">100% Ad-free reading environment</span>
@@ -226,8 +226,8 @@ export default async function HomePage() {
               desc: "No waiting loops, ads, or premium subscriptions. Download standard PDFs with a single click." 
             }
           ].map((card, i) => (
-            <div key={i} className="bg-[#f4f7fa] rounded-[32px] p-8 flex flex-col justify-between h-[300px] transition-all hover:bg-white hover:shadow-xl group">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white border border-zinc-205 group-hover:bg-blue-50 group-hover:border-blue-100 transition-colors">
+            <div key={i} className="bg-white border border-zinc-200/25 rounded-[32px] p-8 flex flex-col justify-between h-[300px] transition-all hover:shadow-xl group">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#f4f7fa] group-hover:bg-blue-50 group-hover:border-blue-100 transition-colors">
                 <card.icon className="h-5 w-5 text-[#111111] group-hover:text-[#4fa5e8] transition-colors" />
               </div>
               <div>
@@ -245,7 +245,7 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 4: SMART TRACKING FEATURE SHOWCASE ===== */}
-      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/30 mb-8">
+      <section className="mx-auto max-w-[1300px] px-6 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           {/* Left text */}
@@ -261,7 +261,7 @@ export default async function HomePage() {
                 "Categorize uploaded papers by semesters and subjects"
               ].map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3.5">
-                  <span className="flex h-5.5 w-5.5 shrink-0 items-center justify-center rounded-full bg-[#f4f7fa] text-zinc-900 mt-0.5 font-bold">
+                  <span className="flex h-5.5 w-5.5 shrink-0 items-center justify-center rounded-full bg-white text-zinc-900 mt-0.5 font-bold">
                     <Check className="h-3.5 w-3.5 stroke-[3]" />
                   </span>
                   <span className="text-[15px] font-bold text-zinc-800">{item}</span>
@@ -272,17 +272,17 @@ export default async function HomePage() {
 
           {/* Right: Floating UI mockup with premium gradient backgrounds */}
           <div className="relative aspect-[4/3] w-full bg-gradient-to-tr from-[#4fa5e8]/10 via-[#70b7f0]/5 to-[#99c8f2]/10 rounded-[36px] shadow-inner overflow-hidden flex items-center justify-center p-8 group">
-            <div className="w-full bg-[#f4f7fa] rounded-2xl p-6 shadow-2xl space-y-5 transition-transform duration-500 group-hover:scale-[1.02]">
+            <div className="w-full bg-white border border-zinc-200/25 rounded-2xl p-6 shadow-2xl space-y-5 transition-transform duration-500 group-hover:scale-[1.02]">
               <div className="flex justify-between items-center">
                 <span className="text-xs font-bold text-zinc-800 uppercase tracking-wider">Stats Tracker</span>
-                <span className="text-[10px] font-bold text-[#4fa5e8] bg-white border border-zinc-150 px-2.5 py-0.5 rounded-full">Live Synced</span>
+                <span className="text-[10px] font-bold text-[#4fa5e8] bg-[#f4f7fa] px-2.5 py-0.5 rounded-full">Live Synced</span>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl bg-white shadow-sm">
+                <div className="p-4 rounded-xl bg-[#f4f7fa] shadow-inner">
                   <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider">Total Views</span>
                   <p className="text-3xl font-black text-zinc-950 mt-1" style={{ fontFamily: "'Outfit', sans-serif" }}>4,219</p>
                 </div>
-                <div className="p-4 rounded-xl bg-white shadow-sm">
+                <div className="p-4 rounded-xl bg-[#f4f7fa] shadow-inner">
                   <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider">Downloads</span>
                   <p className="text-3xl font-black text-zinc-950 mt-1" style={{ fontFamily: "'Outfit', sans-serif" }}>1,840</p>
                 </div>
@@ -294,7 +294,7 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 5: TESTIMONIALS ===== */}
-      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/30 mb-8">
+      <section className="mx-auto max-w-[1300px] px-6 py-24">
         
         <header className="mb-20 text-center md:text-left">
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#4fa5e8] bg-blue-50 px-3.5 py-1.5 rounded-full">Student Voices</span>
@@ -324,7 +324,7 @@ export default async function HomePage() {
               gradient: "from-[#4fa5e8] to-[#70b7f0]"
             }
           ].map((t, idx) => (
-            <div key={idx} className="bg-[#f4f7fa] rounded-[32px] p-8 shadow-sm flex flex-col justify-between h-[300px] hover:bg-white transition-all hover:shadow-xl">
+            <div key={idx} className="bg-white border border-zinc-200/25 rounded-[32px] p-8 shadow-sm flex flex-col justify-between h-[300px] hover:shadow-xl transition-all">
               <p className="text-[15px] leading-[1.8] text-zinc-800 font-bold italic">
                 &ldquo;{t.quote}&rdquo;
               </p>
@@ -344,7 +344,7 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 6: FAQ ACCORDION SECTION ===== */}
-      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/30 mb-8">
+      <section className="mx-auto max-w-[1300px] px-6 py-24">
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div>
@@ -354,13 +354,13 @@ export default async function HomePage() {
             </h2>
           </div>
           
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-2 bg-white rounded-[36px] p-8 md:p-12 border border-zinc-200/25 shadow-sm space-y-4">
             {[
               { q: "Is the platform completely free?", a: "Yes, NotesOS is built by students, for students. There are no fees, paywalls, or premium tiers." },
               { q: "How do I upload external file links?", a: "Simply switch the uploader mode to 'Link', paste your Google Drive URL, and customize your note details." },
               { q: "Can I manage or delete my uploaded documents?", a: "Yes, navigate to your Profile page by clicking your avatar. You can review all your publications there." }
             ].map((faq, i) => (
-              <div key={i} className="border-b border-zinc-200/80 pb-5">
+              <div key={i} className="border-b border-zinc-200/80 pb-5 last:border-b-0 last:pb-0">
                 <h3 className="text-[16px] font-black text-[#111111] flex justify-between items-center cursor-pointer py-2 hover:text-[#4fa5e8] transition-colors">
                   {faq.q}
                   <ChevronDown className="h-4 w-4 text-zinc-400" />
@@ -376,7 +376,7 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 7: SUCCESS STORY SPOTLIGHT ===== */}
-      <section className="mx-auto max-w-[1300px] rounded-[40px] bg-white p-12 md:p-20 shadow-xl shadow-zinc-200/30 mb-8">
+      <section className="mx-auto max-w-[1300px] px-6 py-24">
         <div className="text-center">
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#4fa5e8] bg-blue-50 px-3.5 py-1.5 rounded-full">Contributor Spotlight</span>
           <p className="max-w-3xl mx-auto text-3xl font-black mt-8 text-[#111111] italic leading-[1.7]" style={{ fontFamily: "'Outfit', sans-serif" }}>
