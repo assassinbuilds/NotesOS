@@ -100,12 +100,8 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Main Hero Content - Centers content vertically and horizontally */}
-        <div className="flex-1 flex flex-col justify-center items-center max-w-4xl w-full mx-auto px-6 pt-6 pb-0 relative z-10 text-center">
-          
-          <span className="text-[9px] font-black uppercase tracking-[0.25em] text-white/90 bg-white/15 border border-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-6">
-            Now Online
-          </span>
+        {/* Main Hero Content - Positioned toward top and centered horizontally */}
+        <div className="flex-1 flex flex-col justify-start items-center max-w-4xl w-full mx-auto px-6 pt-16 md:pt-20 pb-0 relative z-10 text-center">
 
           <h1 
             className="text-[3.6rem] sm:text-[4.8rem] lg:text-[5.4rem] font-black leading-[1.05] tracking-tighter text-white" 
