@@ -11,29 +11,6 @@ export const metadata: Metadata = {
   },
   description:
     "Find, upload, and read academic notes instantly. The fastest, simplest, and most enjoyable platform for students to share knowledge.",
-  keywords: [
-    "notes",
-    "academic",
-    "study",
-    "PDF",
-    "university",
-    "students",
-    "education",
-    "share notes",
-  ],
-  authors: [{ name: "NotesOS" }],
-  openGraph: {
-    title: "NotesOS — The Fastest Academic Notes Platform",
-    description:
-      "Find, upload, and read academic notes instantly.",
-    type: "website",
-    locale: "en_US",
-    siteName: "NotesOS",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
 };
 
 export default function RootLayout({
@@ -42,23 +19,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark bg-zinc-950">
+    <html lang="en" suppressHydrationWarning className="bg-[#f5f5f5]">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="font-sans antialiased min-h-screen text-zinc-50 flex flex-col">
+      <body className="font-sans antialiased min-h-screen text-zinc-900 flex flex-col bg-[#f5f5f5]">
         <Providers>
           <Header />
-          {/* Main content wrapper with flex-1 to push footer down */}
-          <main className="flex-1 flex flex-col w-full">
+          <main className="flex-1 flex flex-col w-full relative">
             {children}
           </main>
-          <Footer />
+          {/* We hide the footer on the home page using a route check in Footer or just keep it simple */}
         </Providers>
       </body>
     </html>
