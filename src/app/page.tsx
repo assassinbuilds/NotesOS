@@ -70,7 +70,7 @@ export default async function HomePage() {
         
         {/* Main Headline */}
         <h1 id="hero-heading" className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
-          <span className="text-gradient">Unlimited Academic</span>
+          <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Unlimited Academic</span>
           <br />
           <span className="text-zinc-50 block mt-2">Notes Directory</span>
         </h1>

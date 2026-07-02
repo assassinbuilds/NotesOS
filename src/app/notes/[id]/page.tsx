@@ -84,22 +84,27 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
 
   if (loading) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center bg-[#08080c]">
-        <div className="w-6 h-6 border-2 border-purple-500 border-t-transparent rounded-full animate-spin" />
-      </div>
+      <main className="flex min-h-[60vh] items-center justify-center bg-zinc-950 px-4">
+        <div className="h-6 w-6 animate-spin rounded-full border-2 border-purple-500 border-t-transparent" aria-label="Loading document..." role="status" />
+      </main>
     );
   }
 
   if (!note) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center px-4 bg-[#08080c]">
-        <div className="text-center glass-card p-8 max-w-xs">
-          <FileText className="w-8 h-8 text-zinc-650 mx-auto mb-3" />
-          <h1 className="text-sm font-bold text-white">Note not found</h1>
-          <p className="text-xs text-zinc-500 mt-1 mb-4">This note may have been removed.</p>
-          <Link href="/" className="btn-primary px-5 py-2 text-xs">Go Home</Link>
-        </div>
-      </div>
+      <main className="flex min-h-[60vh] items-center justify-center bg-zinc-950 px-4">
+        <section aria-label="Error" className="w-full max-w-xs rounded-2xl border border-white/10 bg-white/[0.02] p-8 text-center backdrop-blur-md">
+          <FileText className="mx-auto mb-3 h-8 w-8 text-zinc-600" aria-hidden="true" />
+          <h1 className="text-sm font-bold text-zinc-50">Note not found</h1>
+          <p className="mb-4 mt-1 text-xs text-zinc-500">This note may have been removed.</p>
+          <Link 
+            href="/" 
+            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-5 py-2 text-xs font-semibold text-white shadow-md transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          >
+            Go Home
+          </Link>
+        </section>
+      </main>
     );
   }
 
@@ -113,30 +118,56 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
   ];
 
   return (
-    <div ref={containerRef} className="flex flex-col min-h-[calc(100vh-4rem)] bg-[#08080c] relative">
+    <div ref={containerRef} className="relative flex min-h-[calc(100vh-4rem)] flex-col bg-zinc-950">
 
-      {/* Toolbar */}
-      <div className="sticky top-16 z-40 border-b border-white/[0.04] bg-[#08080c]/80 backdrop-blur-xl">
-        <div className="site-container flex items-center justify-between h-14 gap-3">
-          <div className="flex items-center gap-3 min-w-0">
-            <Link href="/" className="shrink-0 w-8 h-8 rounded-full border border-white/[0.06] bg-white/[0.02] flex items-center justify-center hover:bg-white/[0.05] transition-colors">
-              <ArrowLeft className="w-4 h-4 text-white" />
+      {/* Document Toolbar */}
+      <nav aria-label="Document toolbar" className="sticky top-16 z-40 w-full border-b border-white/5 bg-zinc-950/80 backdrop-blur-xl">
+        <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
+          
+          {/* Back & Title */}
+          <div className="flex min-w-0 items-center gap-3">
+            <Link 
+              href="/" 
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.02] text-zinc-50 transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              aria-label="Go back"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             </Link>
             <div className="min-w-0">
-              <h1 className="text-sm font-bold text-white truncate">{note.title}</h1>
-              <span className="text-[10px] text-zinc-500 hidden sm:block mt-0.5">{note.subject}{note.semester ? ` • Sem ${note.semester}` : ""}</span>
+              <h1 className="truncate text-sm font-bold text-zinc-50">{note.title}</h1>
+              <span className="hidden mt-0.5 text-[10px] text-zinc-500 sm:block">{note.subject}{note.semester ? ` • Sem ${note.semester}` : ""}</span>
             </div>
           </div>
 
+          {/* Controls */}
           <div className="flex items-center gap-1.5">
             {!isExternal && (
               <>
-                <button onClick={() => setZoom(Math.max(50, zoom - 10))} className="w-8 h-8 rounded-full border border-white/[0.06] bg-white/[0.02] flex items-center justify-center hover:bg-white/[0.05] transition-colors text-white" aria-label="Zoom out"><ZoomOut className="w-3.5 h-3.5" /></button>
-                <span className="text-xs font-semibold text-zinc-400 w-9 text-center">{zoom}%</span>
-                <button onClick={() => setZoom(Math.min(200, zoom + 10))} className="w-8 h-8 rounded-full border border-white/[0.06] bg-white/[0.02] flex items-center justify-center hover:bg-white/[0.05] transition-colors text-white" aria-label="Zoom in"><ZoomIn className="w-3.5 h-3.5" /></button>
-                <div className="w-px h-4 bg-white/[0.06] mx-0.5" />
-                <button onClick={toggleFullscreen} className="w-8 h-8 rounded-full border border-white/[0.06] bg-white/[0.02] flex items-center justify-center hover:bg-white/[0.05] transition-colors text-white" aria-label="Fullscreen">
-                  {isFullscreen ? <Minimize className="w-3.5 h-3.5" /> : <Maximize className="w-3.5 h-3.5" />}
+                <button 
+                  onClick={() => setZoom(Math.max(50, zoom - 10))} 
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.02] text-zinc-50 transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500" 
+                  aria-label="Zoom out"
+                >
+                  <ZoomOut className="h-3.5 w-3.5" aria-hidden="true" />
+                </button>
+                <span className="w-9 text-center text-xs font-semibold text-zinc-400" aria-live="polite" aria-atomic="true">
+                  {zoom}%
+                </span>
+                <button 
+                  onClick={() => setZoom(Math.min(200, zoom + 10))} 
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.02] text-zinc-50 transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500" 
+                  aria-label="Zoom in"
+                >
+                  <ZoomIn className="h-3.5 w-3.5" aria-hidden="true" />
+                </button>
+                <div className="mx-0.5 h-4 w-px bg-white/10" aria-hidden="true" />
+                <button 
+                  onClick={toggleFullscreen} 
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.02] text-zinc-50 transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500" 
+                  aria-label={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+                  aria-pressed={isFullscreen}
+                >
+                  {isFullscreen ? <Minimize className="h-3.5 w-3.5" aria-hidden="true" /> : <Maximize className="h-3.5 w-3.5" aria-hidden="true" />}
                 </button>
               </>
             )}
@@ -146,49 +177,52 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
               target={isExternal ? "_blank" : undefined}
               rel={isExternal ? "noopener noreferrer" : undefined}
               download={!isExternal}
-              className="btn-primary px-5 py-2 text-xs ml-1 rounded-full"
+              className="ml-1 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-5 py-2 text-xs font-semibold text-white shadow-md transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
             >
               {isExternal ? "Open" : "Download"}
             </a>
           </div>
         </div>
-      </div>
+      </nav>
 
-      <div className="flex flex-1 flex-col lg:flex-row relative z-10">
+      <main className="relative z-10 flex flex-1 flex-col lg:flex-row">
 
-        {/* Main Content Viewer */}
-        <div className="flex-1 flex items-start justify-center p-4 sm:p-6 overflow-auto bg-[#0b0b0f] border-b lg:border-b-0 lg:border-r border-white/[0.04]">
+        {/* Viewer */}
+        <section aria-label="Document Viewer" className="flex flex-1 items-start justify-center overflow-auto border-b border-white/5 bg-[#0b0b0f] p-4 sm:p-6 lg:border-b-0 lg:border-r">
           {isExternal ? (
-            <div className="w-full max-w-sm text-center py-10 px-6 glass-card my-auto animate-scale-in">
+            <div className="my-auto w-full max-w-sm rounded-2xl border border-white/10 bg-white/[0.02] px-6 py-10 text-center backdrop-blur-md animate-in zoom-in-95 duration-300">
               {note.thumbnailUrl ? (
-                <div className="relative aspect-[3/4] max-w-[180px] mx-auto overflow-hidden mb-5 rounded-xl border border-white/[0.06]">
-                  <img src={note.thumbnailUrl} alt={note.title} className="w-full h-full object-cover" />
-                  <span className="absolute top-2 right-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded px-2 py-0.5 text-[8px] font-bold">Drive</span>
+                <div className="mx-auto mb-5 relative aspect-[3/4] max-w-[180px] overflow-hidden rounded-xl border border-white/10">
+                  <img src={note.thumbnailUrl} alt={note.title} className="h-full w-full object-cover" />
+                  <span className="absolute right-2 top-2 rounded bg-gradient-to-r from-purple-500 to-pink-500 px-2 py-0.5 text-[8px] font-bold text-white">Drive</span>
                 </div>
               ) : (
-                <div className="w-12 h-12 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto mb-5">
-                  <ExternalLink className="w-5 h-5 text-purple-400" />
+                <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-purple-500/20 bg-purple-500/10" aria-hidden="true">
+                  <ExternalLink className="h-5 w-5 text-purple-400" />
                 </div>
               )}
 
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[10px] font-bold mb-3">
-                <ShieldAlert className="w-3.5 h-3.5" /> External Link
+              <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-purple-500/20 bg-purple-500/10 px-3 py-1 text-[10px] font-bold text-purple-400">
+                <ShieldAlert className="h-3.5 w-3.5" aria-hidden="true" /> External Link
               </span>
 
-              <h2 className="text-sm font-bold text-white mb-1.5 leading-snug">{note.title}</h2>
-              <p className="text-xs text-zinc-500 mb-5 leading-relaxed">
+              <h2 className="mb-1.5 text-sm font-bold leading-snug text-zinc-50">{note.title}</h2>
+              <p className="mb-5 text-xs leading-relaxed text-zinc-400">
                 {note.description || "This resource is hosted externally. Click below to view."}
               </p>
 
-              <a href={note.fileUrl} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-bold text-xs hover:bg-zinc-100 transition-colors"
+              <a 
+                href={note.fileUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-zinc-50 px-6 py-3 text-xs font-bold text-zinc-950 transition-colors hover:bg-zinc-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
               >
-                <ExternalLink className="w-4 h-4" /> Open External Link
+                <ExternalLink className="h-4 w-4" aria-hidden="true" /> Open External Link
               </a>
             </div>
           ) : (
-            <div className="w-full max-w-5xl" style={{ transform: `scale(${zoom / 100})`, transformOrigin: "top center" }}>
-              <div className="rounded-xl border border-white/[0.06] overflow-hidden bg-white shadow-2xl">
+            <div className="w-full max-w-5xl transition-transform duration-200 ease-out" style={{ transform: `scale(${zoom / 100})`, transformOrigin: "top center" }}>
+              <div className="overflow-hidden rounded-xl border border-white/10 bg-white shadow-2xl">
                 <iframe
                   src={`${note.fileUrl}#toolbar=0`}
                   className="w-full bg-white"
@@ -198,103 +232,105 @@ export default function NoteReaderPage({ params }: { params: Promise<{ id: strin
               </div>
             </div>
           )}
-        </div>
+        </section>
 
-        {/* Sidebar */}
-        <aside className="w-full lg:w-72 overflow-y-auto bg-[#08080c]/50 backdrop-blur-md">
-          <div className="p-5 space-y-5">
+        {/* Sidebar Metadata */}
+        <aside aria-label="Document Details" className="w-full overflow-y-auto bg-zinc-950/50 backdrop-blur-md lg:w-72">
+          <div className="space-y-5 p-5">
+            
             {/* Title Block */}
-            <div className="border-b border-white/[0.04] pb-4">
-              <h2 className="font-extrabold text-sm text-white leading-snug">{note.title}</h2>
-              {note.description && <p className="text-xs text-zinc-500 mt-1.5 leading-relaxed">{note.description}</p>}
+            <div className="border-b border-white/5 pb-4">
+              <h2 className="text-sm font-extrabold leading-snug text-zinc-50">{note.title}</h2>
+              {note.description && <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">{note.description}</p>}
             </div>
 
             {/* Author */}
-            <div className="flex items-center gap-3 glass-card p-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 text-white flex items-center justify-center text-xs font-bold shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+            <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-3 backdrop-blur-md">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 text-xs font-bold text-white shadow-sm" aria-hidden="true">
                 {note.author.name[0]?.toUpperCase()}
               </div>
               <div className="min-w-0">
-                <p className="text-xs font-bold text-white truncate">{note.author.name}</p>
-                <p className="text-[10px] text-zinc-500 flex items-center gap-1 mt-0.5">
-                  <Calendar className="w-3.5 h-3.5" /> {formatDate(note.createdAt)}
+                <p className="truncate text-xs font-bold text-zinc-50">{note.author.name}</p>
+                <p className="mt-0.5 flex items-center gap-1 text-[10px] text-zinc-500">
+                  <Calendar className="h-3.5 w-3.5" aria-hidden="true" /> {formatDate(note.createdAt)}
                 </p>
               </div>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-2">
+            {/* Statistics */}
+            <ul aria-label="Statistics" className="grid grid-cols-2 gap-2">
               {stats.map((stat) => (
-                <div key={stat.label} className="glass-card p-3 flex items-center gap-2.5">
-                  <stat.icon className="w-4 h-4 text-purple-400 shrink-0" />
+                <li key={stat.label} className="flex items-center gap-2.5 rounded-2xl border border-white/10 bg-white/[0.02] p-3 backdrop-blur-md">
+                  <stat.icon className="h-4 w-4 shrink-0 text-purple-400" aria-hidden="true" />
                   <div>
-                    <p className="text-xs font-extrabold text-white">{stat.value}</p>
-                    <p className="text-[9px] text-zinc-500 mt-0.5 font-medium uppercase tracking-wider">{stat.label}</p>
+                    <p className="text-xs font-extrabold text-zinc-50">{stat.value}</p>
+                    <p className="mt-0.5 text-[9px] font-medium uppercase tracking-wider text-zinc-500">{stat.label}</p>
                   </div>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
 
-            {/* Meta */}
-            <div className="border-t border-white/[0.04] pt-4 space-y-2.5">
+            {/* Meta Properties */}
+            <dl className="space-y-2.5 border-t border-white/5 pt-4">
               <div className="flex justify-between text-xs">
-                <span className="text-zinc-500">Subject</span>
-                <span className="font-bold text-white">{note.subject}</span>
+                <dt className="text-zinc-500">Subject</dt>
+                <dd className="font-bold text-zinc-50">{note.subject}</dd>
               </div>
               {note.semester && (
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-500">Semester</span>
-                  <span className="font-bold text-white">{note.semester}</span>
+                  <dt className="text-zinc-500">Semester</dt>
+                  <dd className="font-bold text-zinc-50">{note.semester}</dd>
                 </div>
               )}
               {note.university && (
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-500">University</span>
-                  <span className="font-bold text-white truncate max-w-[120px] text-right">{note.university}</span>
+                  <dt className="text-zinc-500">University</dt>
+                  <dd className="max-w-[120px] truncate text-right font-bold text-zinc-50">{note.university}</dd>
                 </div>
               )}
               <div className="flex justify-between text-xs">
-                <span className="text-zinc-500">Source</span>
-                <span className="px-2 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[10px] font-bold">
+                <dt className="text-zinc-500">Source</dt>
+                <dd className="rounded-full border border-purple-500/20 bg-purple-500/10 px-2 py-0.5 text-[10px] font-bold text-purple-400">
                   {isExternal ? "Google Drive" : "Direct PDF"}
-                </span>
+                </dd>
               </div>
-            </div>
+            </dl>
 
             {/* Tags */}
             {note.tags.length > 0 && (
-              <div className="pt-2 space-y-2">
-                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Tags</p>
-                <div className="flex flex-wrap gap-1.5">
+              <div className="pt-2">
+                <h3 className="mb-2 text-[10px] font-bold uppercase tracking-wider text-zinc-500">Tags</h3>
+                <ul className="flex flex-wrap gap-1.5" aria-label="Document tags">
                   {note.tags.map((tag) => (
-                    <Link
-                      key={tag}
-                      href={`/search?q=${encodeURIComponent(tag)}`}
-                      className="px-2.5 py-0.5 rounded-full bg-white/[0.02] border border-white/[0.06] text-[10px] text-zinc-400 hover:text-white transition-colors"
-                    >
-                      {tag}
-                    </Link>
+                    <li key={tag}>
+                      <Link
+                        href={`/search?q=${encodeURIComponent(tag)}`}
+                        className="rounded-full border border-white/10 bg-white/[0.02] px-2.5 py-0.5 text-[10px] text-zinc-400 transition-colors hover:bg-white/5 hover:text-zinc-50 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      >
+                        {tag}
+                      </Link>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             )}
 
-            {/* Action Download */}
-            <div className="pt-3 border-t border-white/[0.04]">
+            {/* Action */}
+            <div className="border-t border-white/5 pt-4">
               <a
                 href={note.fileUrl}
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noopener noreferrer" : undefined}
                 download={!isExternal}
-                className="btn-primary w-full py-3 text-xs rounded-full"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 py-3 text-xs font-bold text-white shadow-md transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
               >
-                {isExternal ? <ExternalLink className="w-4 h-4" /> : <Download className="w-4 h-4" />}
+                {isExternal ? <ExternalLink className="h-4 w-4" aria-hidden="true" /> : <Download className="h-4 w-4" aria-hidden="true" />}
                 {isExternal ? "Open in Google Drive" : "Download PDF Document"}
               </a>
             </div>
           </div>
         </aside>
-      </div>
+      </main>
     </div>
   );
 }

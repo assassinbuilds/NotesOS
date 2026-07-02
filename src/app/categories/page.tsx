@@ -81,7 +81,7 @@ export default async function CategoriesPage() {
               Academic Library
             </span>
             <h1 id="categories-heading" className="mb-4 text-4xl sm:text-5xl font-extrabold tracking-tight leading-none text-zinc-50">
-              Browse <span className="text-gradient">Subjects</span>
+              Browse <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Subjects</span>
             </h1>
             <p className="max-w-md text-sm leading-relaxed text-zinc-400">
               Explore {categoriesFromDb.length} core subject domains with over {totalNotes} notes published by verified contributors.

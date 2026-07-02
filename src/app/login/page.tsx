@@ -40,95 +40,103 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative overflow-hidden bg-[#08080c] min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 py-12">
+    <div className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center overflow-hidden bg-zinc-950 px-4 py-12 text-zinc-50 selection:bg-purple-500/30">
       
-      {/* Ambient glow */}
-      <div className="hero-glow" />
+      {/* Decorative ambient glow */}
+      <div 
+        aria-hidden="true" 
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/10 blur-[100px]" 
+      />
 
-      <div className="w-full max-w-sm relative z-10 animate-fade-in">
+      <main className="relative z-10 w-full max-w-sm animate-in zoom-in-95 duration-500">
 
         {/* Header */}
-        <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 mb-4 group">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.3)]">
-              <span className="text-white font-bold text-sm">N</span>
+        <header className="mb-6 text-center">
+          <div className="group mb-4 flex items-center justify-center gap-2">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-500 shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+              <span className="text-sm font-bold text-white">N</span>
             </div>
-            <span className="font-bold text-sm text-white">NotesOS</span>
+            <span className="text-sm font-bold text-white">NotesOS</span>
           </div>
           <h1 className="text-xl font-extrabold text-white">Welcome back</h1>
           <p className="mt-1 text-xs text-zinc-500">Sign in to access study directories</p>
-        </div>
+        </header>
 
         {/* Form Card */}
-        <div className="glass-card p-6 sm:p-8">
+        <section aria-label="Sign in form" className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 shadow-2xl backdrop-blur-md sm:p-8">
           {error && (
-            <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 text-red-400 text-xs rounded-xl mb-5 animate-scale-in">
-              <AlertCircle className="w-4 h-4 shrink-0" />
+            <div role="alert" className="mb-5 flex items-center gap-2 rounded-xl border border-red-500/20 bg-red-500/10 p-3 text-xs text-red-400 animate-in slide-in-from-top-2 duration-300">
+              <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
               <span>{error}</span>
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">Email Address</label>
+              <label htmlFor="email" className="mb-2 block text-[10px] font-bold uppercase tracking-wider text-zinc-400">Email Address</label>
               <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" aria-hidden="true" />
                 <input
-                  id="email" type="email" required value={email}
+                  id="email" 
+                  type="email" 
+                  required 
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@university.edu"
-                  className="input pl-11 py-3 text-xs"
+                  className="w-full rounded-full border border-white/10 bg-zinc-900/50 py-3 pl-11 pr-4 text-xs text-zinc-50 outline-none transition-colors focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                 />
               </div>
             </div>
 
             <div>
-              <div className="flex items-center justify-between mb-2">
-                <label htmlFor="password" className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Password</label>
-                <Link href="#" className="text-xs font-semibold text-purple-400 hover:underline">Forgot?</Link>
+              <div className="mb-2 flex items-center justify-between">
+                <label htmlFor="password" className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Password</label>
+                <Link href="#" className="text-xs font-semibold text-purple-400 hover:underline focus:outline-none focus:ring-2 focus:ring-purple-500 rounded">Forgot?</Link>
               </div>
               <div className="relative">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" aria-hidden="true" />
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  required value={password}
+                  required 
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="input pl-11 pr-11 py-3 text-xs"
+                  className="w-full rounded-full border border-white/10 bg-zinc-900/50 py-3 pl-11 pr-11 text-xs text-zinc-50 outline-none transition-colors focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white transition-colors"
-                  aria-label="Toggle password visibility"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 rounded text-zinc-500 transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? <EyeOff className="h-4 w-4" aria-hidden="true" /> : <Eye className="h-4 w-4" aria-hidden="true" />}
                 </button>
               </div>
             </div>
 
             <button
-              type="submit" disabled={loading}
-              className="w-full btn-primary py-3 text-xs uppercase tracking-wider font-bold rounded-full disabled:opacity-50 mt-2"
+              type="submit" 
+              disabled={loading}
+              className="mt-2 flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-md transition-transform disabled:cursor-not-allowed disabled:opacity-50 hover:enabled:scale-105 hover:enabled:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-zinc-900"
               id="login-submit"
             >
               {loading ? (
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto" />
+                <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" aria-hidden="true" />
               ) : (
                 <>
-                  <LogIn className="w-4 h-4" /> Sign In
+                  <LogIn className="h-4 w-4" aria-hidden="true" /> Sign In
                 </>
               )}
             </button>
           </form>
-        </div>
+        </section>
 
-        <p className="text-center text-xs text-zinc-500 mt-5">
+        <p className="mt-5 text-center text-xs text-zinc-500">
           Don&apos;t have an account?{" "}
-          <Link href="/register" className="text-purple-400 font-semibold hover:underline">Create one</Link>
+          <Link href="/register" className="font-semibold text-purple-400 hover:underline focus:outline-none focus:ring-2 focus:ring-purple-500 rounded">Create one</Link>
         </p>
-      </div>
+      </main>
     </div>
   );
 }
