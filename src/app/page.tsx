@@ -138,7 +138,7 @@ export default async function HomePage() {
           </div>
 
           {/* Centered Notebook Mockup - Positioned absolutely at the bottom to guarantee perfect alignment with the stats card bottom */}
-          <div className="absolute bottom-[-36px] left-1/2 -translate-x-1/2 w-full max-w-[360px] h-[180px] overflow-hidden z-10 flex justify-center items-start shrink-0">
+          <div className="absolute bottom-[10px] left-1/2 -translate-x-1/2 w-full max-w-[360px] h-[180px] overflow-hidden z-10 flex justify-center items-start shrink-0">
             <div className="relative w-full h-[360px] transition-transform duration-700 hover:scale-[1.02]">
               <Image
                 src="/hero-product.png"
