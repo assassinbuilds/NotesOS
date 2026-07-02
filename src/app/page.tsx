@@ -19,7 +19,7 @@ export default async function HomePage() {
     <div className="w-full bg-[#e6ebf0] text-[#1a1a1a] font-sans selection:bg-blue-100 pb-20">
       
       {/* ===== HERO SECTION (FLOATING SKY BLUE GRADIENT CARD) ===== */}
-      <section className="relative mx-auto max-w-[1300px] mt-28 rounded-[40px] bg-gradient-to-b from-[#4fa5e8] via-[#70b7f0] to-[#99c8f2] text-white p-12 md:p-20 overflow-hidden shadow-2xl shadow-blue-900/10">
+      <section className="relative mx-auto max-w-[1300px] mt-24 mb-8 rounded-[40px] bg-gradient-to-b from-[#4fa5e8] via-[#70b7f0] to-[#99c8f2] text-white p-12 md:p-20 overflow-hidden shadow-2xl shadow-blue-900/10">
         
         {/* Subtle white grid overlay inside hero */}
         <div 
@@ -127,17 +127,10 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-12 flex items-center gap-3">
-          <div className="flex h-10 w-6 items-center justify-center rounded-full border border-white/30 bg-white/10 backdrop-blur-sm shadow-sm">
-            <div className="h-1.5 w-1.5 rounded-full bg-white animate-bounce" />
-          </div>
-          <span className="text-[11px] font-bold text-white/70 uppercase tracking-widest">Scroll Down</span>
-        </div>
       </section>
 
       {/* ===== SECTION 2: UNIVERSITY PARTNERS LOGO STRIP ===== */}
-      <section className="py-14 max-w-[1300px] mx-auto overflow-hidden">
+      <section className="py-6 max-w-[1300px] mx-auto overflow-hidden">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 px-6">
           <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#888888]">
             Trusted by students from top institutions
