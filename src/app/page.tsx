@@ -143,9 +143,9 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Centered Notebook Mockup - Align to top, overflow-hidden wrapper to crop only the bottom */}
-          <div className="relative w-full overflow-hidden h-[320px] mt-12 flex justify-center items-start z-10">
-            <div className="relative w-full max-w-[260px] aspect-[1/2] transition-transform duration-700 hover:scale-[1.02]">
+          {/* Centered Notebook Mockup - Extends to the bottom and cropped by card's rounded-b edge */}
+          <div className="relative w-full overflow-hidden h-[350px] mt-12 flex justify-center items-start z-10">
+            <div className="relative w-full max-w-[260px] aspect-[1/2] translate-y-[80px] transition-transform duration-700 hover:scale-[1.02]">
               <Image
                 src="/hero-product.png"
                 alt="Minimalist Black Notebook"
@@ -157,8 +157,8 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Bottom Glassmorphic Stats Grid Row - Half above, half below bottom line */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl w-full mx-auto mt-6 relative z-20 translate-y-1/2">
+          {/* Bottom Glassmorphic Stats Grid Row - Overlapping the bottom of the notebook */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl w-full mx-auto mt-[-50px] relative z-20 translate-y-1/2">
             {[
               { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
               { number: formatStatNumber(totalUsers), label: "STUDENTS ACTIVE" },
