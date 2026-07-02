@@ -19,7 +19,7 @@ export default async function HomePage() {
     <div className="w-full bg-[#e6ebf0] text-[#1a1a1a] font-sans selection:bg-blue-100 pb-20">
       
       {/* ===== HERO SECTION (FLOATING SKY BLUE GRADIENT CARD) ===== */}
-      <section className="relative mx-auto max-w-[1300px] mt-16 mb-8 rounded-[40px] bg-gradient-to-b from-[#4fa5e8] via-[#70b7f0] to-[#99c8f2] text-white p-12 md:p-20 overflow-hidden shadow-2xl shadow-blue-900/10">
+      <section className="relative mx-auto max-w-[1300px] mt-24 mb-8 rounded-[40px] bg-gradient-to-b from-[#4fa5e8] via-[#70b7f0] to-[#99c8f2] text-white p-10 md:p-14 overflow-hidden shadow-2xl shadow-blue-900/10">
         
         {/* Subtle white grid overlay inside hero */}
         <div 
@@ -42,7 +42,7 @@ export default async function HomePage() {
           {/* Left Column: Typography & CTA */}
           <div className="flex flex-col justify-center pr-4">
             <h1 
-              className="text-[4.2rem] sm:text-[4.8rem] font-black leading-[1.02] tracking-tighter text-white" 
+              className="text-[3.2rem] sm:text-[3.8rem] font-black leading-[1.05] tracking-tighter text-white" 
               style={{ fontFamily: "'Outfit', sans-serif" }}
             >
               Academic<br />
@@ -70,14 +70,14 @@ export default async function HomePage() {
           </div>
 
           {/* Center Column: Product Image */}
-          <div className="flex justify-center relative items-center min-h-[500px]">
-            <div className="relative w-full max-w-[320px] aspect-[1/2] transition-transform duration-700 hover:scale-[1.02]">
+          <div className="flex justify-center relative items-center min-h-[380px]">
+            <div className="relative w-full max-w-[240px] aspect-[1/2] transition-transform duration-700 hover:scale-[1.02]">
               <Image
                 src="/hero-product.png"
                 alt="Minimalist Black Notebook"
                 fill
-                sizes="(max-width: 768px) 100vw, 320px"
-                className="object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.15)] mix-blend-multiply"
+                sizes="(max-width: 768px) 100vw, 240px"
+                className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] mix-blend-multiply"
                 priority
               />
             </div>
@@ -142,7 +142,7 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 3: FEATURE SHOWCASE (GRID BLOCK WITH NEARO CARDS) ===== */}
-      <section className="mx-auto max-w-[1300px] px-6 py-24">
+      <section className="mx-auto max-w-[1300px] px-6 py-12">
         
         {/* Header */}
         <div className="text-center max-w-xl mx-auto mb-20">
@@ -234,7 +234,7 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 4: SMART TRACKING FEATURE SHOWCASE ===== */}
-      <section className="mx-auto max-w-[1300px] px-6 py-24">
+      <section className="mx-auto max-w-[1300px] px-6 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           {/* Left text */}
@@ -283,7 +283,7 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 5: TESTIMONIALS ===== */}
-      <section className="mx-auto max-w-[1300px] px-6 py-24">
+      <section className="mx-auto max-w-[1300px] px-6 py-12">
         
         <header className="mb-20 text-center md:text-left">
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#4fa5e8] bg-blue-50 px-3.5 py-1.5 rounded-full">Student Voices</span>
@@ -333,7 +333,7 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 6: FAQ ACCORDION SECTION ===== */}
-      <section className="mx-auto max-w-[1300px] px-6 py-24">
+      <section className="mx-auto max-w-[1300px] px-6 py-12">
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div>
@@ -365,7 +365,7 @@ export default async function HomePage() {
       </section>
 
       {/* ===== SECTION 7: SUCCESS STORY SPOTLIGHT ===== */}
-      <section className="mx-auto max-w-[1300px] px-6 py-24">
+      <section className="mx-auto max-w-[1300px] px-6 py-12">
         <div className="text-center">
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#4fa5e8] bg-blue-50 px-3.5 py-1.5 rounded-full">Contributor Spotlight</span>
           <p className="max-w-3xl mx-auto text-3xl font-black mt-8 text-[#111111] italic leading-[1.7]" style={{ fontFamily: "'Outfit', sans-serif" }}>
