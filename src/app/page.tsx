@@ -45,8 +45,8 @@ export default async function HomePage() {
   return (
     <div className="w-full bg-[#e6ebf0] text-[#1a1a1a] font-sans selection:bg-blue-100 pb-20">
       
-      {/* ===== HERO SECTION (FLOATING SKY BLUE GRADIENT CARD - FULL WIDTH / TOUCH SIDES) ===== */}
-      <section className="relative w-full mt-0 mb-8 bg-gradient-to-b from-[#4fa5e8] via-[#78bdf4] to-[#cbe3f7] text-white shadow-2xl shadow-blue-900/5">
+      {/* ===== HERO SECTION ===== */}
+      <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-between mt-0 mb-0 bg-gradient-to-b from-[#4fa5e8] via-[#78bdf4] to-[#cbe3f7] text-white shadow-2xl shadow-blue-900/5 overflow-visible">
         
         {/* Subtle white grid overlay inside hero */}
         <div 
@@ -64,11 +64,9 @@ export default async function HomePage() {
           aria-hidden="true" 
         />
 
-        {/* Content Wrapper aligned with the page content */}
-        <div className="mx-auto max-w-[1300px] w-full px-6 pt-10 pb-12 relative z-10 flex flex-col">
-          
-          {/* Integrated Header Row (Matching Nearo Logo & Right Button inside the card) */}
-          <div className="flex items-center justify-between w-full mb-14 px-4">
+        {/* Header Row Container */}
+        <div className="w-full max-w-[1300px] mx-auto px-6 pt-8 pb-4 relative z-20">
+          <div className="flex items-center justify-between w-full px-4">
             {/* Brand Logo */}
             <Link href="/" className="flex items-center gap-2.5">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/25 border border-white/35 backdrop-blur-md">
@@ -79,7 +77,7 @@ export default async function HomePage() {
               </span>
             </Link>
 
-            {/* Navigation Items (Centered inside Header Row) */}
+            {/* Navigation Items */}
             <nav className="hidden md:flex items-center gap-8 bg-white/15 border border-white/25 backdrop-blur-md px-6 py-2 rounded-full shadow-sm">
               <Link href="/" className="text-[12.5px] font-bold text-white transition-colors hover:text-white/80">
                 Home
@@ -105,91 +103,91 @@ export default async function HomePage() {
               </Link>
             </div>
           </div>
+        </div>
 
-          {/* Centered Hero Content */}
-          <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-            <span className="text-[9px] font-black uppercase tracking-[0.25em] text-white/90 bg-white/15 border border-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-6">
-              Now Online
-            </span>
+        {/* Main Hero Content - Centers content vertically and horizontally */}
+        <div className="flex-1 flex flex-col justify-center items-center max-w-4xl w-full mx-auto px-6 py-6 relative z-10 text-center">
+          
+          <span className="text-[9px] font-black uppercase tracking-[0.25em] text-white/90 bg-white/15 border border-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-6">
+            Now Online
+          </span>
 
-            <h1 
-              className="text-[3.6rem] sm:text-[4.8rem] lg:text-[5.4rem] font-black leading-[1.05] tracking-tighter text-white" 
-              style={{ fontFamily: "'Outfit', sans-serif" }}
-            >
-              Academic Notes<br />Directory
-            </h1>
+          <h1 
+            className="text-[3.6rem] sm:text-[4.8rem] lg:text-[5.4rem] font-black leading-[1.05] tracking-tighter text-white" 
+            style={{ fontFamily: "'Outfit', sans-serif" }}
+          >
+            Academic Notes<br />Directory
+          </h1>
 
-            <p className="mt-6 max-w-xl text-[14px] sm:text-[15px] leading-[1.7] text-white/90 font-medium">
-              The platform is simple without excess details. Find notes pleasantly, like reading out of a clean physical notebook.
-            </p>
+          <p className="mt-6 max-w-xl text-[14px] sm:text-[15px] leading-[1.7] text-white/90 font-medium">
+            The platform is simple without excess details. Find notes pleasantly, like reading out of a clean physical notebook.
+          </p>
 
-            {/* Search Bar (Matches Waitlist Email input in the mockup!) */}
-            <div className="w-full max-w-lg mt-10">
-              <form action="/search" method="GET" className="relative flex items-center p-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-lg shadow-lg shadow-black/5 hover:border-white/30 transition-all">
-                <Search className="absolute left-5 h-4.5 w-4.5 text-white/70" />
-                <input 
-                  type="text" 
-                  name="q"
-                  placeholder="Search subjects, notes, formulas..." 
-                  className="w-full bg-transparent pl-12 pr-32 py-3.5 text-[13px] font-semibold text-white placeholder-white/60 focus:outline-none"
-                />
-                <button 
-                  type="submit"
-                  className="absolute right-1.5 rounded-full bg-white px-6 py-2.5 text-[11px] font-extrabold uppercase tracking-wider text-[#4fa5e8] transition-all hover:bg-white/95 active:scale-95 shadow-md shadow-black/5"
-                >
-                  Search
-                </button>
-              </form>
-            </div>
+          {/* Search Bar */}
+          <div className="w-full max-w-lg mt-9">
+            <form action="/search" method="GET" className="relative flex items-center p-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-lg shadow-lg shadow-black/5 hover:border-white/30 transition-all">
+              <Search className="absolute left-5 h-4.5 w-4.5 text-white/70" />
+              <input 
+                type="text" 
+                name="q"
+                placeholder="Search subjects, notes, formulas..." 
+                className="w-full bg-transparent pl-12 pr-32 py-3.5 text-[13px] font-semibold text-white placeholder-white/60 focus:outline-none"
+              />
+              <button 
+                type="submit"
+                className="absolute right-1.5 rounded-full bg-white px-6 py-2.5 text-[11px] font-extrabold uppercase tracking-wider text-[#4fa5e8] transition-all hover:bg-white/95 active:scale-95 shadow-md shadow-black/5"
+              >
+                Search
+              </button>
+            </form>
           </div>
 
-          {/* Centered Notebook Mockup - Extends to the bottom and cropped by card's rounded-b edge */}
-          <div className="relative w-full overflow-hidden h-[350px] mt-6 flex justify-center items-start z-10">
-            <div className="relative w-full max-w-[260px] aspect-[1/2] translate-y-0 transition-transform duration-700 hover:scale-[1.02]">
+          {/* Centered Notebook Mockup - Exactly 46% visible, 54% hidden */}
+          <div className="relative w-full overflow-hidden h-[240px] mt-16 flex justify-center items-start z-10">
+            <div className="relative w-full max-w-[260px] aspect-[1/2] transition-transform duration-700 hover:scale-[1.02]">
               <Image
                 src="/hero-product.png"
                 alt="Minimalist Black Notebook"
                 fill
                 sizes="(max-width: 768px) 100vw, 260px"
-                className="object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.25)] mix-blend-multiply"
+                className="object-contain drop-shadow-[0_35px_60px_rgba(0,0,0,0.3)] mix-blend-multiply"
                 priority
               />
             </div>
           </div>
+        </div>
 
-          {/* Bottom Single Glassmorphic Stats Pill - Overlapping the bottom of the notebook */}
-          <div className="bg-white/10 border border-white/25 backdrop-blur-xl rounded-[28px] p-2 shadow-xl max-w-4xl w-full mx-auto mt-[-160px] relative z-20 translate-y-1/2">
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-y-0">
-              {[
-                { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
-                { number: formatStatNumber(totalUsers), label: "STUDENTS ACTIVE" },
-                { number: formatStatNumber(totalDownloads), label: "TOTAL DOWNLOADS" },
-                { number: formatStatNumber(totalViews), label: "TOTAL VIEWS" }
-              ].map((stat, i) => (
-                <div 
-                  key={i} 
-                  className={`text-center py-4 md:py-6 px-4 flex flex-col justify-center items-center
-                    ${i === 0 ? "border-r border-b border-white/20" : ""}
-                    ${i === 1 ? "border-b md:border-b-0 md:border-r border-white/20" : ""}
-                    ${i === 2 ? "border-r border-white/20" : ""}
-                  `}
-                >
-                  <div className="text-3xl font-black text-white tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                    {stat.number}
-                  </div>
-                  <div className="text-[9px] font-extrabold text-white/70 uppercase tracking-widest mt-1.5">
-                    {stat.label}
-                  </div>
+        {/* Bottom Single Glassmorphic Stats Pill - Absolute positioning at the bottom edge */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-20 w-[92%] max-w-4xl bg-white/75 border border-white/40 backdrop-blur-2xl rounded-[28px] p-2 shadow-xl shadow-blue-950/10">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-y-0">
+            {[
+              { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
+              { number: formatStatNumber(totalUsers), label: "STUDENTS ACTIVE" },
+              { number: formatStatNumber(totalDownloads), label: "TOTAL DOWNLOADS" },
+              { number: formatStatNumber(totalViews), label: "TOTAL VIEWS" }
+            ].map((stat, i) => (
+              <div 
+                key={i} 
+                className={`text-center py-4 md:py-6 px-4 flex flex-col justify-center items-center
+                  ${i === 0 ? "border-r border-b border-zinc-200/20" : ""}
+                  ${i === 1 ? "border-b md:border-b-0 md:border-r border-zinc-200/20" : ""}
+                  ${i === 2 ? "border-r border-zinc-200/20" : ""}
+                `}
+              >
+                <div className="text-3xl font-black text-zinc-900 tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                  {stat.number}
                 </div>
-              ))}
-            </div>
+                <div className="text-[9px] font-extrabold text-zinc-500 uppercase tracking-widest mt-1.5">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
           </div>
-
         </div>
       </section>
 
-      {/* ===== SECTION 2: UNIVERSITY PARTNERS LOGO STRIP (Tighter spacing since mockup is cropped) ===== */}
-      <section className="pt-16 pb-8 max-w-[1300px] mx-auto overflow-hidden">
+      {/* ===== SECTION 2: UNIVERSITY PARTNERS LOGO STRIP ===== */}
+      <section className="pt-24 pb-8 max-w-[1300px] mx-auto overflow-hidden">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 px-6">
           <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#888888]">
             Trusted by students from top institutions
