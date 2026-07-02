@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className="bg-[#f5f5f5]">
+    <html lang="en" suppressHydrationWarning className="bg-[#e6ebf0]">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -28,13 +28,12 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="font-sans antialiased min-h-screen text-zinc-900 flex flex-col bg-[#f5f5f5]">
+      <body className="font-sans antialiased min-h-screen text-zinc-900 flex flex-col bg-[#e6ebf0]">
         <Providers>
           <Header />
           <main className="flex-1 flex flex-col w-full relative">
             {children}
           </main>
-          {/* We hide the footer on the home page using a route check in Footer or just keep it simple */}
         </Providers>
       </body>
     </html>
