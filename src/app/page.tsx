@@ -46,11 +46,11 @@ export default async function HomePage() {
     <div className="w-full bg-[#e6ebf0] text-[#1a1a1a] font-sans selection:bg-blue-100 pb-20">
       
       {/* ===== HERO SECTION (FLOATING SKY BLUE GRADIENT CARD - FULL WIDTH / TOUCH SIDES) ===== */}
-      <section className="relative w-full mt-0 mb-8 rounded-b-[50px] bg-gradient-to-b from-[#4fa5e8] via-[#70b7f0] to-[#99c8f2] text-white shadow-2xl shadow-blue-900/10">
+      <section className="relative w-full mt-0 mb-8 bg-gradient-to-b from-[#4fa5e8] via-[#78bdf4] to-[#cbe3f7] text-white shadow-2xl shadow-blue-900/5">
         
         {/* Subtle white grid overlay inside hero */}
         <div 
-          className="absolute inset-0 pointer-events-none opacity-[0.06] mix-blend-overlay rounded-b-[50px]" 
+          className="absolute inset-0 pointer-events-none opacity-[0.06] mix-blend-overlay" 
           style={{
             backgroundImage: "radial-gradient(white 1px, transparent 1px)",
             backgroundSize: "24px 24px"
@@ -158,7 +158,7 @@ export default async function HomePage() {
           </div>
 
           {/* Bottom Single Glassmorphic Stats Pill - Overlapping the bottom of the notebook */}
-          <div className="bg-white/10 border border-white/20 backdrop-blur-md rounded-[28px] p-2 shadow-xl max-w-4xl w-full mx-auto mt-[-160px] relative z-20 translate-y-1/2">
+          <div className="bg-white/10 border border-white/25 backdrop-blur-xl rounded-[28px] p-2 shadow-xl max-w-4xl w-full mx-auto mt-[-160px] relative z-20 translate-y-1/2">
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y-0">
               {[
                 { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
@@ -169,9 +169,9 @@ export default async function HomePage() {
                 <div 
                   key={i} 
                   className={`text-center py-4 md:py-6 px-4 flex flex-col justify-center items-center
-                    ${i === 0 ? "border-r border-b border-white/10" : ""}
-                    ${i === 1 ? "border-b md:border-b-0 md:border-r border-white/10" : ""}
-                    ${i === 2 ? "border-r border-white/10" : ""}
+                    ${i === 0 ? "border-r border-b border-white/20" : ""}
+                    ${i === 1 ? "border-b md:border-b-0 md:border-r border-white/20" : ""}
+                    ${i === 2 ? "border-r border-white/20" : ""}
                   `}
                 >
                   <div className="text-3xl font-black text-white tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
