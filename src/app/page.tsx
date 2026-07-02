@@ -101,7 +101,7 @@ export default async function HomePage() {
         </div>
 
         {/* Main Hero Content - Centers content vertically and horizontally */}
-        <div className="flex-1 flex flex-col justify-center items-center max-w-4xl w-full mx-auto px-6 pt-6 pb-0 relative z-10 text-center">
+        <div className="flex-1 flex flex-col justify-center items-center max-w-4xl w-full mx-auto px-6 pt-6 pb-20 relative z-10 text-center">
           
           <span className="text-[9px] font-black uppercase tracking-[0.25em] text-white/90 bg-white/15 border border-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-6">
             Now Online
@@ -136,47 +136,47 @@ export default async function HomePage() {
               </button>
             </form>
           </div>
+        </div>
 
-          {/* Centered Notebook Mockup - In layout flow (size increased to 240px, mt decreased to mt-8 for a 28px upward shift) */}
-          <div className="relative w-full max-w-[240px] h-[240px] overflow-hidden mt-8 z-10 flex justify-center items-start">
-            <div className="relative w-full h-[480px] transition-transform duration-700 hover:scale-[1.02]">
-              <Image
-                src="/hero-product.png"
-                alt="Minimalist Black Notebook"
-                fill
-                sizes="240px"
-                className="object-contain mix-blend-multiply"
-                priority
-              />
-            </div>
+        {/* Centered Notebook Mockup - Absolute positioned behind the statistics card */}
+        <div className="absolute bottom-[-50px] left-1/2 -translate-x-1/2 z-10 w-[240px] h-[200px] overflow-hidden flex justify-center items-start">
+          <div className="relative w-full h-[240px] transition-transform duration-700 hover:scale-[1.02]">
+            <Image
+              src="/hero-product.png"
+              alt="Minimalist Black Notebook"
+              fill
+              sizes="240px"
+              className="object-contain object-top mix-blend-multiply"
+              priority
+            />
           </div>
+        </div>
 
-          {/* Bottom Single Glassmorphic Stats Pill - Overlaps the bottom of the notebook and the hero section bottom */}
-          <div className="w-[92%] max-w-4xl bg-white/95 border border-white/60 backdrop-blur-md rounded-[32px] p-2 shadow-[0_20px_50px_rgba(0,0,0,0.06)] mt-[-125px] relative z-20 translate-y-1/2">
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-y-0">
-              {[
-                { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
-                { number: formatStatNumber(totalUsers), label: "STUDENTS ACTIVE" },
-                { number: formatStatNumber(totalDownloads), label: "TOTAL DOWNLOADS" },
-                { number: formatStatNumber(totalViews), label: "TOTAL VIEWS" }
-              ].map((stat, i) => (
-                <div 
-                  key={i} 
-                  className={`text-center py-4 md:py-6 px-4 flex flex-col justify-center items-center
-                    ${i === 0 ? "border-r border-b border-zinc-200/50" : ""}
-                    ${i === 1 ? "border-b md:border-b-0 md:border-r border-zinc-200/50" : ""}
-                    ${i === 2 ? "border-r border-zinc-200/50" : ""}
-                  `}
-                >
-                  <div className="text-3xl font-black text-zinc-900 tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                    {stat.number}
-                  </div>
-                  <div className="text-[9px] font-extrabold text-zinc-500 uppercase tracking-widest mt-1.5">
-                    {stat.label}
-                  </div>
+        {/* Bottom Single Glassmorphic Stats Pill - Absolute positioned at the bottom edge */}
+        <div className="absolute bottom-[-50px] left-1/2 -translate-x-1/2 z-20 w-[92%] max-w-4xl bg-white/95 border border-white/60 backdrop-blur-md rounded-[32px] p-2 shadow-[0_20px_50px_rgba(0,0,0,0.06)]">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-y-0">
+            {[
+              { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
+              { number: formatStatNumber(totalUsers), label: "STUDENTS ACTIVE" },
+              { number: formatStatNumber(totalDownloads), label: "TOTAL DOWNLOADS" },
+              { number: formatStatNumber(totalViews), label: "TOTAL VIEWS" }
+            ].map((stat, i) => (
+              <div 
+                key={i} 
+                className={`text-center py-4 md:py-6 px-4 flex flex-col justify-center items-center
+                  ${i === 0 ? "border-r border-b border-zinc-200/50" : ""}
+                  ${i === 1 ? "border-b md:border-b-0 md:border-r border-zinc-200/50" : ""}
+                  ${i === 2 ? "border-r border-zinc-200/50" : ""}
+                `}
+              >
+                <div className="text-3xl font-black text-zinc-900 tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                  {stat.number}
                 </div>
-              ))}
-            </div>
+                <div className="text-[9px] font-extrabold text-zinc-500 uppercase tracking-widest mt-1.5">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
