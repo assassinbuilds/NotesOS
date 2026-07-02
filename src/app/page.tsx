@@ -157,7 +157,7 @@ export default async function HomePage() {
           </div>
 
           {/* Bottom Single Glassmorphic Stats Pill - Overlaps the bottom of the notebook and the hero section bottom */}
-          <div className="w-[92%] max-w-4xl bg-white/75 border border-white/40 backdrop-blur-2xl rounded-[28px] p-2 shadow-xl shadow-blue-950/10 mt-[-110px] relative z-20 translate-y-1/2">
+          <div className="w-[92%] max-w-4xl bg-white/95 border border-white/60 backdrop-blur-md rounded-[32px] p-2 shadow-[0_20px_50px_rgba(0,0,0,0.06)] mt-[-110px] relative z-20 translate-y-1/2">
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y-0">
               {[
                 { number: formatStatNumber(totalNotes), label: "NOTES SHARED" },
@@ -168,9 +168,9 @@ export default async function HomePage() {
                 <div 
                   key={i} 
                   className={`text-center py-4 md:py-6 px-4 flex flex-col justify-center items-center
-                    ${i === 0 ? "border-r border-b border-zinc-200/20" : ""}
-                    ${i === 1 ? "border-b md:border-b-0 md:border-r border-zinc-200/20" : ""}
-                    ${i === 2 ? "border-r border-zinc-200/20" : ""}
+                    ${i === 0 ? "border-r border-b border-zinc-200/50" : ""}
+                    ${i === 1 ? "border-b md:border-b-0 md:border-r border-zinc-200/50" : ""}
+                    ${i === 2 ? "border-r border-zinc-200/50" : ""}
                   `}
                 >
                   <div className="text-3xl font-black text-zinc-900 tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
